@@ -1,8 +1,9 @@
 services:
   db:
-    image: mariadb:10.6.4-focal
+    build:
+      context: .
+      dockerfile: Dockerfile-mariadb
     container_name: green-coding-wordpress-mariadb-data-container
-    command: '--default-authentication-plugin=mysql_native_password'
     restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=somewordpress
@@ -11,11 +12,13 @@ services:
       - MYSQL_PASSWORD=wordpress
     expose:
       - 3306
-    volumes:
-      - ./wordpress-dump.sql:/docker-entrypoint-initdb.d/wordpress-dump.sql
   wordpress:
-    image: wordpress:latest
+    build:
+      context: .
+      dockerfile: Dockerfile-wordpress
     container_name: green-coding-wordpress-apache-data-container
+    expose:
+      - 9875
     ports:
       - 9875:9875
     restart: always
@@ -26,7 +29,4 @@ services:
       - WORDPRESS_DB_NAME=wordpress
     depends_on:
       - db
-    volumes:
-      - ./html:/var/www/wordpress-green-coding
-      - ./wordpress.conf:/etc/apache2/sites-enabled/wordpress.conf:ro
 
