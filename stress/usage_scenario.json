@@ -1,0 +1,31 @@
+{
+	"name": "Stress Container One Core 5 Seconds",
+	"author": "Arne Tarara",
+	"version": 1,
+	"architecture": "linux",
+	"setup": [
+      	{
+			"name": "ubuntu-base-container",
+			"type": "container",
+			"identifier": "ubuntu",
+			"setup-commands": [
+				"apt update",
+				"apt install stress -y"
+			]
+		}
+	],
+	"flow": [
+		{
+			"name": "Stress",
+			"container": "ubuntu-base-container",
+			"commands": [
+				
+				{
+					"type": "console",
+					"command": "stress -c 1 -t 30",
+					"note": "Starting Stress"
+				}
+			]
+		}
+	]
+}
