@@ -11,20 +11,22 @@
         {
           "name": "green-coding-wordpress-mariadb-data-container",
           "type": "container",
-          "identifier": "mariadb:10.6.4-focal",
+          "identifier": "wordpress-mariadb-data_db",
           "env": {
             "MYSQL_ROOT_PASSWORD": "somewordpress",
             "MYSQL_DATABASE": "wordpress",
             "MYSQL_USER": "wordpress",
             "MYSQL_PASSWORD": "wordpress"
           },
-          "network": "wordpress-mariadb-data-green-coding-network",
-          "folder-destination": "/docker-entrypoint-initdb.d"
+          "setup-commands": [
+                "sleep 20"                
+          ],
+          "network": "wordpress-mariadb-data-green-coding-network"
         },
         {
           "name": "green-coding-wordpress-apache-data-container",
           "type": "container",
-          "identifier": "wordpress:latest",
+          "identifier": "wordpress-mariadb-data_wordpress",
           "env": {
               "WORDPRESS_DB_HOST": "green-coding-wordpress-mariadb-data-container",
               "WORDPRESS_DB_USER": "wordpress",
@@ -32,17 +34,15 @@
               "WORDPRESS_DB_NAME": "wordpress"
           },
           "network": "wordpress-mariadb-data-green-coding-network",
-          "folder-destination": "/tmp/repo",
-          "setup-commands": [
-              "cp /tmp/repo/wordpress.conf /etc/apache2/sites-enabled/wordpress.conf",
-              "cp -R /tmp/repo/html /var/www/wordpress-green-coding"
-          ]
+          "folder-destination": "/tmp/repo"
         },
         {
             "name": "green-coding-puppeteer-container",
             "type": "container",
             "identifier": "puppeteer_green-coding-puppeteer",
-            "setup-commands": ["cp /tmp/repo/puppeteer-flow.js /var/www/puppeteer/puppeteer-flow.js"],
+            "setup-commands": [
+                "cp /tmp/repo/puppeteer-flow.js /var/www/puppeteer/puppeteer-flow.js"                
+            ],
             "network": "wordpress-mariadb-data-green-coding-network"
         }
     ],
