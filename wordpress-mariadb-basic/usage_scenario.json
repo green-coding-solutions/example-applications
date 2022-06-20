@@ -16,7 +16,7 @@
             "MYSQL_ROOT_PASSWORD": "somewordpress",
             "MYSQL_DATABASE": "wordpress",
             "MYSQL_USER": "wordpress",
-            "MYSQL_PASSWORD": "wordpress",
+            "MYSQL_PASSWORD": "wordpress"
           },
           "network": "wordpress-mariadb-basic-green-coding-network"
         },
@@ -38,7 +38,7 @@
         {
             "name": "green-coding-puppeteer-container",
             "type": "container",
-            "identifier": "puppeteer",
+            "identifier": "puppeteer_green-coding-puppeteer",
             "setup-commands": ["cp /tmp/repo/puppeteer-flow.js /var/www/puppeteer/puppeteer-flow.js"],
             "network": "wordpress-mariadb-basic-green-coding-network"
         }

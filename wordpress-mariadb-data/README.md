@@ -58,3 +58,7 @@ The MariaDB database takes a long time to boot.
 
 Therefore a `sleep 20` is in the `setup-commands` of the `usage_scenario.json` so that Puppeteer will not 
 get a database connection error from Wordpress.
+
+## Running the measurement
+
+To check how to run the measurements check out our [Documentation](https://docs.green-coding.org)
