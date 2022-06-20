@@ -1,0 +1,7 @@
+This orchestration is based on the official images of [MariaDB](https://hub.docker.com/_/mariadb)
+and [PHP](https://hub.docker.com/_/php)
+
+If you need more modules in your PHP installation please refer to their documentation
+how to install them.
+
+In our Dockerfile you see an example of how to install `mysqli`
