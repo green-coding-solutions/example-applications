@@ -14,7 +14,7 @@ base image.
 The `compose.yml` file will create volumes for you so that the state of the database and fileystem persists between container
 rebuilds.
 
-If you do want to start with an importable SQL dump / fileystem or example here: YYY
+If you do want to start with an importable SQL dump / fileystem or example here: https://github.com/green-coding-berlin/example-applications/tree/main/wordpress-mariadb-data
 
 ## Deploy with docker compose
 
@@ -25,7 +25,7 @@ $ docker compose up -d
 ## Set hostnames for local development
 
 Please set in `/etc/hosts` the following entry:
-`127.0.0.1 gmt-apache-wordpress`
+`127.0.0.1 green-coding-wordpress-apache-basic-container`
 
 
 ## Expected result
@@ -38,7 +38,7 @@ CONTAINER ID        IMAGE               COMMAND                  CREATED        
 69c51217731e    docker.io/library/mariadb:10.6.4-focal    "docker-entrypoint.s…"    8 minutes ago    Up                                                    green-coding-wordpress-basic-mariadb
 ```
 
-Navigate to `http://gmt-apache-wordpress:9875` in your web browser to access WordPress.
+Navigate to `http://green-coding-wordpress-apache-basic-container:9875` in your web browser to access WordPress.
 
 Stop and remove the containers
 
@@ -53,7 +53,7 @@ $ docker compose down -v
 
 ## Using created database / filesystem later on
 
-Our sample container architecture YYY can consume a pre-made filesystem directly. See documentation there how to use it.
+Our [sample container architecture](https://github.com/green-coding-berlin/example-applications/tree/main/wordpress-mariadb-data) can consume a pre-made filesystem directly. See documentation there how to use it.
 
 In order to extract the relevant filesystem from these containers here use:
 
@@ -74,9 +74,10 @@ Also you need to recreate the relevant parts from your `compose.yml` in the setu
 the `usage_scenario.json`. This is needed du to security restrictions of not sending
 the compose instructions directly to the docker daemon.
 
-Please note that this example expects our Puppeteer container to be built on your system from
-here: ZZZ
+Please note that this example expects our [Puppeteer container](https://github.com/green-coding-berlin/example-applications/tree/main/puppeteer) to be built on your system.
 
 If you want to use your own be sure to alter the `usage_scenario.json`
 
-To check how to run the tests check out AAA:
+## Running measurements
+
+To check how to run the measurements check out our [Documentation](https://docs.green-coding.org)
