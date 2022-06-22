@@ -32,7 +32,7 @@ define( 'DB_PASSWORD', 'wordpress' );
 
 
 /** Database hostname */
-define( 'DB_HOST', 'db' );
+define( 'DB_HOST', 'green-coding-mariadb-container' );
 
 /** Database charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8' );

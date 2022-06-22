@@ -1,8 +1,9 @@
 services:
-  db:
-    image: mariadb:10.6.4-focal
-    container_name: green-coding-wordpress-mariadb-basic-container
-    command: '--default-authentication-plugin=mysql_native_password'
+  mariadb:
+    build:
+      context: .
+      dockerfile: Dockerfile-mariadb
+    container_name: green-coding-mariadb-container
     restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=somewordpress
@@ -10,7 +11,9 @@ services:
       - MYSQL_USER=wordpress
       - MYSQL_PASSWORD=wordpress
   apache-php:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile-apache-php
     container_name: green-coding-apache-php-container
     restart: always
     ports:
