@@ -53,8 +53,9 @@
             "commands": [
                 {
                     "type": "console",
-                    "command": "node /var/www/puppeteer/puppeteer-flow.js"
-                }
+                    "command": "node /var/www/puppeteer/puppeteer-flow.js",
+			"note": "Starting Pupeteer Flow"
+                }, {"type":"console", "command": "date", "note": "Ending puppeteer flow"}
             ]
         }
     ]
