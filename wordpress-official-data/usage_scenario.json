@@ -11,7 +11,7 @@
         {
           "name": "green-coding-wordpress-mariadb-data-container",
           "type": "container",
-          "identifier": "wordpress-mariadb-data_db",
+          "identifier": "wordpress-official-data_mariadb",
           "env": {
             "MYSQL_ROOT_PASSWORD": "somewordpress",
             "MYSQL_DATABASE": "wordpress",
@@ -27,7 +27,7 @@
         {
           "name": "green-coding-wordpress-apache-data-container",
           "type": "container",
-          "identifier": "wordpress-mariadb-data_wordpress",
+          "identifier": "wordpress-official-data_apache",
           "env": {
               "WORDPRESS_DB_HOST": "green-coding-wordpress-mariadb-data-container",
               "WORDPRESS_DB_USER": "wordpress",
