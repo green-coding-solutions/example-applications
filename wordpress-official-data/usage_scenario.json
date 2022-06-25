@@ -11,13 +11,14 @@
         {
           "name": "green-coding-wordpress-mariadb-data-container",
           "type": "container",
-          "identifier": "wordpress-mariadb-data_db",
+          "identifier": "wordpress-official-data_mariadb",
           "env": {
             "MYSQL_ROOT_PASSWORD": "somewordpress",
             "MYSQL_DATABASE": "wordpress",
             "MYSQL_USER": "wordpress",
             "MYSQL_PASSWORD": "wordpress"
           },
+	  "portmapping": "3306:3306",
           "setup-commands": [
                 "sleep 20"                
           ],
@@ -26,13 +27,14 @@
         {
           "name": "green-coding-wordpress-apache-data-container",
           "type": "container",
-          "identifier": "wordpress-mariadb-data_wordpress",
+          "identifier": "wordpress-official-data_apache",
           "env": {
               "WORDPRESS_DB_HOST": "green-coding-wordpress-mariadb-data-container",
               "WORDPRESS_DB_USER": "wordpress",
               "WORDPRESS_DB_PASSWORD": "wordpress",
               "WORDPRESS_DB_NAME": "wordpress"
           },
+	  "portmapping": "9875:9875",
           "network": "wordpress-mariadb-data-green-coding-network",
           "folder-destination": "/tmp/repo"
         },
@@ -53,8 +55,9 @@
             "commands": [
                 {
                     "type": "console",
-                    "command": "node /var/www/puppeteer/puppeteer-flow.js"
-                }
+                    "command": "node /var/www/puppeteer/puppeteer-flow.js",
+			"note": "Starting Pupeteer Flow"
+                }, {"type":"console", "command": "date", "note": "Ending puppeteer flow"}
             ]
         }
     ]

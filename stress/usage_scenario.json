@@ -5,24 +5,20 @@
 	"architecture": "linux",
 	"setup": [
       	{
-			"name": "ubuntu-base-container",
+			"name": "ubunutu-stress",
 			"type": "container",
-			"identifier": "ubuntu",
-			"setup-commands": [
-				"apt update",
-				"apt install stress -y"
-			]
+			"identifier": "stress_stress"			
 		}
 	],
 	"flow": [
 		{
 			"name": "Stress",
-			"container": "ubuntu-base-container",
+			"container": "ubunutu-stress",
 			"commands": [
 				
 				{
 					"type": "console",
-					"command": "stress -c 1 -t 30",
+					"command": "stress -c 1 -t 5",
 					"note": "Starting Stress"
 				}
 			]
