@@ -5,7 +5,7 @@
 	"architecture": "linux",
 	"setup": [
       	{
-			"name": "ubunutu-stress",
+			"name": "ubuntu-stress",
 			"type": "container",
 			"identifier": "stress_stress"			
 		}
@@ -13,7 +13,7 @@
 	"flow": [
 		{
 			"name": "Stress",
-			"container": "ubunutu-stress",
+			"container": "ubuntu-stress",
 			"commands": [
 				
 				{

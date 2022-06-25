@@ -1,5 +1,5 @@
 services:
   stress:
     build: .
-    container_name: ubunutu-stress
+    container_name: ubuntu-stress
     restart: always
