@@ -50,7 +50,9 @@
             "commands": [
                 {
                     "type": "console",
-                    "command": "node /var/www/puppeteer/puppeteer-flow.js"
+                    "command": "node /var/www/puppeteer/puppeteer-flow.js",
+                    "note": "Starting Pupeteer Flow",
+                    "parse-stdout-as-note": true
                 }
             ]
         }

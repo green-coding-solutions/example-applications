@@ -3,3 +3,4 @@ package-lock.json
 tgwf-static
 tgwf-wordpress
 .DS_Store
+sftp-config.json
