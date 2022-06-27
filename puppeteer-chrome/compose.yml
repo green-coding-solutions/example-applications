@@ -3,4 +3,3 @@ services:
     build: .
     container_name: green-coding-puppeteer-container
 
-
