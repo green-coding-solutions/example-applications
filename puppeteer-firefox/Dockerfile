@@ -8,8 +8,10 @@ COPY ./mozilla-firefox-package.priority /etc/apt/preferences.d/mozilla-firefox
 RUN apt-get update && apt-get install -y nodejs firefox 
 
 WORKDIR /var/www
-RUN PUPPETEER_PRODUCT=firefox npm i puppeteer microtime
+COPY ./package.json /var/www/package.json
+RUN PUPPETEER_PRODUCT=firefox npm i
 
-COPY ./puppeteer-flow.js /var/www/puppeteer-flow.js
+# Container must run as the root user, otherwise we cannot connect to the Display.
+# A more security concerned way would be to run the container with the user of the system
 
 ENTRYPOINT [ "bash" ]
