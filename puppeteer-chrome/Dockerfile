@@ -15,7 +15,7 @@ WORKDIR /var/www
 COPY ./package.json /var/www/package.json
 RUN npm i
 
-# Chrome somehow needs these permitions in order to start. This is a quick fix
+# Chrome somehow cannot start without root and in order to start. This is a quick fix
 RUN chmod -R 777 /var/www/node_modules/puppeteer/.local-chromium/
 RUN chmod 777 /var/www/
 

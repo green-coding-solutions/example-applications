@@ -38,8 +38,8 @@
         {
             "name": "green-coding-puppeteer-container",
             "type": "container",
-            "identifier": "puppeteer_green-coding-puppeteer",
-            "setup-commands": ["cp /tmp/repo/puppeteer-flow.js /var/www/puppeteer/puppeteer-flow.js"],
+            "identifier": "greencoding/puppeteer-chrome",
+            "setup-commands": ["cp /tmp/repo/puppeteer-flow.js /var/www/puppeteer-flow.js"],
             "network": "wordpress-mariadb-basic-green-coding-network"
         }
     ],
@@ -50,7 +50,7 @@
             "commands": [
                 {
                     "type": "console",
-                    "command": "node /var/www/puppeteer/puppeteer-flow.js",
+                    "command": "node /var/www/puppeteer-flow.js",
                     "note": "Starting Pupeteer Flow",
                     "parse-stdout-as-note": true
                 }

@@ -16,6 +16,16 @@ rebuilds.
 
 If you do want to start with an importable SQL dump / fileystem or example here: https://github.com/green-coding-berlin/example-applications/tree/main/wordpress-mariadb-data
 
+## Prerequisites
+
+This example uses our [Puppeteer Chrome Container](https://hub.docker.com/r/greencoding/puppeteer-chrome) and will download
+it on the first measurement if you did not already pull it.
+
+
+If you do want to alter this container you can also build it yourself from [Puppeteer Chrome Container](https://github.com/green-coding-berlin/example-applications/tree/main/puppeteer-chrome).
+Only be sure to update the `usage_scenario.json` with the local image identifier.
+
+
 ## Deploy with docker compose
 
 ```
@@ -74,9 +84,6 @@ Also you need to recreate the relevant parts from your `compose.yml` in the setu
 the `usage_scenario.json`. This is needed du to security restrictions of not sending
 the compose instructions directly to the docker daemon.
 
-Please note that this example expects our [Puppeteer container](https://github.com/green-coding-berlin/example-applications/tree/main/puppeteer) to be built on your system.
-
-If you want to use your own be sure to alter the `usage_scenario.json`
 
 ## Running measurements
 

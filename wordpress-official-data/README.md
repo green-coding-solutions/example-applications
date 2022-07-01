@@ -12,10 +12,11 @@ port 9875 of the host as specified in the compose file.
 
 ## Prerequisites
 
-This container architecture requires the Green Coding Puppeteer docker image
- to be present. 
+This example uses our [Puppeteer Chrome Container](https://hub.docker.com/r/greencoding/puppeteer-chrome) and will download
+it on the first measurement if you did not already pull it.
 
-Be sure to to build it from here: https://github.com/green-coding-berlin/example-applications/tree/main/puppeteer
+If you do want to alter this container you can also build it yourself from [Puppeteer Chrome Container](https://github.com/green-coding-berlin/example-applications/tree/main/puppeteer-chrome).
+Only be sure to update the `usage_scenario.json` with the local image identifier.
 
 ## Deploy with docker compose
 
