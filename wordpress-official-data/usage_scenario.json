@@ -18,7 +18,7 @@
             "MYSQL_USER": "wordpress",
             "MYSQL_PASSWORD": "wordpress"
           },
-      "portmapping": "3306:3306",
+          "portmapping": ["3306:3306"],
           "setup-commands": [
                 "sleep 20"
           ],
@@ -34,7 +34,7 @@
               "WORDPRESS_DB_PASSWORD": "wordpress",
               "WORDPRESS_DB_NAME": "wordpress"
           },
-          "portmapping": "9875:9875",
+          "portmapping": ["9875:9875"],
           "network": "wordpress-mariadb-data-green-coding-network",
           "folder-destination": "/tmp/repo"
         },
