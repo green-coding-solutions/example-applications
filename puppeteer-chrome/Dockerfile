@@ -11,13 +11,14 @@ RUN apt update \
     fonts-freefont-ttf libxss1 --no-install-recommends -y \
     && rm -rf /var/lib/apt/lists/*
 
-WORKDIR /var/www/puppeteer
-COPY ./puppeteer/ /var/www/puppeteer
-
+WORKDIR /var/www
+COPY ./package.json /var/www/package.json
 RUN npm i
 
-RUN chmod -R 777 /var/www/puppeteer/node_modules/puppeteer/.local-chromium/
-RUN chmod 777 /var/www/puppeteer/
+# Chrome somehow needs these permitions in order to start. This is a quick fix
+RUN chmod -R 777 /var/www/node_modules/puppeteer/.local-chromium/
+RUN chmod 777 /var/www/
 
+# Switching to a non-root user for security concerns
 USER 1001
 CMD ["bash"]
