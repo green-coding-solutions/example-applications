@@ -1,0 +1,48 @@
+{
+    "name": "Firefox non headless test",
+    "author": "Arne Tarara",
+    "version": 1,
+    "architecture": "linux",
+    "setup": [
+        {
+            "type": "network",
+            "name": "firefox-headless"
+        },
+        {
+          "name": "green-coding-wordpress",
+          "type": "container",
+          "identifier": "wordpress",
+          "portmapping": ["9875:80"],
+          "network": "firefox-headless"
+        },
+        {
+            "name": "green-coding-puppeteer-container",
+            "type": "container",
+            "identifier": "greencoding/puppeteer-firefox",
+            "setup-commands": [
+                "cp /tmp/repo/puppeteer-flow.js /var/www/puppeteer-flow.js"
+            ],
+            "volumes": [
+                "/tmp/.X11-unix:/tmp/.X11-unix"
+            ],
+            "env": {
+                "DISPLAY":":0"
+            },
+            "network": "firefox-headless"
+        }
+    ],
+    "flow": [
+        {
+            "name": "Check Website",
+            "container": "green-coding-puppeteer-container",
+            "commands": [
+                {
+                    "type": "console",
+                    "command": "node /var/www/puppeteer-flow.js",
+                    "note": "Starting Pupeteer Flow",
+                    "read-notes-stdout": true
+                }
+            ]
+        }
+    ]
+}
