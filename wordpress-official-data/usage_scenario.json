@@ -1,76 +1,54 @@
-{
-    "name": "Wordpress Data Puppeteer Scenario",
-    "author": "Arne Tarara",
-    "version": 1,
-    "architecture": "linux",
-    "setup": [
-        {
-            "type": "network",
-            "name": "wordpress-mariadb-data-green-coding-network"
-        },
-        {
-          "name": "green-coding-wordpress-mariadb-data-container",
-          "type": "container",
-          "identifier": "wordpress-official-data_mariadb",
-          "env": {
-            "MYSQL_ROOT_PASSWORD": "somewordpress",
-            "MYSQL_DATABASE": "wordpress",
-            "MYSQL_USER": "wordpress",
-            "MYSQL_PASSWORD": "wordpress"
-          },
-          "portmapping": ["3306:3306"],
-          "setup-commands": [
-                "sleep 20"
-          ],
-          "network": "wordpress-mariadb-data-green-coding-network"
-        },
-        {
-          "name": "green-coding-wordpress-apache-data-container",
-          "type": "container",
-          "identifier": "wordpress-official-data_apache",
-          "env": {
-              "WORDPRESS_DB_HOST": "green-coding-wordpress-mariadb-data-container",
-              "WORDPRESS_DB_USER": "wordpress",
-              "WORDPRESS_DB_PASSWORD": "wordpress",
-              "WORDPRESS_DB_NAME": "wordpress"
-          },
-          "portmapping": ["9875:9875"],
-          "network": "wordpress-mariadb-data-green-coding-network",
-          "folder-destination": "/tmp/repo"
-        },
-        {
-            "name": "green-coding-puppeteer-container",
-            "type": "container",
-            "identifier": "greencoding/puppeteer-chrome",
-            "setup-commands": [
-                "cp /tmp/repo/puppeteer-flow.js /var/www/puppeteer-flow.js"
-            ],
-            "network": "wordpress-mariadb-data-green-coding-network"
-        }
-    ],
-    "flow": [
-        {
-            "name": "Check Website",
-            "container": "green-coding-puppeteer-container",
-            "commands": [
-                {
-                    "type": "console",
-                    "command": "node /var/www/puppeteer-flow.js",
-                    "note": "Starting Pupeteer Flow",
-                    "read-notes-stdout": true
-                },
-                {
-                    "type": "console",
-                    "command": "sleep 30",
-                    "note": "Idling"
-                },
-                {
-                    "type": "console",
-                    "command": "node /var/www/puppeteer-flow.js",
-                    "note": "Starting Pupeteer Flow again",
-                    "read-notes-stdout": true
-                }
-            ]
-        }
-    ]
-}
+---
+name: Wordpress Data Puppeteer Scenario
+author: Arne Tarara
+version: 1
+architecture: linux
+setup:
+- type: network
+  name: wordpress-mariadb-data-green-coding-network
+- type: container
+  name: green-coding-wordpress-mariadb-data-container
+  identifier: wordpress-official-data_mariadb
+  env:
+    MYSQL_ROOT_PASSWORD: somewordpress
+    MYSQL_DATABASE: wordpress
+    MYSQL_USER: wordpress
+    MYSQL_PASSWORD: wordpress
+  portmapping:
+  - 3306:3306
+  setup-commands:
+  - sleep 20
+  network: wordpress-mariadb-data-green-coding-network
+- type: container
+  name: green-coding-wordpress-apache-data-container
+  identifier: wordpress-official-data_apache
+  env:
+    WORDPRESS_DB_HOST: green-coding-wordpress-mariadb-data-container
+    WORDPRESS_DB_USER: wordpress
+    WORDPRESS_DB_PASSWORD: wordpress
+    WORDPRESS_DB_NAME: wordpress
+  portmapping:
+  - 9875:9875
+  network: wordpress-mariadb-data-green-coding-network
+  folder-destination: "/tmp/repo"
+- type: container
+  name: green-coding-puppeteer-container
+  identifier: greencoding/puppeteer-chrome
+  setup-commands:
+  - cp /tmp/repo/puppeteer-flow.js /var/www/puppeteer-flow.js
+  network: wordpress-mariadb-data-green-coding-network
+flow:
+- name: Check Website
+  container: green-coding-puppeteer-container
+  commands:
+  - type: console
+    command: node /var/www/puppeteer-flow.js
+    note: Starting Pupeteer Flow
+    read-notes-stdout: true
+  - type: console
+    command: sleep 30
+    note: Idling
+  - type: console
+    command: node /var/www/puppeteer-flow.js
+    note: Starting Pupeteer Flow again
+    read-notes-stdout: true
