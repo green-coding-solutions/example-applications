@@ -1,0 +1,5 @@
+FROM httpd
+EXPOSE 9875
+
+COPY ./html /var/www/html
+COPY ./hugo-static.conf /etc/apache2/sites-enabled/hugo-static.conf

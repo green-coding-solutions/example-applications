@@ -1,0 +1,30 @@
+---
+name: Hugo Static Site
+author: Arne Tarara
+version: 1
+architecture: linux
+
+services:
+  hugo-apache-container:
+    image: httpd
+    networks:
+      - hugo-apache-network
+    setup-commands:
+      - cp -R /tmp/repo/htdocs /usr/local/apache2/
+  curl-container:
+    image: curlimages/curl
+    networks:
+      - hugo-apache-network
+    cmd: sh
+
+flow:
+  - name: Check Website
+    container: curl-container
+    commands:
+      - type: console
+# Set curl to silent, otherwise the STDERR speed report bothers us
+        command: curl -s hugo-apache-container
+        note: Starting curl
+
+networks:
+  hugo-apache-network:

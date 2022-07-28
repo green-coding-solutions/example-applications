@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>http://wordpress-static.pages.dev/</loc>
+    <lastmod>2022-04-15T17:40:23+02:00</lastmod>
+  </url><url>
+    <loc>http://wordpress-static.pages.dev/posts/</loc>
+    <lastmod>2022-04-15T17:40:23+02:00</lastmod>
+  </url><url>
+    <loc>http://wordpress-static.pages.dev/posts/test-from-github/</loc>
+    <lastmod>2022-04-15T17:40:23+02:00</lastmod>
+  </url><url>
+    <loc>http://wordpress-static.pages.dev/posts/this-is-only-for-testing/</loc>
+    <lastmod>2022-04-15T17:35:23+02:00</lastmod>
+  </url><url>
+    <loc>http://wordpress-static.pages.dev/posts/we-will-move-to-a-static-site-soon/</loc>
+    <lastmod>2022-04-15T15:39:26+02:00</lastmod>
+  </url><url>
+    <loc>http://wordpress-static.pages.dev/contact/</loc>
+    <lastmod>2022-04-15T15:21:32+02:00</lastmod>
+  </url><url>
+    <loc>http://wordpress-static.pages.dev/posts/our-blog-is-live/</loc>
+    <lastmod>2022-04-09T15:22:03+02:00</lastmod>
+  </url><url>
+    <loc>http://wordpress-static.pages.dev/categories/</loc>
+  </url><url>
+    <loc>http://wordpress-static.pages.dev/tags/</loc>
+  </url>
+</urlset>

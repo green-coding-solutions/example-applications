@@ -1,0 +1,49 @@
+---
+name: Wordpress Minimal
+author: Arne Tarara
+version: 1
+architecture: linux
+services:
+  mariadb:
+    image: mariadb:10.6.4-focal
+    environment:
+      MYSQL_ROOT_PASSWORD: somewordpress
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+    networks:
+      - wordpress-minimal-network
+    volumes:
+      - /home/arne/Sites/green-coding/example-applications/wordpress-vs-hugo/wordpress-minimal/wordpress-dump.sql:/docker-entrypoint-initdb.d/wordpress-dump.sql:ro
+# Sleep command cause container needs bootup time to ingest SQL dump
+    setup-commands:
+      - sleep 20
+  wordpress-minimal:
+    image: wordpress:latest
+    environment:
+      WORDPRESS_DB_HOST: mariadb
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_TABLE_PREFIX: wp_
+    networks:
+      - wordpress-minimal-network
+    setup-commands:
+      - cp /tmp/repo/wordpress.conf /etc/apache2/sites-enabled/wordpress.conf
+  curl-container:
+    image: curlimages/curl
+    networks:
+      - wordpress-minimal-network
+    cmd: sh
+
+flow:
+  - name: Wordpress Minimal Homepage
+    container: curl-container
+    commands:
+      - type: console
+# Set curl to silent, otherwise the STDERR speed report bothers us
+        command: "curl -s http://wordpress-minimal:9875"
+        note: Accessing wordpress-minimal home page
+
+networks:
+  wordpress-minimal-network:

@@ -1,0 +1,38 @@
+services:
+  db:
+    image: mariadb:10.6.4-focal
+    container_name: mariadb
+    command: '--default-authentication-plugin=mysql_native_password'
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: somewordpress
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+    expose:
+      - 3306
+    volumes:
+      - ./wordpress-dump.sql:/docker-entrypoint-initdb.d/wordpress-dump.sql:ro
+    networks:
+      - wordpress-minimal-network
+  wordpress:
+    image: wordpress:latest
+    container_name: wordpress-minimal
+    environment:
+      WORDPRESS_DB_HOST: mariadb
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_TABLE_PREFIX: wp_
+    ports:
+      - 9875:9875
+    restart: always
+    depends_on:
+      - db
+    volumes:
+      - ./wordpress.conf:/etc/apache2/sites-enabled/wordpress.conf:ro
+    networks:
+      - wordpress-minimal-network
+
+networks:
+  wordpress-minimal-network:

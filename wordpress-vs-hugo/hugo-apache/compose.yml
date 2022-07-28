@@ -1,0 +1,11 @@
+services:
+  hugo-apache:
+    image: httpd
+    container_name: hugo-apache-container
+    restart: always
+    ports:
+       - 8080:80
+    volumes:
+      - ./wordpress.conf:/etc/apache2/sites-enabled/wordpress.conf:ro
+      - ./htdocs:/usr/local/apache2/htdocs
+

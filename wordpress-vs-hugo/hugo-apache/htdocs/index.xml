@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>My new Hugo site</title>
+    <link>http://wordpress-static.pages.dev/</link>
+    <description>Recent content on My new Hugo site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 15 Apr 2022 17:40:23 +0200</lastBuildDate><atom:link href="http://wordpress-static.pages.dev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>This Is Only for Testing</title>
+      <link>http://wordpress-static.pages.dev/posts/test-from-github/</link>
+      <pubDate>Fri, 15 Apr 2022 17:40:23 +0200</pubDate>
+      
+      <guid>http://wordpress-static.pages.dev/posts/test-from-github/</guid>
+      <description>This file was made from github.
+Posting new articels is as easy as in Wordpress!</description>
+    </item>
+    
+    <item>
+      <title>This Is Only for Testing</title>
+      <link>http://wordpress-static.pages.dev/posts/this-is-only-for-testing/</link>
+      <pubDate>Fri, 15 Apr 2022 17:35:23 +0200</pubDate>
+      
+      <guid>http://wordpress-static.pages.dev/posts/this-is-only-for-testing/</guid>
+      <description>ksalfdkla nkljasndksn akidnsakijnd kjasn
+kdnjaklsndkn
+nsdnklasmndlk lksakldna laskmsndlknsakmndsa daslmkl
+laskmsndlknsakmndsa daslmkl laskmsndlknsakmndsa daslmkl laskmsndlknsakmndsa daslmkl laskmsndlknsakmndsa daslmkl laskmsndlknsakmndsa daslmkl laskmsndlknsakmndsa daslmkl laskmsndlknsakmndsa daslmkl
+laskmsndlknsakmndsa daslmkl laskmsndlknsakmndsa daslmkl laskmsndlknsakmndsa daslmkl laskmsndlknsakmndsa daslmkl laskmsndlknsakmndsa daslmkl laskmsndlknsakmndsa daslmkl laskmsndlknsakmndsa daslmkl laskmsndlknsakmndsa daslmkl laskmsndlknsakmndsa daslmkl laskmsndlknsakmndsa daslmkl laskmsndlknsakmndsa daslmkl laskmsndlknsakmndsa daslmkl laskmsndlknsakmndsa daslmkl laskmsndlknsakmndsa daslmkl laskmsndlknsakmndsa daslmkl laskmsndlknsakmndsa daslmkl laskmsndlknsakmndsa daslmkl laskmsndlknsakmndsa daslmkl laskmsndlknsakmndsa daslmkl laskmsndlknsakmndsa daslmkl laskmsndlknsakmndsa daslmkl laskmsndlknsakmndsa daslmkl
+laskmsndlknsakmndsa daslmkl
+sakdasndnklasnd</description>
+    </item>
+    
+    <item>
+      <title>We Will Move to a Static Site Soon</title>
+      <link>http://wordpress-static.pages.dev/posts/we-will-move-to-a-static-site-soon/</link>
+      <pubDate>Fri, 15 Apr 2022 15:39:26 +0200</pubDate>
+      
+      <guid>http://wordpress-static.pages.dev/posts/we-will-move-to-a-static-site-soon/</guid>
+      <description>This is the content of the next post</description>
+    </item>
+    
+    <item>
+      <title>Contact</title>
+      <link>http://wordpress-static.pages.dev/contact/</link>
+      <pubDate>Fri, 15 Apr 2022 15:21:32 +0200</pubDate>
+      
+      <guid>http://wordpress-static.pages.dev/contact/</guid>
+      <description>Let’s get in touch Tell your visitors how to contact you. You could also get a bit more specific, by letting them know what to contact you about.
+Be sure to mention all the channels where visitors can reach you, including social media. If you’d rather not provide your email, you can add a contact form instead.
+Email me at contact@example.com or follow me on:</description>
+    </item>
+    
+    <item>
+      <title>Our Blog Is Live</title>
+      <link>http://wordpress-static.pages.dev/posts/our-blog-is-live/</link>
+      <pubDate>Sat, 09 Apr 2022 15:22:03 +0200</pubDate>
+      
+      <guid>http://wordpress-static.pages.dev/posts/our-blog-is-live/</guid>
+      <description>Welcome to WordPress! This is your first post. Edit or delete it to take the first step in your blogging journey.</description>
+    </item>
+    
+  </channel>
+</rss>
