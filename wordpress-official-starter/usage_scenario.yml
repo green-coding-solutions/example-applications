@@ -14,6 +14,9 @@ services:
       MYSQL_PASSWORD: wordpress
     networks:
       - wordpress-mariadb-basic-green-coding-network
+# This command is needed, cause the container needs a bootup time to work
+    setup-commands:
+      - sleep 20
   green-coding-wordpress-apache-basic-container:
     image: wordpress:latest
     environment:
