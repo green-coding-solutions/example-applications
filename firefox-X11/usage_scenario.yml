@@ -3,31 +3,34 @@ name: Firefox non headless test
 author: Arne Tarara
 version: 1
 architecture: linux
-setup:
-- type: network
-  name: firefox-headless
-- type: container
-  name: green-coding-wordpress
-  identifier: wordpress
-  portmapping:
-  - 9875:80
-  network: firefox-headless
-- type: container
-  name: green-coding-puppeteer-container
-  identifier: greencoding/puppeteer-firefox
-  setup-commands:
-  - cp /tmp/repo/puppeteer-flow.js /var/www/puppeteer-flow.js
-  volumes:
-  - "/tmp/.X11-unix:/tmp/.X11-unix"
-  env:
+
+services:
+  green-coding-wordpress:
+    image: wordpress
+    ports:
+      - 9875:80
+    networks:
+      - firefox-headless
+  green-coding-puppeteer-container:
+    image: greencoding/puppeteer-firefox
+    setup-commands:
+      - cp /tmp/repo/puppeteer-flow.js /var/www/puppeteer-flow.js
+    volumes:
+      - "/tmp/.X11-unix:/tmp/.X11-unix"
+    environment:
 # If you have multiple displays please change this to the entry you want under /tmp/X11-unix
-    DISPLAY: ":0"
-  network: firefox-headless
+      DISPLAY: ":0"
+    networks:
+      - firefox-headless
+
 flow:
-- name: Check Website
-  container: green-coding-puppeteer-container
-  commands:
-  - type: console
-    command: node /var/www/puppeteer-flow.js
-    note: Starting Pupeteer Flow
-    read-notes-stdout: true
+  - name: Check Website
+    container: green-coding-puppeteer-container
+    commands:
+      - type: console
+        command: node /var/www/puppeteer-flow.js
+        note: Starting Pupeteer Flow
+        read-notes-stdout: true
+
+networks:
+  firefox-headless:
