@@ -19,6 +19,10 @@ for the repository URL.
 If you want to run the measurements locally to falsify be sure to append the 
 `--allow-unsafe` flag if you are measuring the **wordpress-minimal** site.
 
+## Measurement Results
+<img src="https://img.shields.io/badge/Web%20Request%20Energy%20HUGO-0.977%20J-orange">
+<img src="https://img.shields.io/badge/Web%20Request%20Energy%20Wordpress-10.08%20J-orange">
+
 
 ## Showcase
 
