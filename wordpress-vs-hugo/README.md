@@ -20,6 +20,6 @@ If you want to run the measurements locally to falsify be sure to append the
 `--allow-unsafe` flag if you are measuring the **wordpress-minimal** site.
 
 
-## Showcase
+## Case Studies
 
-Look at our Showcase where we analyze the data: https://www.green-coding.org/showcases/wordpress-vs-hugo
+Look at our case studies where we analyze the data: https://www.green-coding.org/case-studies/wordpress-vs-hugo-cloudflare/
