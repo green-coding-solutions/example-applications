@@ -1,0 +1,50 @@
+---
+name: Stress Container in 1 core steps for 5 Seconds each
+author: Arne Tarara
+version: 1
+architecture: linux
+
+services:
+  alpine-stress:
+    type: container
+    image: stress_stress
+
+flow:
+  - name: Stress
+    container: alpine-stress
+    commands:
+# Alpine does not have stress, so we use stress-ng
+# We need the -q flag because otherwise it will write debug to STDERR
+      - type: console
+        command: sleep 5
+        note: Starting Sleep 5
+      - type: console
+        command: stress-ng -c 1 -t 5 -q
+        note: Starting Stress 1
+      - type: console
+        command: stress-ng -c 2 -t 5 -q
+        note: Starting Stress 2
+      - type: console
+        command: stress-ng -c 3 -t 5 -q
+        note: Starting Stress 3
+      - type: console
+        command: stress-ng -c 4 -t 5 -q
+        note: Starting Stress 4
+      - type: console
+        command: stress-ng -c 5 -t 5 -q
+        note: Starting Stress 5
+      - type: console
+        command: stress-ng -c 6 -t 5 -q
+        note: Starting Stress 6
+      - type: console
+        command: stress-ng -c 7 -t 5 -q
+        note: Starting Stress 7
+      - type: console
+        command: stress-ng -c 8 -t 5 -q
+        note: Starting Stress 8
+      - type: console
+        command: stress-ng -c 9 -t 5 -q
+        note: Starting Stress 9
+      - type: console
+        command: stress-ng -c 10 -t 5 -q
+        note: Starting Stress 10

@@ -1,0 +1,5 @@
+services:
+  idle:
+    image: alpine
+    container_name: alpine-idle
+    restart: always

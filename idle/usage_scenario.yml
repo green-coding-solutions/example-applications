@@ -1,0 +1,17 @@
+---
+name: Idle Container for 5 Seconds
+author: Arne Tarara
+version: 1
+architecture: linux
+
+services:
+  alpine-idle:
+    image: alpine
+
+flow:
+  - name: Idle
+    container: alpine-idle
+    commands:
+      - type: console
+        command: sleep 5
+        note: Starting Sleep
