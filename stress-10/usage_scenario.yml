@@ -6,7 +6,6 @@ architecture: linux
 
 services:
   alpine-stress:
-    type: container
     image: stress_stress
 
 flow:
