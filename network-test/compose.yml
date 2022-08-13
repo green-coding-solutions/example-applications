@@ -1,0 +1,13 @@
+services:
+  curl:
+    build: .
+    container_name: alpine-curl
+    restart: always
+  apache2:
+    image: httpd
+    container_name: apache2
+    restart: always
+    volumes:
+      - ./test_1MB.jpg:/usr/local/apache2/htdocs/test_1MB.jpg
+    ports:
+      - 9000:80

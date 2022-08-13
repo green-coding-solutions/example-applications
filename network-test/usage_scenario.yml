@@ -1,0 +1,51 @@
+---
+name: Network Reporter Test Scenario
+author: Arne Tarara
+version: 1
+architecture: linux
+
+networks:
+  network-test:
+
+services:
+  curl:
+    image: network-test_curl
+    networks:
+    - network-test
+  apache2:
+    image: httpd
+    setup-commands:
+      - cp /tmp/repo/test_1MB.jpg /usr/local/apache2/htdocs/test_1MB.jpg
+    networks:
+      - network-test
+
+flow:
+  - name: External-Network-Test
+    container: curl
+    commands:
+      - type: console
+        command: curl https://www.green-coding.org/img/blog/dc-power-readings-prototype-workplace.webp --output /tmp/test.webp --silent
+        note: Downloading 33.8 kB demo file
+      - type: console
+        command: sleep 2
+        note: Sleep 2 s
+      - type: console
+        command: curl https://file-examples.com/storage/fe2ef7477862f581f9ce264/2017/10/file_example_JPG_1MB.jpg --output /tmp/test_image.jpg --silent
+        note: Downloading 1 MB demo file
+  - name: Pause
+    container: curl
+    commands:
+      - type: console
+        command: sleep 5
+        note: Sleep 5 s
+
+  - name: Internal-Network-Test
+    container: curl
+    commands:
+      - type: console
+        command: curl http://apache2/test_1MB.jpg --output /tmp/test_1MB.jpg --silent
+        note: transfer of 1 MB file in internal docker network
+# we introduce another sleep, cause sometims the end of the file transfer has
+# a race condition with the end of the measurement and is not attributed anymore
+      - type: console
+        command: sleep 1
