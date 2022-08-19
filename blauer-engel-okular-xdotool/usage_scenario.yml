@@ -1,0 +1,33 @@
+---
+# Important!
+# This flow expects Ubuntu 22.04 as the host operating system with
+# a 2560x1440 resolution with a 100% scaling and no fractional scaling.
+#
+# The document in question (a PDF with at least 60 pages) is expected to on the desktop
+# in the left top most corner and the desktop must be visible. All other GUI
+# applications should be closed.
+# Your menu bar must also be active and on the left side
+
+name: Blauer Engel Okular Standard Usage Scenario (xdotool)
+author: Arne Tarara
+version: 1
+architecture: linux
+
+services:
+  xdotool:
+    image: xdotool_xdotool
+    restart: always
+    volumes:
+      - "/tmp/.X11-unix:/tmp/.X11-unix"
+    environment:
+# If you have multiple displays please change this to the entry you want under /tmp/X11-unix
+      DISPLAY: ":1"
+
+flow:
+  - name: Blauer Engel Okular Standard Usage Scenario
+    container: xdotool
+    commands:
+      - type: console
+        command: bash /tmp/repo/standardnutzungsseznarioKDEOkular.xdo
+        note: Starting xdotool flow
+        read-notes-stdout: true

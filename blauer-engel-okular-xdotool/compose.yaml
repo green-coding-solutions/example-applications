@@ -1,0 +1,10 @@
+services:
+  xdotool:
+    build: .
+    container_name: alpine-xdotool
+    restart: always
+    volumes:
+      - "/tmp/.X11-unix:/tmp/.X11-unix"
+    environment:
+# If you have multiple displays please change this to the entry you want under /tmp/X11-unix
+      DISPLAY: ":1"

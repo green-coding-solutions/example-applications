@@ -1,0 +1,628 @@
+# write everything to /tmp/okularXDOTOOL.csv
+
+sleep 0.1
+# intentionally create new file
+echo $(date +%s%N | cut -c 1-16)  " startTestrun"
+
+#startAction
+echo $(date +%s%N | cut -c 1-16)  " okular öffnen"
+
+# pdf mit okular öffnen
+sleep 0.1
+
+# pdf öffnen
+sleep 1
+xdotool mousemove 138 67
+xdotool click 1
+
+sleep  0.05
+
+# pdf öffnen - 2. Klick
+xdotool mousemove 136 64
+xdotool click 1
+
+
+echo $(date +%s%N | cut -c 1-16)  " stop action"
+
+# pdf in okular öffnen
+echo $(date +%s%N | cut -c 1-16) "startAction;  auf bestimmte Seitenzahl springen"
+
+# seitenzahl manuell eingeben
+sleep 0.1
+
+#seitenzahlfenster
+
+sleep 1
+xdotool mousemove 1369 101
+xdotool click 1
+
+sleep 1
+# seitenzahl eingeben
+
+xdotool type '32'
+
+
+#zur seitenzahlspringen
+sleep 1
+xdotool key Return
+
+echo $(date +%s%N | cut -c 1-16)  " stop action"
+
+
+# markieren und bemerkung
+sleep 0.1
+echo $(date +%s%N | cut -c 1-16) "startAction; markieren und Bemerkung"
+
+
+# seitenzahl manuell eingeben
+
+# optionen - extras
+sleep 1
+xdotool mousemove 479 75
+xdotool click 1
+
+
+# optionen -rezension anschalten
+sleep 1
+xdotool mousemove 507 250
+xdotool click 1
+
+
+
+# art der rezension auswählen
+sleep 1
+xdotool mousemove 339 141
+xdotool click 1
+
+
+
+# markieren beginnen
+sleep 1.5
+
+xdotool mousemove 866 450
+xdotool mousedown 1 
+
+# bewege
+sleep 1
+xdotool mousemove 996 551
+
+
+# markieren beenden
+sleep 1
+xdotool mouseup 1
+
+# anmerkungen auswählen
+sleep 1
+xdotool mousemove 1484 294
+xdotool click 1
+
+
+# Text einfügen
+sleep 2
+xdotool type 'testtesttest'
+sleep 2
+
+
+# anmerkung schließen
+sleep 1
+xdotool mousemove 1398 804
+xdotool click 1
+
+
+# optionen - extras
+sleep 1
+xdotool mousemove 479 75
+xdotool click 1
+
+
+
+# optionen -rezension ausschalten
+sleep 1
+xdotool mousemove 507 250
+xdotool click 1
+
+
+# stopAction
+sleep 0.1
+echo $(date +%s%N | cut -c 1-16)  "stopAction"
+
+# markieren und bemerkung
+sleep 0.1
+echo $(date +%s%N | cut -c 1-16)  "startAction;  Präsentationsmodus"
+
+
+# präsentationsmodus
+sleep 1
+xdotool mousemove 165 70
+xdotool click 1
+
+
+# option präsentation
+sleep 1
+xdotool mousemove 199 128
+xdotool click 1
+
+
+# Vollbild OK
+sleep 1
+xdotool mousemove 1319 72
+xdotool click 1
+
+
+for i in {1..5}; do
+    # seite vor
+    sleep 2
+    xdotool key Right
+done
+
+for i in {1..5}; do
+    # seite zurück
+    sleep 2
+    xdotool key Left
+done
+
+
+# präsentationsmodus beenden
+sleep 1
+xdotool key Escape
+
+# stopAction
+sleep 0.1
+echo $(date +%s%N | cut -c 1-16)  "stopAction"
+
+# startAction links + rechts drehen
+sleep 0.1
+echo $(date +%s%N | cut -c 1-16) " startAction;  links + rechts drehen"
+
+# 3mal nach rechts drehen
+for i in {1..3}; do
+    # optionen - ansicht
+    sleep 1
+    xdotool mousemove 158 73
+    xdotool click 1
+
+    # optionen -ausrichtung
+    sleep 1
+    xdotool mousemove 179 334
+    xdotool click 1
+
+
+    # optionen - nach rechts drehen
+    sleep 1
+    xdotool mousemove 594 354
+    xdotool click 1
+done
+
+# 3 mal nach links drehen
+for i in {1..3}; do
+    # optionen - ansicht
+    sleep 1
+    xdotool mousemove 158 73
+    xdotool click 1
+
+    # optionen -ausrichtung
+    sleep 1
+    xdotool mousemove 179 334
+    xdotool click 1
+
+    # optionen - nach rechts drehen
+    sleep 1
+    xdotool mousemove 558 334
+    xdotool click 1
+done
+
+
+# stopAction
+
+
+echo $(date +%s%N | cut -c 1-16)  "stopAction"
+
+
+# startAction links + rechts drehen
+sleep 0.1
+echo $(date +%s%N | cut -c 1-16) " startAction;  manuelle Seiten vor + zurück"
+
+
+# seite weiter 5x
+for i in {1..5}; do
+    sleep 1
+    xdotool key Right
+    sleep 1
+done
+
+# seite zurück 5x
+for i in {1..5}; do
+    sleep 1
+    xdotool key Left
+    sleep 1
+done
+
+# stopAction seiten manuell vor + zurück
+sleep 0.1
+echo $(date +%s%N | cut -c 1-16)  "stopAction seiten manuell vor + zurück"
+
+# startAction
+sleep 0.1
+echo $(date +%s%N | cut -c 1-16) " startAction;  rein- + rauszoomen"
+
+
+# zoomen
+
+# reinzoomen 5x
+for i in {1..5}; do
+    sleep 1
+    xdotool mousemove 2480 104
+xdotool click 1
+
+done
+
+# rauszoomen 5x
+for i in {1..5}; do
+    sleep 1
+    xdotool mousemove 2163 102
+xdotool click 1
+
+done
+
+# stopAction zoomen
+
+sleep 0.1
+echo $(date +%s%N | cut -c 1-16)  "stopAction"
+
+# startAction invertierte farben aktivieren
+
+sleep 0.1
+echo $(date +%s%N | cut -c 1-16) " startAction;  invertierte Farben aktivieren"
+
+# einstellungen öffnen
+sleep 1
+xdotool mousemove 564 72
+xdotool click 1
+
+
+# okular einrichten öffnen
+sleep 1
+xdotool mousemove 581 291
+xdotool click 1
+
+
+# zugangshilfe öffnen
+sleep 1
+xdotool mousemove 998 598
+xdotool click 1
+
+
+# farben ändern aktivieren
+sleep 1
+xdotool mousemove 1252 614
+xdotool click 1
+
+# bestätigen
+sleep 1
+xdotool mousemove 1654 968
+xdotool click 1
+
+
+# stopAction invertierte farben aktivieren
+sleep 0.1
+echo $(date +%s%N | cut -c 1-16)  "stopAction"
+
+
+# startAction seitenzahl manuell eingeben
+sleep 0.1
+echo $(date +%s%N | cut -c 1-16) " startAction;  auf bestimmte Seitenzahl springen"
+
+
+# seitenzahlfenster
+sleep 1
+xdotool mousemove 1318 102
+xdotool click 1
+
+
+
+# seitenzahl eingeben
+sleep 1
+xdotool type '54'
+
+# zur seitenzahlspringen
+sleep 1
+xdotool key Return
+
+# stopAction seitenzahl manuell eingeben
+sleep 0.1
+echo $(date +%s%N | cut -c 1-16)  "stopAction"
+
+# startAction markieren und Bemerkung
+sleep 0.1
+echo $(date +%s%N | cut -c 1-16) " startAction; markieren und Bemerkung"
+
+# optionen - extras
+sleep 1
+xdotool mousemove 479 75
+xdotool click 1
+
+
+# optionen -rezessionen anschalten
+sleep 1
+xdotool mousemove 507 250
+xdotool click 1
+
+
+# art der rezension auswählen
+sleep 1
+xdotool mousemove 337 139
+xdotool click 1
+
+
+# markieren beginnen
+sleep 1.5
+xdotool mousemove 865 650
+xdotool mousedown 1
+
+# bewegen
+xdotool mousemove 1309 751
+
+
+# markieren beenden
+sleep 1
+xdotool mouseup 1
+
+# anmerkungen auswählen
+sleep 1
+xdotool mousemove 474 455
+xdotool click 1
+
+# anmerkungen einfügen
+sleep 1
+xdotool mousemove 1456 573
+xdotool click 1
+
+
+# Eingabe
+sleep 2
+xdotool type 'testtesttest'
+sleep 2
+
+# anmerkung schließen
+sleep 1
+xdotool mousemove 1403 806
+xdotool click 1
+
+
+# optionen - extras
+sleep 1
+xdotool mousemove 479 75
+xdotool click 1
+
+
+
+# optionen -rezension ausschalten
+sleep 1
+xdotool mousemove 507 250
+xdotool click 1
+
+
+# stopAction markieren und bemerkung
+sleep 0.1
+echo $(date +%s%N | cut -c 1-16)  "stopAction"
+
+
+
+# startAction präsentationsmodus
+sleep 0.1
+echo $(date +%s%N | cut -c 1-16) " startAction;  Präsentationsmodus"
+
+
+# option ansicht
+sleep 1
+xdotool mousemove 165 70
+xdotool click 1
+
+
+# option präsentation
+sleep 1
+xdotool mousemove 199 128
+xdotool click 1
+
+
+# Vollbild OK
+xdotool mousemove 1323 77
+xdotool click 1
+
+
+# 5x seite vor
+for i in {1..5}; do
+    sleep 2
+     xdotool key Right
+done
+
+# 5x seite zurück
+for i in {1..5}; do
+    sleep 2
+     xdotool key Left
+done
+
+
+# präsentationsmodus beenden
+sleep 1
+xdotool key Escape
+
+# stopAction präsentationsmodus
+sleep 0.1
+echo $(date +%s%N | cut -c 1-16)  "stopAction"
+
+# startAction links + rechts drehen
+sleep 0.1
+echo $(date +%s%N | cut -c 1-16) " startAction;  links + rechts drehen"
+
+
+# 3mal nach rechts drehen
+for i in {1..3}; do
+  # optionen - ansicht
+    sleep 1
+    xdotool mousemove 158 73
+    xdotool click 1
+
+    # optionen -ausrichtung
+    sleep 1
+    xdotool mousemove 179 334
+    xdotool click 1
+
+    # optionen - nach rechts drehen
+    sleep 1
+    xdotool mousemove 594 354
+    xdotool click 1
+
+done
+
+# 3mal nach links drehen
+for i in {1..3}; do
+    # optionen - ansicht
+    sleep 1
+    xdotool mousemove 158 73
+    xdotool click 1
+
+    # optionen -ausrichtung
+    sleep 1
+    xdotool mousemove 179 334
+    xdotool click 1
+
+    # optionen - nach rechts drehen
+    sleep 1
+    xdotool mousemove 558 334
+    xdotool click 1
+
+done
+
+# stopAction links+rechts drehen
+sleep 0.1
+echo $(date +%s%N | cut -c 1-16)  "stopAction"
+
+
+# startAction; mauelle Seiten vor
+sleep 0.1
+echo $(date +%s%N | cut -c 1-16) " startAction;  manuelle Seiten vor + zurück"
+
+
+# 5x seite weiter
+for i in {1..5}; do
+    sleep 1
+    xdotool key Right
+    sleep 1
+done
+
+# 5x seite zurück
+for i in {1..5}; do
+    sleep 1
+    xdotool key Left
+    sleep 1
+done
+
+# stopAction seiten manuell vor + zurück
+sleep 0.1
+echo $(date +%s%N | cut -c 1-16)  "stopAction"
+
+# startAction zoomen
+sleep 0.1
+echo $(date +%s%N | cut -c 1-16) " startAction;  rein- + rauszoomen"
+
+
+
+# 5x reinzoomen
+for i in {1..5}; do
+    sleep 1
+    xdotool mousemove 2480 104
+xdotool click 1
+
+done
+
+# 5x rauszoomen
+for i in {1..5}; do
+    sleep 1
+    xdotool mousemove 2163 102
+xdotool click 1
+
+done
+
+# stopAction zoomen
+sleep 0.1
+echo $(date +%s%N | cut -c 1-16)  "stopAction"
+
+# startAction invertierte Farben aktivieren
+sleep 0.1
+echo $(date +%s%N | cut -c 1-16) " startAction;  invertierte Farben aktivieren"
+
+
+# einstellungen öffnen
+sleep 1
+xdotool mousemove 564 72
+xdotool click 1
+
+
+# okular einrichten öffnen
+sleep 1
+xdotool mousemove 581 291
+xdotool click 1
+
+
+# zugangshilfe öffnen
+sleep 1
+xdotool mousemove 998 598
+xdotool click 1
+
+
+# farben ändern aktivieren
+sleep 1
+xdotool mousemove 1252 614
+xdotool click 1
+
+
+# bestätigen
+sleep 1
+xdotool mousemove 1654 968
+xdotool click 1
+
+
+# stopAction farben aktivieren
+sleep 0.1
+echo $(date +%s%N | cut -c 1-16)  "stopAction"
+
+# startAction zurücksetzen und schließen
+sleep 0.1
+echo $(date +%s%N | cut -c 1-16) " startAction;  zurücksetzen und schließen"
+
+# gehe zu..
+sleep 1
+xdotool mousemove 312 74
+xdotool click 1
+
+sleep 1
+
+# anfang des dokuments
+sleep 1
+xdotool mousemove 309 145
+xdotool click 1
+
+sleep 1
+
+# schließen
+sleep 1
+xdotool mousemove 2541 46
+xdotool click 1
+
+sleep 1
+
+# ohne zu speichern
+sleep 1
+xdotool mousemove 1454 777
+xdotool click 1
+
+sleep 1
+
+# stopAction zurücksetzen und schließen
+sleep 0.1
+echo $(date +%s%N | cut -c 1-16)  "stopAction"
+
+sleep 0.1
+echo $(date +%s%N | cut -c 1-16) "stop testrun"
+
