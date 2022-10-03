@@ -1,0 +1,6 @@
+services:
+  python3:
+    build: .
+    image: ml-model-image
+    container_name: ml-model-container
+

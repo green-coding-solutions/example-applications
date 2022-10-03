@@ -1,0 +1,18 @@
+---
+name: Test-Scenario
+author: Arne Tarara
+version: 1
+architecture: linux
+
+services:
+  ml_container:
+    image: ml-model-image
+
+flow:
+  - name: Load 1000
+    container: ml_container
+    commands:
+      - type: console
+        command: python3 /tmp/hyperparameter_tuning.py
+        read-notes-stdout: true
+  
