@@ -1,0 +1,15 @@
+services:
+  puppeteer-chrome:
+    build: .
+    container_name: puppeteer-chrome
+    environment:
+      - DISPLAY=$DISPLAY
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+  puppeteer-firefox:
+    build: .
+    container_name: puppeteer-firefox
+    environment:
+      - DISPLAY=$DISPLAY
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix

@@ -1,5 +1,5 @@
 services:
   stress:
     build: .
-    container_name: ubuntu-stress
+    container_name: alpine-stress
     restart: always

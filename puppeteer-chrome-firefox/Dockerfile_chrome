@@ -13,12 +13,13 @@ RUN apt update \
 
 WORKDIR /var/www
 COPY ./package.json /var/www/package.json
+RUN  sed -i -r "s/WILL_BE_SET_IN_BUILD/chrome/g" /var/www/package.json
 RUN npm i
 
 # Chrome somehow cannot start without root and in order to start. This is a quick fix
 RUN chmod -R 777 /var/www/node_modules/puppeteer/.local-chromium/
 RUN chmod 777 /var/www/
 
-# Switching to a non-root user for security concerns
-USER 1001
+# Container must run as the root user, otherwise we cannot connect to the Display.
+# A more security concerned way would be to run the container with the user of the system
 CMD ["bash"]

@@ -1,12 +1,12 @@
 ---
-name: Stress Container One Core 5 Seconds
+name: Stress Container for 5 Seconds
 author: Arne Tarara
 version: 1
 architecture: linux
 
 services:
   alpine-stress:
-    image: stress_stress
+    image: alpine-stress
 
 flow:
   - name: Stress
@@ -16,4 +16,5 @@ flow:
 # We need the -q flag because otherwise it will write debug to STDERR
       - type: console
         command: stress-ng -c 1 -t 5 -q
+#        command: stress-ng -c 10 -t 5 -q      
         note: Starting Stress
