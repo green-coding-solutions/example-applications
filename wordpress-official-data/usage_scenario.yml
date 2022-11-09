@@ -12,8 +12,8 @@ services:
       MYSQL_DATABASE: wordpress
       MYSQL_USER: wordpress
       MYSQL_PASSWORD: wordpress
-      #    ports:
-      #- 3306:3306
+    ports:
+      - 3306:3306
 # This command is needed, cause the container needs a bootup time to work
     setup-commands:
       - sleep 20
@@ -26,8 +26,8 @@ services:
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
       WORDPRESS_DB_NAME: wordpress
-      #    ports:
-      #- 9875:9875
+    ports:
+      - 9875:9875
     networks:
       - wordpress-mariadb-data-green-coding-network
     folder-destination: "/tmp/repo"
