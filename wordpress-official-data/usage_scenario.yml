@@ -5,8 +5,8 @@ version: 1
 architecture: linux
 
 services:
-  green-coding-wordpress-mariadb-data-container:
-    image: wordpress-official-data_mariadb
+  wordpress-mariadb-data-container:
+    image: wordpress-official-data-mariadb
     environment:
       MYSQL_ROOT_PASSWORD: somewordpress
       MYSQL_DATABASE: wordpress
@@ -20,14 +20,14 @@ services:
     networks:
       - wordpress-mariadb-data-green-coding-network
   green-coding-wordpress-apache-data-container:
-    image: wordpress-official-data_apache
+    image: wordpress-official-data-apache
     environment:
-      WORDPRESS_DB_HOST: green-coding-wordpress-mariadb-data-container
+      WORDPRESS_DB_HOST: wordpress-mariadb-data-container
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
       WORDPRESS_DB_NAME: wordpress
     ports:
-    - 9875:9875
+      - 9875:9875
     networks:
       - wordpress-mariadb-data-green-coding-network
     folder-destination: "/tmp/repo"
