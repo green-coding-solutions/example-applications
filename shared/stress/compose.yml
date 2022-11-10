@@ -1,5 +1,6 @@
 services:
   stress:
-    build: .
+    build:
+      context: ../shared/stress/
     container_name: alpine_stress
     restart: always
