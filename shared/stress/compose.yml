@@ -1,0 +1,5 @@
+services:
+  stress:
+    build: .
+    container_name: alpine_stress
+    restart: always

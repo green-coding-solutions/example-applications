@@ -7,8 +7,6 @@ architecture: linux
 services:
   green-coding-wordpress:
     image: wordpress
-    ports:
-      - 9875:80
     networks:
       - firefox-headless
   green-coding-puppeteer-container:

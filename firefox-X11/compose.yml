@@ -1,0 +1,21 @@
+services:
+  green-coding-wordpress:
+    image: wordpress
+# We have added the ports here for debugging
+    ports:
+      - 9875:80
+    networks:
+      - firefox-headless
+  green-coding-puppeteer-container:
+    image: greencoding/puppeteer-firefox
+#    setup-commands:
+#      - cp /tmp/repo/puppeteer-flow.js /var/www/puppeteer-flow.js
+    volumes:
+      - "/tmp/.X11-unix:/tmp/.X11-unix"
+    environment:
+# If you have multiple displays please change this to the entry you want under /tmp/X11-unix
+      DISPLAY: ":0"
+    networks:
+      - firefox-headless
+networks:
+  firefox-headless:
