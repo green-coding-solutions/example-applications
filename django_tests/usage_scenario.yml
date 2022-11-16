@@ -1,0 +1,17 @@
+---
+name: Django test container
+author: Didi Hoffmann
+version: 1
+architecture: linux
+
+services:
+  django-test:
+    image: django_tests-django
+
+flow:
+  - name: Django test
+    container: django-test
+    commands:
+      - type: console
+        command: bash /tmp/django/tests/runner.sh
+        note: Starting the django tests
