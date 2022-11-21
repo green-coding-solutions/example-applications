@@ -1,12 +1,8 @@
-FROM python:3-alpine
+FROM python:3-slim
 
 WORKDIR /tmp
 
-RUN apk add bash
-RUN apk add build-base
-RUN apk add git
-RUN apk add libmemcached-dev
-RUN apk add zlib-dev
+RUN apt update && apt install -y bash git libmemcached-dev zlib1g-dev gcc
 
 
 RUN git clone https://github.com/django/django.git
@@ -17,4 +13,3 @@ RUN python -m pip install -e ..
 RUN python -m pip install -r requirements/py3.txt
 
 COPY runner.sh /tmp/django/tests/runner.sh
-
