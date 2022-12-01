@@ -1,0 +1,86 @@
+name: Examples Directory Tests Run
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+      branches: [ "main" ]
+
+  push: 
+    branches: [ "pipeline-testing" ]
+
+  workflow_dispatch:
+
+jobs:
+  #TODO: is there a way to do this that's even more light-weight?
+  check_date:
+    runs-on: self-hosted
+    name: Check latest commit
+    outputs:
+      should_run: ${{ steps.should_run.outputs.should_run }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: print latest_commit
+        run: echo ${{ github.sha }}
+
+      #TODO: instead of 24 hours, last workflow run
+      - id: should_run
+        continue-on-error: true
+        name: check latest commit is less than a day
+        if: ${{ github.event_name == 'schedule' }}
+        run: test -z $(git rev-list  --after="24 hours"  ${{ github.sha }}) && echo "::set-output name=should_run::false"
+
+  run-tests:
+    needs: check_date
+    if: ${{ needs.check_date.outputs.should_run != 'false' }}
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout Examples Directory
+        uses: actions/checkout@v3
+        with:
+          path: examples-directory
+
+      - name: Checkout Green Metrics Tool
+        uses: actions/checkout@v3
+        with:
+          repository: green-coding-berlin/green-metrics-tool
+          path: green-metrics-tool
+      
+      - name: Install python testing dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          pip install fastapi pytest psycopg2 numpy pandas
+      
+      - name: Run Install Script
+        working-directory: ./green-metrics-tool
+        run: |
+          ./install.sh -p testpw
+
+      - name: Turn off metric providers
+        working-directory: ./green-metrics-tool
+        run: |
+          ./disable-metric-providers.sh ac dc xgboost CpuTimeCgroupSystemProvider
+
+      - name: Setup Test environment
+        working-directory: ./green-metrics-tool/test
+        run: |
+          ./setup-test-env.sh -p testpw
+          
+      - name: Start Test container
+        working-directory: ./green-metrics-tool/test
+        run: |
+          docker compose -f ../docker/test-compose.yml up -d
+     
+      - name: Sleep for 10 seconds
+        run: sleep 10s
+        shell: bash
+          
+      - name: Run Tests
+        working-directory: ./green-metrics-tool/test
+        run: |
+          pytest -k "runner and example_application"
+          
+      - name: Stop Containers
+        working-directory: ./green-metrics-tool/test
+        run: |
+          docker compose -f ../docker/test-compose.yml down

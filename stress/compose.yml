@@ -1,5 +1,7 @@
+version: '2'
 services:
   stress:
     build: .
+    image: stress_stress
     container_name: ubuntu-stress
     restart: always
