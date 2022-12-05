@@ -76,9 +76,9 @@ jobs:
         shell: bash
           
       - name: Run Tests
-        working-directory: ./green-metrics-tool/test
+        working-directory: ./examples-directory/test
         run: |
-          pytest -k "runner and example_application"
+          pytest
           
       - name: Stop Containers
         working-directory: ./green-metrics-tool/test
