@@ -14,23 +14,36 @@ from global_config import GlobalConfig
 import utils
 from db import DB
 
-dirs_to_skip=['test', '.git', '.github']
-project_name = "test_" + utils.randomword(12)
-
 def example_directories():
-    dirs = next(os.walk(f"{current_dir}/../"))[1]
+    example_dirs=[]
+    dirs_to_skip=['test', '.git', '.github']
+    root = f"{current_dir}/../"
+
+    for path, directories, files in os.walk(root):
+        if path == root or '.scantest' in files:
+            continue
+        if '.skiptest' in files:
+            directories.clear()
+            continue
+        dirname = path.split(os.path.sep)[-1]
+        example_dirs.append(dirname)
+        directories.clear()
+
     for d in dirs_to_skip:
-        dirs.remove(d)
-    return dirs
+        example_dirs.remove(d)
+
+    return example_dirs
 
 @pytest.mark.parametrize("example_directory", example_directories())
 def test_all_directories(example_directory, capsys):
+    project_name = "test_" + utils.randomword(12)
     config = GlobalConfig(config_name="test-config.yml").config
-
     uri = os.path.abspath(os.path.join(current_dir, '..', example_directory + '/'))
 
+    # Docker compose build example application
     subprocess.run(["docker", "compose",   "-f", uri+"/compose.yml", "build"])
     
+    # Insert Project into testing DB
     project_id = DB().fetch_one('INSERT INTO "projects" ("name","uri","email","last_run","created_at") \
                 VALUES \
                 (%s,%s,\'manual\',NULL,NOW()) RETURNING id;', params=(project_name, uri))[0]
