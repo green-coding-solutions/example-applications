@@ -12,26 +12,37 @@ on:
 
 jobs:
   #TODO: is there a way to do this that's even more light-weight?
-  check_date:
-    runs-on: self-hosted
+  check-commits:
+    runs-on: self-hosted #literally just for the energy savings: so GitHub doesn't have to boot up a VM
     name: Check latest commit
     outputs:
-      should_run: ${{ steps.should_run.outputs.should_run }}
+      should_run: ${{ steps.check_date_examples_repo.outputs.should_run }} || ${{ steps.check_date_gmt_dev.outputs.should_run }}
     steps:
-      - uses: actions/checkout@v3
       - name: print latest_commit
+        uses: actions/checkout@v3
         run: echo ${{ github.sha }}
 
       #TODO: instead of 24 hours, last workflow run
-      - id: should_run
+      - name: check latest commit is less than a day
+        id: check_date_examples_repo
         continue-on-error: true
-        name: check latest commit is less than a day
         if: ${{ github.event_name == 'schedule' }}
-        run: test -z $(git rev-list  --after="24 hours"  ${{ github.sha }}) && echo "::set-output name=should_run::false"
+        run: |
+          test -z $(git rev-list  --after="24 hours"  ${{ github.sha }}) && echo "::set-output name=should_run::false"
+
+      - name: check_date_gmt_dev
+        id: 
+        continue-on-error: true
+        if: ${{ github.event_name == 'schedule' }}
+        run: |
+         dateofcommit=$(curl -s https://api.github.com/repos/green-coding-berlin/green-metrics-tool/commits/dev | jq -r '.commit.author.date')
+         commit_timestamp=$(date --date "$datetime" +'%s')
+         one_day_ago=$(date --date '1 day ago' +'%s')
+         [ $commit_timestamp -gt $one_day_ago ] && "::set-output name=should_run::false"
 
   run-tests:
-    needs: check_date
-    if: ${{ needs.check_date.outputs.should_run != 'false' }}
+    needs: check_commits
+    if: ${{ needs.check_commits.outputs.should_run != 'false' }}
     runs-on: self-hosted
 
     steps:
