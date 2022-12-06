@@ -19,7 +19,7 @@ jobs:
       should_run: ${{ steps.check_date_examples_repo.outputs.should_run }} || ${{ steps.check_date_gmt_dev.outputs.should_run }}
     steps:
       - uses: actions/checkout@v3
-        name: print latest_commit
+      - name: print latest_commit
         run: echo ${{ github.sha }}
 
       #TODO: instead of 24 hours, last workflow run
