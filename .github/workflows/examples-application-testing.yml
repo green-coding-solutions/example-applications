@@ -18,20 +18,20 @@ jobs:
     outputs:
       should_run: ${{ steps.check_date_examples_repo.outputs.should_run }} || ${{ steps.check_date_gmt_dev.outputs.should_run }}
     steps:
-      - name: print latest_commit
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+        name: print latest_commit
         run: echo ${{ github.sha }}
 
       #TODO: instead of 24 hours, last workflow run
-      - name: check latest commit is less than a day
+      - name: check if latest commit is less than a day ago
         id: check_date_examples_repo
         continue-on-error: true
         if: ${{ github.event_name == 'schedule' }}
         run: |
           test -z $(git rev-list  --after="24 hours"  ${{ github.sha }}) && echo "::set-output name=should_run::false"
 
-      - name: check_date_gmt_dev
-        id: 
+      - name: check if latest gmt commit is less than a day ago
+        id: check_date_gmt_dev
         continue-on-error: true
         if: ${{ github.event_name == 'schedule' }}
         run: |
