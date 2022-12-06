@@ -28,7 +28,7 @@ jobs:
         continue-on-error: true
         if: ${{ github.event_name == 'schedule' }}
         run: |
-          test -z $(git rev-list  --after="24 hours"  ${{ github.sha }}) && echo "::set-output name=should_run::false"
+          test -z $(git rev-list  --after="24 hours"  ${{ github.sha }}) && echo "should_run=false" >> $GITHUB_OUTPUT
 
       - name: check if latest gmt commit is less than a day ago
         id: check_date_gmt_dev
@@ -38,7 +38,7 @@ jobs:
          dateofcommit=$(curl -s https://api.github.com/repos/green-coding-berlin/green-metrics-tool/commits/dev | jq -r '.commit.author.date')
          commit_timestamp=$(date --date "$datetime" +'%s')
          one_day_ago=$(date --date '1 day ago' +'%s')
-         [ $commit_timestamp -gt $one_day_ago ] && "::set-output name=should_run::false"
+         [ $commit_timestamp -gt $one_day_ago ] && echo "should_run=false" >> $GITHUB_OUTPUT
 
   run-tests:
     needs: check-commits
