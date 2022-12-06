@@ -41,8 +41,8 @@ jobs:
          [ $commit_timestamp -gt $one_day_ago ] && "::set-output name=should_run::false"
 
   run-tests:
-    needs: check_commits
-    if: ${{ needs.check_commits.outputs.should_run != 'false' }}
+    needs: check-commits
+    if: ${{ needs.check-commits.outputs.should_run != 'false' }}
     runs-on: self-hosted
 
     steps:
