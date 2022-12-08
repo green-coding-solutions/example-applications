@@ -16,8 +16,8 @@ jobs:
     runs-on: self-hosted #literally just for the energy savings: so GitHub doesn't have to boot up a VM
     name: Check latest commit
     outputs:
-      recent_examples_commit: ${{ steps.check_date_examples_repo.outputs.should_run }}
-      recent_gmt_commit: ${{ steps.check_date_gmt_dev.outputs.should_run }}
+      recent_examples_commit: ${{ steps.check_date_examples_repo.outputs.recent_examples_commit }}
+      recent_gmt_commit: ${{ steps.check_date_gmt_dev.outputs.recent_gmt_commit }}
     steps:
       - uses: actions/checkout@v3
       - name: print latest_commit
@@ -27,14 +27,14 @@ jobs:
       - name: check if latest commit is less than a day ago
         id: check_date_examples_repo
         continue-on-error: true
-        #if: ${{ github.event_name == 'schedule' }}
+        if: ${{ github.event_name == 'schedule' }}
         run: |
-           test -n $(git rev-list  --after="24 hours"  ${{ github.sha }}) && echo "should_run=true" >> $GITHUB_OUTPUT
+           test -n $(git rev-list  --after="24 hours"  ${{ github.sha }}) && echo "recent_examples_commit=true" >> $GITHUB_OUTPUT
 
       - name: check if latest gmt commit is less than a day ago
         id: check_date_gmt_dev
         continue-on-error: true
-        #if: ${{ github.event_name == 'schedule' }}
+        if: ${{ github.event_name == 'schedule' }}
         run: |
          dateofcommit=$(curl -s https://api.github.com/repos/green-coding-berlin/green-metrics-tool/commits/dev | jq -r '.commit.author.date')
          commit_timestamp=$(date --date "$datetime" +'%s')
