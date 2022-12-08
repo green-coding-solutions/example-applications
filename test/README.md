@@ -1,5 +1,3 @@
-# Tests Readme
-
 ## Pre-reqs
 Make sure you have pytest installed:
 `pip install pytest`
@@ -13,7 +11,7 @@ drwxrwxr-x 12 dan  dan       4096 Dez  8 12:01 green-metrics-tool/
 Please make sure that your green metrics tool is configured to your system, and your `green-metrics-tool/config.yml` file only has the metric providers turned on which work for your local system.
 
 ## Installation
-To run the tests, first make sure that your green-metrics-tool testing setup is complete. Full instructions on how to do so can be found in `green-metrics-tool/tests/README.MD`, but in short, you simply have to run the `green-metrics-tool/test/setup-test-env.sh` script.
+To run the tests, first make sure that your green-metrics-tool testing setup is complete. Full instructions on how to do so can be found in `green-metrics-tool/test/README.MD`, but in short, you simply have to run the `green-metrics-tool/test/setup-test-env.sh` script.
 
 ## Running
 In green-metris-tool tests subfolder, make sure you first run the `green-metrics-tool/test/start-test-containers.sh` script. This will start the docker containers necessary to run the green metrics tool tests.
