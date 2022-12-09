@@ -14,25 +14,23 @@ from global_config import GlobalConfig
 import utils
 from db import DB
 
+
 def example_directories():
-    example_dirs=[]
-    dirs_to_skip=['test', '.git', '.github']
+    example_dirs = []
     root = f"{current_dir}/../"
 
     for path, directories, files in os.walk(root):
+        dirname = path.split(os.path.sep)[-1]
         if path == root or '.scantest' in files:
             continue
-        if '.skiptest' in files:
+        if '.skiptest' in files or dirname.startswith("."):
             directories.clear()
             continue
-        dirname = path.split(os.path.sep)[-1]
         example_dirs.append(dirname)
         directories.clear()
 
-    for d in dirs_to_skip:
-        example_dirs.remove(d)
-
     return example_dirs
+
 
 @pytest.mark.parametrize("example_directory", example_directories())
 def test_all_directories(example_directory, capsys):
