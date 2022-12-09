@@ -61,17 +61,18 @@ jobs:
       - name: Install python testing dependencies
         run: |
           python3 -m pip install --upgrade pip
-          pip install fastapi pytest psycopg2 numpy pandas
+          pip install fastapi pytest psycopg2 numpy pandas xgboost statsmodels scipy scikit-learn
       
-      - name: Run Install Script
+      - name: Run Prereqs and Install Script
         working-directory: ./green-metrics-tool
         run: |
+          sudo apt install lm-sensors libsensors-dev libglib2.0-0 libglib2.0-dev
           ./install.sh -p testpw
 
       - name: Turn off metric providers
         working-directory: ./green-metrics-tool
         run: |
-          ./disable-metric-providers.sh ac dc xgboost CpuTimeCgroupSystemProvider
+          ./disable-metric-providers.sh System Sensors Debug
           
       - name: Setup Test environment
         working-directory: ./green-metrics-tool/test
@@ -93,6 +94,7 @@ jobs:
           pytest
           
       - name: Stop Containers
+        if: always()
         working-directory: ./green-metrics-tool/test
         run: |
-          docker compose -f ../docker/test-compose.yml down
+          docker compose -f ../docker/test-compose.yml down -v
