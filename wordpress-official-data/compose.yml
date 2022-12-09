@@ -1,8 +1,10 @@
+version: '2'
 services:
   mariadb:
     build:
       context: .
       dockerfile: Dockerfile-mariadb
+    image: wordpress-official-data-mariadb
     container_name: green-coding-wordpress-mariadb-data-container
     restart: always
     environment:
@@ -16,6 +18,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile-wordpress
+    image: wordpress-official-data-apache
     container_name: green-coding-wordpress-apache-data-container
     expose:
       - 9875
