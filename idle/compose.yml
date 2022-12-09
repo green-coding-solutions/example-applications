@@ -1,5 +1,6 @@
+version: '2'
 services:
   idle:
     image: alpine
-    container_name: alpine-idle
+    container_name: gcb_alpine_idle
     restart: always

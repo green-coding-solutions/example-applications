@@ -6,7 +6,7 @@ architecture: linux
 
 services:
   alpine-stress:
-    image: stress-stress
+    image: gcb_alpine_stress
 
 flow:
   - name: Stress

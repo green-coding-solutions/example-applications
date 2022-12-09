@@ -1,3 +1,4 @@
+version: '2'
 services:
   green-coding-wordpress:
     image: wordpress

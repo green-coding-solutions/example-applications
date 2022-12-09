@@ -5,6 +5,7 @@ services:
       context: .
       dockerfile: ./puppeteer_chrome.Dockerfile
     container_name: puppeteer-chrome
+    image: gcb_puppeteer_chrome
 # This is currently commented as we can't get it working with chrome. Please use firefox for now
 #    environment:
 #      - DISPLAY=$DISPLAY

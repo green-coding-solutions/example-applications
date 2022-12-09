@@ -1,8 +1,7 @@
-## Intro
+# Introduction
 
 This is an example on how to run `stress-ng` in our tool and see how the CPU behaves.
 This example stresses one core for 5 seconds.
-
 
 ## Building
 

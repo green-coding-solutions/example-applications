@@ -1,7 +1,9 @@
+version: '2'
 services:
   xdotool:
     build: .
     container_name: alpine-xdotool
+    image: gcb_xdotool
     restart: always
     volumes:
       - "/tmp/.X11-unix:/tmp/.X11-unix"

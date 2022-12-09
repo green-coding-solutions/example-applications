@@ -1,6 +1,6 @@
+version: '2'
 services:
   python3:
     build: .
-    image: ml-model-image
-    container_name: ml-model-container
-
+    image: gcb_ml_model
+    container_name: gcb_ml_model
