@@ -26,7 +26,7 @@ def example_directories():
         if '.skiptest' in files or dirname.startswith("."):
             directories.clear()
             continue
-        example_dirs.append(dirname)
+        example_dirs.append(os.path.abspath(path))
         directories.clear()
 
     return example_dirs
@@ -34,27 +34,26 @@ def example_directories():
 
 @pytest.mark.parametrize("example_directory", example_directories())
 def test_all_directories(example_directory, capsys):
-    project_name = "test_" + utils.randomword(12)
-    config = GlobalConfig(config_name="test-config.yml").config
-    uri = os.path.abspath(os.path.join(current_dir, '..', example_directory + '/'))
+    project_name = f"test_{utils.randomword(12)}"
+    # config = GlobalConfig(config_name="test-config.yml").config
 
     # Docker compose build example application
-    subprocess.run(["docker", "compose",   "-f", uri+"/compose.yml", "build"])
-    
+    subprocess.run(["docker", "compose", "-f", f"{example_directory}/compose.yml", "build"])
+
     # Insert Project into testing DB
     project_id = DB().fetch_one('INSERT INTO "projects" ("name","uri","email","last_run","created_at") \
                 VALUES \
-                (%s,%s,\'manual\',NULL,NOW()) RETURNING id;', params=(project_name, uri))[0]
+                (%s,%s,\'manual\',NULL,NOW()) RETURNING id;', params=(project_name, example_directory))[0]
 
     # Run the application
     runner = Runner(allow_unsafe=True)
-    runner.run(uri=uri, uri_type="folder", project_id=project_id)
+    runner.run(uri=example_directory, uri_type="folder", project_id=project_id)
 
-    ## Capture Std.Out and Std.Err and make Assertions
+    # Capture Std.Out and Std.Err and make Assertions
     captured = capsys.readouterr()
-    
-    ## Assert that Cleanup has run
+
+    # Assert that Cleanup has run
     assert re.search("Cleanup gracefully completed", captured.out)
 
-    ## Assert that there is no std.err output
+    # Assert that there is no std.err output
     assert captured.err == ''
