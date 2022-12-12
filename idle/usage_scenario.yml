@@ -11,7 +11,7 @@ services:
 
 flow:
   - name: Idle
-    container: gcb_alpine_idle
+    container: alpine-idle
     commands:
       - type: console
         command: sleep 5
