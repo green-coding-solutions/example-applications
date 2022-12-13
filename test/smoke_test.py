@@ -35,7 +35,6 @@ def example_directories():
 @pytest.mark.parametrize("example_directory", example_directories())
 def test_all_directories(example_directory, capsys):
     project_name = f"test_{utils.randomword(12)}"
-    # config = GlobalConfig(config_name="test-config.yml").config
 
     # Docker compose build example application
     subprocess.run(["docker", "compose", "-f", f"{example_directory}/compose.yml", "build"])
@@ -53,7 +52,7 @@ def test_all_directories(example_directory, capsys):
     captured = capsys.readouterr()
 
     # Assert that Cleanup has run
-    assert re.search("Cleanup gracefully completed", captured.out)
+    assert re.search("Please access your report with the ID", captured.out)
 
     # Assert that there is no std.err output
     assert captured.err == ''
