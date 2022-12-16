@@ -1,6 +1,6 @@
 ## Pre-reqs
-Make sure you have pytest installed:
-`pip install pytest`
+Make sure you have `pytest` and `pydantic` installed:
+`pip install pytest pydantic`
 
 The tests assume and require that the example-applications repo and the green-metrics-tool repo are living side-by-side with each other
 
@@ -16,7 +16,7 @@ To run the tests, first make sure that your green-metrics-tool testing setup is 
 ## Running
 In green-metris-tool tests subfolder, make sure you first run the `green-metrics-tool/test/start-test-containers.sh` script. This will start the docker containers necessary to run the green metrics tool tests.
 
-Then from the `example-applicatins/test` directory, just run `pytest`
+Then from the `example-applications/test` directory, just run `pytest`
 
 ## Dotfiles
 The smoketests will iterate over all the directories and assumes that they are working applications with usage-scenario.yml and compose.yml files that are meant to used with the green metrics tool. 

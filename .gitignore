@@ -5,3 +5,6 @@ tgwf-static
 tgwf-wordpress
 .DS_Store
 sftp-config.json
+.pytest_cache
+.vscode
+__pycache__

@@ -1,5 +1,1 @@
-services:
-  stress:
-    build: .
-    container_name: alpine-stress
-    restart: always
+../shared/stress/compose.yml

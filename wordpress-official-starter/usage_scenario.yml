@@ -41,7 +41,7 @@ flow:
     commands:
       - type: console
         command: node /var/www/puppeteer-flow.js
-        note: Starting Pupeteer Flow
+        note: Starting Puppeteer Flow
         parse-stdout-as-note: true
 
 networks:

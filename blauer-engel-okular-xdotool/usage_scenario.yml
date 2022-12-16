@@ -15,7 +15,7 @@ architecture: linux
 
 services:
   xdotool:
-    image: xdotool_xdotool
+    image: gcb_xdotool
     restart: always
     volumes:
       - "/tmp/.X11-unix:/tmp/.X11-unix"

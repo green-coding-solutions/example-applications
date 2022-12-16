@@ -4,8 +4,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile-mariadb
-    image: wordpress-official-data-mariadb
-    container_name: green-coding-wordpress-mariadb-data-container
+    container_name: gcb_wordpress_mariadb_data
+    image: gcb_wordpress_mariadb_data
     restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=somewordpress
@@ -18,8 +18,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile-wordpress
-    image: wordpress-official-data-apache
-    container_name: green-coding-wordpress-apache-data-container
+    container_name: gcb_wordpress_apache_data
+    image: gcb_wordpress_apache_data
     expose:
       - 9875
     ports:

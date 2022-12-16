@@ -1,5 +1,0 @@
-services:
-  green-coding-puppeteer:
-    build: .
-    container_name: green-coding-puppeteer-container
-

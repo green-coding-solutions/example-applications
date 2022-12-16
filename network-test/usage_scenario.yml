@@ -9,7 +9,7 @@ networks:
 
 services:
   curl:
-    image: network-test_curl
+    image: gcb_alpine_curl
     networks:
     - network-test
   apache2:

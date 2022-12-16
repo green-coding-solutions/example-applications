@@ -1,3 +1,5 @@
+version: '2'
 services:
   django:
+    image: 'gcb_django_tests'
     build: .

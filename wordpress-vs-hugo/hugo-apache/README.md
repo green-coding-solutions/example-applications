@@ -1,4 +1,5 @@
-## Introduction
+# Introduction
+
 This orchestration is based on the official images of [MariaDB](https://hub.docker.com/_/mariadb)
 and [PHP](https://hub.docker.com/_/php)
 
@@ -7,8 +8,8 @@ how to install them.
 
 In our Dockerfile you see an example of how to install `mysqli`
 
-## Using this example application.
+## Using this example application
 
-In this application we provide no sample `usage_scenario.json`.
+In this application we provide no sample `usage_scenario.yml`.
 
 It is just a demo app that shows how to containerize your architecture from scratch if you are in a Apache-PHP-MariaDB setup.

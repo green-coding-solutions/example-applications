@@ -6,7 +6,7 @@ architecture: linux
 
 services:
   django-test:
-    image: django_tests-django
+    image: gcb_django_tests
 
 flow:
   - name: Django test

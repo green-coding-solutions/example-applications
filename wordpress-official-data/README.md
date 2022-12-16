@@ -1,4 +1,4 @@
-## WordPress with MariaDB and dump
+# WordPress with MariaDB and dump
 
 This example defines a wordpress container architecture.
 
@@ -16,12 +16,12 @@ This example uses our [Puppeteer Chrome Container](https://hub.docker.com/r/gree
 it on the first measurement if you did not already pull it.
 
 If you do want to alter this container you can also build it yourself from [Puppeteer Chrome Container](https://github.com/green-coding-berlin/example-applications/tree/main/puppeteer-chrome).
-Only be sure to update the `usage_scenario.json` with the local image identifier.
+Only be sure to update the `usage_scenario.yml` with the local image identifier.
 
 ## Deploy with docker compose
 
-```
-$ docker compose up -d
+``` bash
+docker compose up -d
 ```
 
 ## Set hostnames for local debugging
@@ -29,11 +29,11 @@ $ docker compose up -d
 Please set in `/etc/hosts` the following entry:
 `127.0.0.1 green-coding-wordpress-apache-data-container`
 
-
 ## Expected result
 
 Check containers are running and the port mapping:
-```
+
+``` bash
 $ docker ps
 CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                 NAMES
 d6b30f1b29d5   wordpress-mariadb-data_wordpress     "docker-entrypoint.s…"   49 seconds ago   Up 31 seconds   80/tcp, 0.0.0.0:9875->9875/tcp, :::9875->9875/tcp   green-coding-wordpress-apache-data-container
@@ -44,20 +44,21 @@ Navigate to `http://green-coding-wordpress-apache-data-container:9875` in your w
 
 Stop and remove the containers
 
-```
-$ docker compose down
-```
-
-Once you are finished testing and want to remove all WordPress data, delete the named volumes by passing the `-v` parameter.:
-```
-$ docker compose down -v
+``` bash
+docker compose down
 ```
 
-## Pecularities
+Once you are finished testing and want to remove all WordPress data, delete the named volumes by passing the `-v` parameter:
+
+``` bash
+docker compose down -v
+```
+
+## Peculiarities
 
 The MariaDB database takes a long time to boot.
 
-Therefore a `sleep 20` is in the `setup-commands` of the `usage_scenario.json` so that Puppeteer will not 
+Therefore a `sleep 20` is in the `setup-commands` of the `usage_scenario.yml` so that Puppeteer will not  
 get a database connection error from Wordpress.
 
 ## Running the measurement

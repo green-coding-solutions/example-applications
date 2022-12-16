@@ -1,7 +1,14 @@
+# Introduction
+
+This is an example on how to run `stress-ng` in our tool and see how the CPU behaves.
+This example stresses one core for 5 seconds.
+
 ## Building
 
 Run `docker compose build` to build the containers and use them for testing or
 instrumented by the Green Metrics Tool runner.
+
+Please note that the `compose.yml` file is a symlink into the `../shared/stress/` folder!
 
 ## Using this container for development
 

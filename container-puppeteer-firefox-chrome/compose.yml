@@ -1,0 +1,22 @@
+services:
+  puppeteer-chrome:
+    privileged: true
+    build:
+      context: .
+      dockerfile: ./puppeteer_chrome.Dockerfile
+    container_name: puppeteer-chrome
+    image: gcb_puppeteer_chrome
+# This is currently commented as we can't get it working with chrome. Please use firefox for now
+#    environment:
+#      - DISPLAY=$DISPLAY
+#    volumes:
+#      - /tmp/.X11-unix:/tmp/.X11-unix
+  puppeteer-firefox:
+    build:
+      context: .
+      dockerfile: ./puppeteer_firefox.Dockerfile
+    container_name: puppeteer-firefox
+    environment:
+      - DISPLAY=$DISPLAY
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
