@@ -52,7 +52,7 @@ def test_all_directories(example_directory, capsys):
     captured = capsys.readouterr()
 
     # Assert that Cleanup has run
-    assert re.search("Please access your report with the ID", captured.out)
+    assert re.search(">>>>>>> MEASUREMENT SUCCESSFULLY COMPLETED <<<<<<<", captured.out)
 
     # Assert that there is no std.err output
     assert captured.err == ''
