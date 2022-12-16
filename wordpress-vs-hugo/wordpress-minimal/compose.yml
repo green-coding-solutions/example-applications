@@ -1,7 +1,8 @@
 version: '2'
 services:
   db:
-    image: mariadb:10.6.4-focal
+    build: .
+    image: gcb_mariadb_wordpress
     container_name: gcb_mariadb
     command: '--default-authentication-plugin=mysql_native_password'
     restart: always
@@ -12,8 +13,6 @@ services:
       MYSQL_PASSWORD: wordpress
     expose:
       - 3306
-    volumes:
-      - ./wordpress-dump.sql:/docker-entrypoint-initdb.d/wordpress-dump.sql:ro
     networks:
       - wordpress-minimal-network
   wordpress:

@@ -5,7 +5,7 @@ version: 1
 architecture: linux
 services:
   mariadb:
-    image: mariadb:10.6.4-focal
+    image: gcb_mariadb_wordpress
     environment:
       MYSQL_ROOT_PASSWORD: somewordpress
       MYSQL_DATABASE: wordpress
@@ -13,8 +13,6 @@ services:
       MYSQL_PASSWORD: wordpress
     networks:
       - wordpress-minimal-network
-    volumes:
-      - ./wordpress-dump.sql:/docker-entrypoint-initdb.d/wordpress-dump.sql:ro
 # Sleep command cause container needs bootup time to ingest SQL dump
     setup-commands:
       - sleep 20
