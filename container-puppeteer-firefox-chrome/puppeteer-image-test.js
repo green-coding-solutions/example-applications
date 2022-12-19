@@ -9,7 +9,8 @@ const microtime = require('microtime');
             height: 1080,
         },
         product: "firefox",
-        headless: false
+        headless: false,
+        executablePath: "/usr/bin/firefox"
     });
 
     const page = await browser.newPage();

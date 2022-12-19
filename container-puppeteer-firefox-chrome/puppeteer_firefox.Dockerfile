@@ -1,6 +1,6 @@
-FROM node:19-alpine3.16
+FROM node:18-alpine3.16
 
-RUN apk add firefox curl
+RUN apk add firefox curl udev ttf-freefont pciutils
 
 WORKDIR /var/www
 COPY ./package.json /var/www/package.json
