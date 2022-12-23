@@ -1,6 +1,8 @@
 const puppeteer = require("puppeteer");
 const microtime = require('microtime');
 
+let sleep = ms => new Promise(r => setTimeout(r, ms));
+
 (async () => {
     console.log(microtime.now()," Launching Browser");
     const browser = await puppeteer.launch({
@@ -31,6 +33,8 @@ const microtime = require('microtime');
     await page.waitForSelector(".data-content-one");
     const text = await page.$eval('.credits', element => element.textContent)
     console.log(microtime.now(),` Found text content: ${text}`);
+
+    await sleep(5000);
 
     console.log(microtime.now()," Closing Browser");
     await browser.close();
