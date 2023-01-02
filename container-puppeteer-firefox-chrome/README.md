@@ -7,7 +7,7 @@ Which are Alpine images with Chrome/Firefox and puppeteer installed.
 
 These images are available in their newest tested version on Docker Hub.
 
-We recommend pulling them from there, which saves resources as well as gives you 
+We recommend pulling them from there, which saves resources as well as gives you
 a working setup.
 
 - `docker pull greencoding/puppeteer-chrome` or
@@ -18,14 +18,21 @@ If you want the newest testing version (potentially unstable) use:
 - `docker pull greencoding/puppeteer-chrome:testing` or
 - `docker pull greencoding/puppeteer-firefox:testing`
 
-
 ## Building locally
 
-Run either 
-- `docker build -f puppeteer_chrome.Dockerfile .` or
-- `docker build -f puppeteer_firefox.Dockerfile .` 
+Run either
+
+- `docker build -f puppeteer_firefox.Dockerfile . -t gcb_puppeteer_firefox:testing` or
+- `docker build -f puppeteer_chrome.Dockerfile . -t gcb_puppeteer_chrome:testing`
 
 to build the images and use them for testing or instrumented by the Green Metrics Tool runner.
+
+**NOTE:** The images need to be passed some environment variables when starting the container  
+in order to be able to start with a GUI
+
+```console
+docker run --rm -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix gcb_puppeteer_[firefox | chrome]:testing
+```
 
 ## Using this container for development
 

@@ -4,6 +4,7 @@ RUN apk add firefox curl udev ttf-freefont pciutils
 
 WORKDIR /var/www
 COPY ./package.json /var/www/package.json
+COPY ./puppeteer-image-test-firefox.js /var/www/puppeteer-image-test-firefox.js
 RUN PUPPETEER_PRODUCT=firefox npm i
 
 # Container must run as the root user, otherwise we cannot connect to the Display.
