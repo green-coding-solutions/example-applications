@@ -9,6 +9,7 @@ const microtime = require("microtime");
             height: 1080,
         },
         headless: true,
+        executablePath: "/usr/bin/chromium-browser",
         args: ["--no-sandbox", "--disable-setuid-sandbox"], // Otherwise it won't run on Docker
     });
 
