@@ -20,26 +20,31 @@ If you want the newest testing version (potentially unstable) use:
 
 ## Building locally
 
-Run either
+For production use we recommend using the published containers on Docker Hub.
 
-- `docker build -f puppeteer_firefox.Dockerfile . -t gcb_puppeteer_firefox:testing` or
-- `docker build -f puppeteer_chrome.Dockerfile . -t gcb_puppeteer_chrome:testing`
+If you want to build a local copy or modified variant run either:
+
+- `docker build -f puppeteer_firefox.Dockerfile . -t gcb_puppeteer_firefox:local` or
+- `docker build -f puppeteer_chrome.Dockerfile . -t gcb_puppeteer_chrome:local`
 
 to build the images and use them for testing or instrumented by the Green Metrics Tool runner.
 
-**NOTE:** The images need to be passed some environment variables when starting the container  
-in order to be able to start with a GUI
 
-Firefox:
 
-```console
-docker run --rm -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v $(pwd)/puppeteer-image-test-firefox.js:/var/www/puppeteer-image-test-firefox.js gcb_puppeteer_firefox:testing
+## Running
+
+```bash
+docker compose run puppeteer-chrome
+# or
+docker compose run puppeteer-firefox
 ```
 
-Chrome:
+If you do not want to use the the docker compose method or you want to easily bind more parameters / use a different 
+image use the docker run command like so:
 
 ```console
-docker run --rm -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v $(pwd)/puppeteer-image-test-chrome.js:/var/www/puppeteer-image-test-chrome.js gcb_puppeteer_chrome:testing
+# Example for chrome
+docker run --rm -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v $(pwd)/puppeteer-image-test-chrome.js:/var/www/puppeteer-image-test-chrome.js gcb_puppeteer_chrome:local
 ```
 
 ## Using this container for development
