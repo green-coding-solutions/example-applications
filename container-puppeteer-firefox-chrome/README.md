@@ -30,8 +30,16 @@ to build the images and use them for testing or instrumented by the Green Metric
 **NOTE:** The images need to be passed some environment variables when starting the container  
 in order to be able to start with a GUI
 
+Firefox:
+
 ```console
-docker run --rm -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix gcb_puppeteer_[firefox | chrome]:testing
+docker run --rm -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v $(pwd)/puppeteer-image-test-firefox.js:/var/www/puppeteer-image-test-firefox.js gcb_puppeteer_firefox:testing
+```
+
+Chrome:
+
+```console
+docker run --rm -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v $(pwd)/puppeteer-image-test-chrome.js:/var/www/puppeteer-image-test-chrome.js gcb_puppeteer_chrome:testing
 ```
 
 ## Using this container for development

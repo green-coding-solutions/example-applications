@@ -7,6 +7,7 @@ services:
       - DISPLAY=$DISPLAY
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
+      - ./puppeteer-image-test-chrome.js:/var/www/puppeteer-image-test-chrome.js
   puppeteer-firefox:
     image: greencoding/puppeteer-firefox
     container_name: puppeteer-firefox
@@ -14,3 +15,4 @@ services:
       - DISPLAY=$DISPLAY
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
+      - ./puppeteer-image-test-firefox.js:/var/www/puppeteer-image-test-firefox.js
