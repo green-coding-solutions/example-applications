@@ -2,7 +2,7 @@ version: '2'
 services:
   xdotool:
     build: .
-    container_name: alpine-xdotool
+    container_name: gcb-xdotool
     image: gcb_xdotool
     restart: always
     volumes:
