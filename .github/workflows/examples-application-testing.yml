@@ -1,19 +1,21 @@
 name: Examples Directory Tests Run
+run-name: Examples Directory Test Run - ${{ github.ref_name }}
 
 on:
   schedule:
     - cron: '0 0 * * *'
       branches: [ "main" ]
 
-  push: 
-    branches: [ "pipeline-testing" ]
+  #push: 
+  #  branches: [ "workflow-tweaks" ]
 
   workflow_dispatch:
 
 jobs:
   #TODO: is there a way to do this that's even more light-weight?
   check-commits:
-    runs-on: self-hosted #literally just for the energy savings: so GitHub doesn't have to boot up a VM
+    #runs-on: self-hosted #literally just for the energy savings: so GitHub doesn't have to boot up a VM
+    runs-on: ubuntu-latest
     name: Check latest commit
     outputs:
       recent_examples_commit: ${{ steps.check_date_examples_repo.outputs.recent_examples_commit }}
@@ -42,7 +44,8 @@ jobs:
   run-tests:
     needs: check-commits
     if: ${{ needs.check-commits.outputs.recent_examples_commit == 'true' ||  needs.check-commits.outputs.recent_gmt_commit == 'true' || github.event_name == 'workflow_dispatch'}}
-    runs-on: self-hosted
+    #runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Examples Directory
@@ -54,10 +57,45 @@ jobs:
         uses: actions/checkout@v3
         with:
           repository: green-coding-berlin/green-metrics-tool
+          submodules: 'true'
           path: green-metrics-tool
+
+      - name: Install python testing dependencies
+        run: |
+          python3 -m pip install --upgrade pip
+          pip install fastapi pytest psycopg2 numpy pandas xgboost statsmodels scipy scikit-learn
       
-      - name: 
+      - name: Run Prereqs and Install Script
         working-directory: ./green-metrics-tool
-        uses: ./.github/actions/gmt-pytest
-        with:
-          metrics-to-turn-off: 'System Sensors Debug'
+        run: |
+          sudo apt install lm-sensors libsensors-dev libglib2.0-0 libglib2.0-dev
+          ./install.sh -p testpw
+      - name: Turn off metric providers
+        working-directory: ./green-metrics-tool
+        run: |
+          ./disable-metric-providers.sh System Sensors Debug
+          
+      - name: Setup Test environment
+        working-directory: ./green-metrics-tool/test
+        run: |
+          python3 setup-test-env.py
+          
+      - name: Start Test container
+        working-directory: ./green-metrics-tool/test
+        run: |
+          docker compose -f ../docker/test-compose.yml up -d
+     
+      - name: Sleep for 10 seconds
+        run: sleep 10s
+        shell: bash
+          
+      - name: Run Tests
+        working-directory: ./examples-directory/test
+        run: |
+          pytest
+          
+      - name: Stop Containers
+        if: always()
+        working-directory: ./green-metrics-tool/test
+        run: |
+          docker compose -f ../docker/test-compose.yml down -v
