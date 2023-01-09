@@ -1,6 +1,6 @@
 version: '2'
 services:
-  mariadb:
+  gcb-mariadb:
     build:
       context: .
       dockerfile: Dockerfile-mariadb
@@ -12,7 +12,7 @@ services:
       - MYSQL_DATABASE=wordpress
       - MYSQL_USER=wordpress
       - MYSQL_PASSWORD=wordpress
-  apache-php:
+  gcb-apache-php:
     build:
       context: .
       dockerfile: Dockerfile-apache-php

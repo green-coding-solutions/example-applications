@@ -5,8 +5,8 @@ version: 1
 architecture: linux
 
 services:
-  wordpress-mariadb-data-container:
-    image: gcb_wordpress_mariadb_data
+  gcb-wordpress-mariadb:
+    image: gcb_wordpress_mariadb
     environment:
       MYSQL_ROOT_PASSWORD: somewordpress
       MYSQL_DATABASE: wordpress
@@ -18,28 +18,28 @@ services:
     setup-commands:
       - sleep 20
     networks:
-      - wordpress-mariadb-data-green-coding-network
-  green-coding-wordpress-apache-data-container:
-    image: gcb_wordpress_apache_data
+      - gcb-wordpress-mariadb-network
+  gcb-wordpress-apache:
+    image: gcb_wordpress_apache
     environment:
-      WORDPRESS_DB_HOST: wordpress-mariadb-data-container
+      WORDPRESS_DB_HOST: gcb-wordpress-mariadb
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
       WORDPRESS_DB_NAME: wordpress
     ports:
       - 9875:9875
     networks:
-      - wordpress-mariadb-data-green-coding-network
+      - gcb-wordpress-mariadb-network
     folder-destination: "/tmp/repo"
-  green-coding-puppeteer-container:
+  gcb-puppeteer:
     image: greencoding/puppeteer-chrome
     setup-commands:
       - cp /tmp/repo/puppeteer-flow.js /var/www/puppeteer-flow.js
     networks:
-      - wordpress-mariadb-data-green-coding-network
+      - gcb-wordpress-mariadb-network
 flow:
   - name: Check Website
-    container: green-coding-puppeteer-container
+    container: gcb-puppeteer
     commands:
       - type: console
         command: node /var/www/puppeteer-flow.js
@@ -54,4 +54,4 @@ flow:
         read-notes-stdout: true
 
 networks:
-  wordpress-mariadb-data-green-coding-network:
+  gcb-wordpress-mariadb-network:

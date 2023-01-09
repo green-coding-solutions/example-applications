@@ -5,12 +5,12 @@ version: 1
 architecture: linux
 
 services:
-  ml_container:
+  gcb-ml-model:
     image: gcb_ml_model
 
 flow:
   - name: Load 1000
-    container: ml_container
+    container: gcb-ml-model
     commands:
       - type: console
         command: python3 /tmp/hyperparameter_tuning.py

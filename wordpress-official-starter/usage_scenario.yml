@@ -5,7 +5,7 @@ version: 1
 architecture: linux
 
 services:
-  green-coding-wordpress-mariadb-basic-container:
+  gcb-mariadb:
     image: mariadb:10.6.4-focal
     environment:
       MYSQL_ROOT_PASSWORD: somewordpress
@@ -13,31 +13,31 @@ services:
       MYSQL_USER: wordpress
       MYSQL_PASSWORD: wordpress
     networks:
-      - wordpress-mariadb-basic-green-coding-network
+      - gcb-mariadb-wordpress-network
 # This command is needed, cause the container needs a bootup time to work
     setup-commands:
       - sleep 20
-  green-coding-wordpress-apache-basic-container:
+  gcb-wordpress:
     image: wordpress:latest
     environment:
-      WORDPRESS_DB_HOST: green-coding-wordpress-mariadb-basic-container
+      WORDPRESS_DB_HOST: gcb-mariadb
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
       WORDPRESS_DB_NAME: wordpress
     networks:
-      - wordpress-mariadb-basic-green-coding-network
+      - gcb-mariadb-wordpress-network
     setup-commands:
       - cp /tmp/repo/wordpress.conf /etc/apache2/sites-enabled/wordpress.conf
-  green-coding-puppeteer-container:
+  gcb-puppeteer:
     image: greencoding/puppeteer-chrome
     setup-commands:
       - cp /tmp/repo/puppeteer-flow.js /var/www/puppeteer-flow.js
     networks:
-      - wordpress-mariadb-basic-green-coding-network
+      - gcb-mariadb-wordpress-network
 
 flow:
   - name: Check Website
-    container: green-coding-puppeteer-container
+    container: gcb-puppeteer
     commands:
       - type: console
         command: node /var/www/puppeteer-flow.js
@@ -45,4 +45,4 @@ flow:
         parse-stdout-as-note: true
 
 networks:
-  wordpress-mariadb-basic-green-coding-network:
+  gcb-mariadb-wordpress-network:

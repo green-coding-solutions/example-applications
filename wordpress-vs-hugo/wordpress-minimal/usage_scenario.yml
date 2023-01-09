@@ -4,8 +4,8 @@ author: Arne Tarara
 version: 1
 architecture: linux
 services:
-  mariadb:
-    image: gcb_mariadb_wordpress
+  gcb-mariadb:
+    image: gcb_mariadb
     environment:
       MYSQL_ROOT_PASSWORD: somewordpress
       MYSQL_DATABASE: wordpress
@@ -16,10 +16,10 @@ services:
 # Sleep command cause container needs bootup time to ingest SQL dump
     setup-commands:
       - sleep 20
-  wordpress-minimal:
+  gcb-wordpress:
     image: wordpress:latest
     environment:
-      WORDPRESS_DB_HOST: mariadb
+      WORDPRESS_DB_HOST: gcb-mariadb
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
       WORDPRESS_DB_NAME: wordpress
@@ -28,7 +28,7 @@ services:
       - wordpress-minimal-network
     setup-commands:
       - cp /tmp/repo/wordpress.conf /etc/apache2/sites-enabled/wordpress.conf
-  curl-container:
+  gcb-curl:
     image: curlimages/curl
     networks:
       - wordpress-minimal-network
@@ -36,11 +36,11 @@ services:
 
 flow:
   - name: Wordpress Minimal Homepage
-    container: curl-container
+    container: gcb-curl
     commands:
       - type: console
 # Set curl to silent, otherwise the STDERR speed report bothers us
-        command: "curl -s http://wordpress-minimal:9875"
+        command: "curl -s http://gcb-wordpress:9875"
         note: Accessing wordpress-minimal home page
 
 networks:

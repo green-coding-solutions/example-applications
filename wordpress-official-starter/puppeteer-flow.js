@@ -24,12 +24,12 @@ const microtime = require("microtime");
     // console.log("Dimensions:", dimensions); // Only to double-check if the dimensions are as expected
 
     console.log(microtime.now()," Home Page");
-    await page.goto("http://green-coding-wordpress-apache-basic-container:9875", {
+    await page.goto("http://gcb-wordpress:9875", {
         waitUntil: "networkidle2",
     });
 
     // then continue with your code from here:
-    //await page.goto("http://green-coding-wordpress-apache-basic-container:9875/my-sample-page", {
+    //await page.goto("http://gcb-wordpress:9875/my-sample-page", {
     //    waitUntil: "networkidle2",
     //});
 

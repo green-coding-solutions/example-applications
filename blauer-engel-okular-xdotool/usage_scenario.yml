@@ -14,7 +14,7 @@ version: 1
 architecture: linux
 
 services:
-  xdotool:
+  gcb-xdotool:
     image: gcb_xdotool
     restart: always
     volumes:
@@ -25,7 +25,7 @@ services:
 
 flow:
   - name: Blauer Engel Okular Standard Usage Scenario
-    container: xdotool
+    container: gcb-xdotool
     commands:
       - type: console
         command: bash /tmp/repo/standardnutzungsseznarioKDEOkular.xdo

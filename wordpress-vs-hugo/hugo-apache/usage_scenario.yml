@@ -5,26 +5,26 @@ version: 1
 architecture: linux
 
 services:
-  hugo-apache-container:
+  gcb-hugo-apache:
     image: httpd
     networks:
-      - hugo-apache-network
+      - gcb-hugo-apache-network
     setup-commands:
       - cp -R /tmp/repo/htdocs /usr/local/apache2/
-  curl-container:
+  gcb-curl:
     image: curlimages/curl
     networks:
-      - hugo-apache-network
+      - gcb-hugo-apache-network
     cmd: sh
 
 flow:
   - name: Check Website
-    container: curl-container
+    container: gcb-curl
     commands:
       - type: console
 # Set curl to silent, otherwise the STDERR speed report bothers us
-        command: curl -s hugo-apache-container
+        command: curl -s gcb-hugo-apache
         note: Starting curl
 
 networks:
-  hugo-apache-network:
+  gcb-hugo-apache-network:

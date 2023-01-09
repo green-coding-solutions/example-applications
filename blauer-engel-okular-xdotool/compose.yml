@@ -1,6 +1,6 @@
 version: '2'
 services:
-  xdotool:
+  gcb-xdotool:
     build: .
     container_name: gcb-xdotool
     image: gcb_xdotool

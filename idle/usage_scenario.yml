@@ -5,13 +5,13 @@ version: 1
 architecture: linux
 
 services:
-  alpine-idle:
+  gcb-idle:
     image: alpine
     cmd: sh
 
 flow:
   - name: Idle
-    container: alpine-idle
+    container: gcb-idle
     commands:
       - type: console
         command: sleep 5

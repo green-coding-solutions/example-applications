@@ -1,20 +1,22 @@
 version: '2'
 services:
-  green-coding-wordpress:
+  gcb-wordpress:
     image: wordpress
+    container_name: gcb-wordpress
 # We have added the ports here for debugging
     ports:
       - 9875:80
     networks:
-      - firefox-non-headless
-  green-coding-puppeteer-container:
+      - firefox-headless
+  gcb-puppeteer:
     image: greencoding/puppeteer-firefox
+    container_name: gcb-puppeteer
     volumes:
       - "/tmp/.X11-unix:/tmp/.X11-unix"
     environment:
 # If you have multiple displays please change this to the entry you want under /tmp/X11-unix
       DISPLAY: ":0"
     networks:
-      - firefox-non-headless
+      - firefox-headless
 networks:
   firefox-headless:

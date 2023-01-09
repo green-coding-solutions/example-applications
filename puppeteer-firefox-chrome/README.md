@@ -29,17 +29,15 @@ If you want to build a local copy or modified variant run either:
 
 to build the images and use them for testing or instrumented by the Green Metrics Tool runner.
 
-
-
 ## Running
 
 ```bash
-docker compose run puppeteer-chrome
+docker compose run gcb-puppeteer-chrome
 # or
-docker compose run puppeteer-firefox
+docker compose run gcb-puppeteer-firefox
 ```
 
-If you do not want to use the the docker compose method or you want to easily bind more parameters / use a different 
+If you do not want to use the the docker compose method or you want to easily bind more parameters / use a different  
 image use the docker run command like so:
 
 ```console

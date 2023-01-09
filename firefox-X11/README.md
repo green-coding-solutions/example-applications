@@ -14,6 +14,6 @@ instrumented by the Green Metrics Tool runner.
 
 ## Using this container for development
 
-Run `docker compose run idle` to start and enter the container.
+Run `docker compose run gcb-puppeteer` to start and enter the container.
 
 It will just end when you just do `docker compose run`

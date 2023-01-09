@@ -5,12 +5,12 @@ version: 1
 architecture: linux
 
 services:
-  django-test:
+  gcb-django-tests:
     image: gcb_django_tests
 
 flow:
   - name: Django test
-    container: django-test
+    container: gcb-django-tests
     commands:
       - type: console
         command: bash /tmp/django/tests/runner.sh

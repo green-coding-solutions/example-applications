@@ -1,16 +1,16 @@
 services:
-  puppeteer-chrome:
+  gcb-puppeteer-chrome:
     privileged: true
     image: greencoding/puppeteer-chrome
-    container_name: puppeteer-chrome
+    container_name: gcb-puppeteer-chrome
     environment:
       - DISPLAY=$DISPLAY
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
       - ./puppeteer-image-test-chrome.js:/var/www/puppeteer-image-test-chrome.js
-  puppeteer-firefox:
+  gcb-puppeteer-firefox:
     image: greencoding/puppeteer-firefox
-    container_name: puppeteer-firefox
+    container_name: gcb-puppeteer-firefox
     environment:
       - DISPLAY=$DISPLAY
     volumes:

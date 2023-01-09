@@ -1,9 +1,9 @@
 version: '2'
 services:
-  db:
+  gcb-mariadb:
     build: .
-    image: gcb_mariadb_wordpress
-    container_name: gcb_mariadb
+    image: gcb_mariadb
+    container_name: gcb-mariadb
     command: '--default-authentication-plugin=mysql_native_password'
     restart: always
     environment:
@@ -14,12 +14,12 @@ services:
     expose:
       - 3306
     networks:
-      - wordpress-minimal-network
-  wordpress:
+      - gcb-mariadb-wordpress-network
+  gcb-wordpress:
     image: wordpress:latest
-    container_name: gcb_wordpress_minimal
+    container_name: gcb-wordpress
     environment:
-      WORDPRESS_DB_HOST: mariadb
+      WORDPRESS_DB_HOST: gcb-mariadb
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
       WORDPRESS_DB_NAME: wordpress
@@ -28,11 +28,11 @@ services:
       - 9875:9875
     restart: always
     depends_on:
-      - db
+      - gcb-mariadb
     volumes:
       - ./wordpress.conf:/etc/apache2/sites-enabled/wordpress.conf:ro
     networks:
-      - wordpress-minimal-network
+      - gcb-mariadb-wordpress-network
 
 networks:
-  wordpress-minimal-network:
+  gcb-mariadb-wordpress-network:
