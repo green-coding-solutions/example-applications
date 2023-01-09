@@ -60,42 +60,10 @@ jobs:
           submodules: 'true'
           path: green-metrics-tool
 
-      - name: Install python testing dependencies
-        run: |
-          python3 -m pip install --upgrade pip
-          pip install fastapi pytest psycopg2 numpy pandas xgboost statsmodels scipy scikit-learn
-      
-      - name: Run Prereqs and Install Script
-        working-directory: ./green-metrics-tool
-        run: |
-          sudo apt install lm-sensors libsensors-dev libglib2.0-0 libglib2.0-dev
-          ./install.sh -p testpw
-      - name: Turn off metric providers
-        working-directory: ./green-metrics-tool
-        run: |
-          ./disable-metric-providers.sh System Sensors Debug
-          
-      - name: Setup Test environment
-        working-directory: ./green-metrics-tool/test
-        run: |
-          python3 setup-test-env.py
-          
-      - name: Start Test container
-        working-directory: ./green-metrics-tool/test
-        run: |
-         ./start-test-containers.sh -d
-     
-      - name: Sleep for 10 seconds
-        run: sleep 10s
-        shell: bash
-          
-      - name: Run Tests
-        working-directory: ./examples-directory/test
-        run: |
-          pytest
-          
-      - name: Stop Containers
-        if: always()
-        working-directory: ./green-metrics-tool/test
-        run: |
-          ./stop-test-containers.sh
+
+      - name: 'Setup, Run, and Teardown Tests'
+        uses: green-coding-berlin/green-metrics-tool/.github/actions/gmt-pytest
+        with:
+           metrics-to-turn-off: 'System Sensors Debug'
+           gmt-directory: './green-metrics-tool'
+           tests-directory: './examples-directory/test'
