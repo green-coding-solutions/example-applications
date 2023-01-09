@@ -83,7 +83,7 @@ jobs:
       - name: Start Test container
         working-directory: ./green-metrics-tool/test
         run: |
-          docker compose -f ../docker/test-compose.yml up -d
+         ./start-test-containers.sh -d
      
       - name: Sleep for 10 seconds
         run: sleep 10s
@@ -98,4 +98,4 @@ jobs:
         if: always()
         working-directory: ./green-metrics-tool/test
         run: |
-          docker compose -f ../docker/test-compose.yml down -v
+          ./stop-test-containers.sh
