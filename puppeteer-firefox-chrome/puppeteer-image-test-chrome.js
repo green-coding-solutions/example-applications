@@ -1,6 +1,8 @@
 const puppeteer = require("puppeteer");
 const microtime = require('microtime');
 
+let sleep = ms => new Promise(r => setTimeout(r, ms));
+
 (async () => {
     console.log(microtime.now()," Launching Browser");
     const browser = await puppeteer.launch({
@@ -9,8 +11,8 @@ const microtime = require('microtime');
             height: 1080,
         },
         headless: false,
-        executablePath: "/usr/bin/firefox",
-        product: "firefox"
+        executablePath: "/usr/bin/chromium-browser",
+        args: ['--no-sandbox']
     });
 
     const page = await browser.newPage();
@@ -24,19 +26,16 @@ const microtime = require('microtime');
     // console.log("Dimensions:", dimensions); // Only to double-check if the dimensions are as expected
 
     console.log(microtime.now()," Home Page");
-    await page.goto("http://green-coding-wordpress", { // for this example we are running on port 80
+    await page.goto("https://www.green-coding.org", { // for this example we are running on port 80
         waitUntil: "load",
     });
 
-    await page.waitForSelector("#language-continue");
-    const text = await page.$eval('.screen-reader-text', element => element.textContent)
+    await page.waitForSelector(".data-content-one");
+    const text = await page.$eval('.credits', element => element.textContent)
     console.log(microtime.now(),` Found text content: ${text}`);
 
-    // await page.screenshot({ path: "img/filled-form.png", fullPage: true });
-    // console.log(
-    //     "Screenshot taken at ",
-    //     process.hrtime()[0] * 1000000000 + process.hrtime()[1] / 1000
-    // );
+    await sleep(5000);
+
     console.log(microtime.now()," Closing Browser");
     await browser.close();
 })();
