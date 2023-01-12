@@ -1,0 +1,59 @@
+name: Examples Directory Tests Run - VM
+run-name: Examples Directory Test Run - ${{ github.ref_name }}
+
+on:
+  schedule:
+    - cron: '0 0 * * *'
+      branches: [ "main" ]
+
+  #push: 
+  #  branches: [ "workflow-tweaks" ]
+
+  workflow_dispatch:
+
+jobs:
+  check-commits:
+    runs-on: ubuntu-latest
+    name: Check latest commit
+    outputs:
+      recent_gmt_commit: ${{ steps.check_gmt_commits.outputs.recent_commit }}
+      recent_examples_commit: ${{ steps.check_examples_commits.outputs.recent_commit }}
+    steps:
+      - id: check_gmt_commits
+        uses: green-coding-berlin/green-ci-branch-activity-checker@main
+        with:
+         repo: 'green-coding-berlin/green-metrics-tool'
+         branch: 'dev'
+
+      - id: check_examples_commits
+        uses: green-coding-berlin/green-ci-branch-activity-checker@main
+        with:
+         repo: 'green-coding-berlin/example-applications'
+         branch: 'main'
+
+  run-tests:
+    needs: check-commits
+    if: ${{ needs.check-commits.outputs.recent_examples_commit == 'true' ||  needs.check-commits.outputs.recent_gmt_commit == 'true' || github.event_name == 'workflow_dispatch'}}
+    #runs-on: self-hosted
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Examples Directory
+        uses: actions/checkout@v3
+        with:
+          path: examples-directory
+
+      - name: Checkout Green Metrics Tool
+        uses: actions/checkout@v3
+        with:
+          repository: green-coding-berlin/green-metrics-tool
+          submodules: 'true'
+          path: green-metrics-tool
+
+
+      - name: 'Setup, Run, and Teardown Tests'
+        uses: green-coding-berlin/green-metrics-tool/.github/actions/gmt-pytest@dev
+        with:
+           metrics-to-turn-off: 'System Sensors Debug'
+           gmt-directory: './green-metrics-tool'
+           tests-directory: './examples-directory/test'
