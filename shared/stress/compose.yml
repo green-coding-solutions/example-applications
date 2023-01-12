@@ -1,8 +1,8 @@
 version: '2'
 services:
-  stress:
+  gcb-alpine-stress:
     build:
       context: ../shared/stress/
-    container_name: gcb_alpine_stress
+    container_name: gcb-alpine-stress
     image: gcb_alpine_stress
     restart: always

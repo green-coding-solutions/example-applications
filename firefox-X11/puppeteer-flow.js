@@ -24,7 +24,7 @@ const microtime = require('microtime');
     // console.log("Dimensions:", dimensions); // Only to double-check if the dimensions are as expected
 
     console.log(microtime.now()," Home Page");
-    await page.goto("http://green-coding-wordpress", { // for this example we are running on port 80
+    await page.goto("http://gcb-wordpress", { // for this example we are running on port 80
         waitUntil: "load",
     });
 

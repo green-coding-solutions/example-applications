@@ -1,20 +1,23 @@
+version: '2'
 services:
-  mariadb:
+  gcb-mariadb:
     build:
       context: .
       dockerfile: Dockerfile-mariadb
-    container_name: green-coding-mariadb-container
+    container_name: gcb-mariadb
+    image: gcb_mariadb
     restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=somewordpress
       - MYSQL_DATABASE=wordpress
       - MYSQL_USER=wordpress
       - MYSQL_PASSWORD=wordpress
-  apache-php:
+  gcb-apache-php:
     build:
       context: .
       dockerfile: Dockerfile-apache-php
-    container_name: green-coding-apache-php-container
+    container_name: gcb-apache-php
+    image: gcb_apache_php
     restart: always
     ports:
        - 9875:9875

@@ -5,16 +5,16 @@ version: 1
 architecture: linux
 
 services:
-  green-coding-wordpress:
+  gcb-wordpress:
     image: wordpress
     networks:
       - firefox-headless
-  green-coding-puppeteer-container:
+  gcb-puppeteer:
     image: greencoding/puppeteer-firefox
     setup-commands:
       - cp /tmp/repo/puppeteer-flow.js /var/www/puppeteer-flow.js
     volumes:
-      - "/tmp/.X11-unix:/tmp/.X11-unix"
+      - /tmp/.X11-unix:/tmp/.X11-unix
     environment:
 # If you have multiple displays please change this to the entry you want under /tmp/X11-unix
       DISPLAY: ":0"
@@ -23,11 +23,11 @@ services:
 
 flow:
   - name: Check Website
-    container: green-coding-puppeteer-container
+    container: gcb-puppeteer
     commands:
       - type: console
         command: node /var/www/puppeteer-flow.js
-        note: Starting Pupeteer Flow
+        note: Starting Puppeteer Flow
         read-notes-stdout: true
 
 networks:

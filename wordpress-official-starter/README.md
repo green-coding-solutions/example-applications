@@ -10,17 +10,17 @@ port 9875 of the host as specified in the compose file.
 
 This image is meant to be used when you want to start building a wordpress container for testing from the
 base image.
-The `compose.yml` file will create volumes for you so that the state of the database and fileystem persists between container
+The `compose.yml` file will create volumes for you so that the state of the database and filesystem persists between container
 rebuilds.
 
-If you do want to start with an importable SQL dump / filesystem or example here: <https://github.com/green-coding-berlin/example-applications/tree/main/wordpress-mariadb-data>
+If you do want to start with an importable SQL dump / filesystem or example here: <https://github.com/green-coding-berlin/example-applications/tree/main/wordpress-official-data>
 
 ## Prerequisites
 
 This example uses our [Puppeteer Chrome Container](https://hub.docker.com/r/greencoding/puppeteer-chrome) and will download
 it on the first measurement if you did not already pull it.
 
-If you do want to alter this container you can also build it yourself from [Puppeteer Chrome Container](https://github.com/green-coding-berlin/example-applications/tree/main/puppeteer-chrome).
+If you do want to alter this container you can also build it yourself from [Puppeteer Chrome Container](https://github.com/green-coding-berlin/example-applications/tree/main/puppeteer-firefox-chrome).
 Only be sure to update the `usage_scenario.yml` with the local image identifier.
 
 ## Deploy with docker compose
@@ -32,7 +32,7 @@ docker compose up -d
 ## Set hostnames for local development
 
 Please set in `/etc/hosts` the following entry:
-`127.0.0.1 green-coding-wordpress-apache-basic-container`
+`127.0.0.1 gcb-wordpress`
 
 ## Expected result
 
@@ -40,12 +40,12 @@ Check containers are running and the port mapping:
 
 ``` bash
 $ docker ps
-CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS              PORTS                 NAMES
-195d682b21b0    docker.io/library/wordpress:latest        "docker-entrypoint.s…"    8 minutes ago    Up                          0.0.0.0:9875->9875/tcp    green-coding-wordpress-basic-apache
-69c51217731e    docker.io/library/mariadb:10.6.4-focal    "docker-entrypoint.s…"    8 minutes ago    Up                                                    green-coding-wordpress-basic-mariadb
+CONTAINER ID   IMAGE                          COMMAND                  CREATED         STATUS         PORTS                                               NAMES
+150c04999d16   wordpress:latest               "docker-entrypoint.s…"   6 seconds ago   Up 5 seconds   80/tcp, 0.0.0.0:9875->9875/tcp, :::9875->9875/tcp   gcb-wordpress
+18be22cee196   mariadb:10.6.4-focal           "docker-entrypoint.s…"   6 seconds ago   Up 6 seconds   3306/tcp                                            gcb-mariadb
 ```
 
-Navigate to `http://green-coding-wordpress-apache-basic-container:9875` in your web browser to access WordPress.
+Navigate to `http://gcb-wordpress:9875` in your web browser to access WordPress.
 
 Stop and remove the containers
 
@@ -61,7 +61,7 @@ docker compose down -v
 
 ## Using created database / filesystem later on
 
-Our [sample container architecture](https://github.com/green-coding-berlin/example-applications/tree/main/wordpress-mariadb-data) can consume a pre-made filesystem directly. See documentation there how to use it.
+Our [sample container architecture](https://github.com/green-coding-berlin/example-applications/tree/main/wordpress-official-data) can consume a pre-made filesystem directly. See documentation there how to use it.
 
 In order to extract the relevant filesystem from these containers here use:
 

@@ -10,4 +10,4 @@ instrumented by the Green Metrics Tool runner.
 
 ## Using this container for development
 
-Run `docker compose run idle` to start and enter the container.
+Run `docker compose run gcb-idle` to start and enter the container.

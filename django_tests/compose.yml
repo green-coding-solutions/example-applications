@@ -1,5 +1,6 @@
 version: '2'
 services:
-  django:
-    image: 'gcb_django_tests'
+  gcb-django-tests:
+    image: gcb_django_tests
+    container_name: gcb-django-tests
     build: .

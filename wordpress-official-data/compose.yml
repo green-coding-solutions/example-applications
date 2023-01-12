@@ -1,11 +1,11 @@
 version: '2'
 services:
-  mariadb:
+  gcb-wordpress-mariadb:
     build:
       context: .
       dockerfile: Dockerfile-mariadb
-    container_name: gcb_wordpress_mariadb_data
-    image: gcb_wordpress_mariadb_data
+    container_name: gcb-wordpress-mariadb
+    image: gcb_wordpress_mariadb
     restart: always
     environment:
       - MYSQL_ROOT_PASSWORD=somewordpress
@@ -14,22 +14,22 @@ services:
       - MYSQL_PASSWORD=wordpress
     expose:
       - 3306
-  apache:
+  gcb-wordpress-apache:
     build:
       context: .
       dockerfile: Dockerfile-wordpress
-    container_name: gcb_wordpress_apache_data
-    image: gcb_wordpress_apache_data
+    container_name: gcb-wordpress-apache
+    image: gcb_wordpress_apache
     expose:
       - 9875
     ports:
       - 9875:9875
     restart: always
     environment:
-      - WORDPRESS_DB_HOST=mariadb
+      - WORDPRESS_DB_HOST=gcb-wordpress-mariadb
       - WORDPRESS_DB_USER=wordpress
       - WORDPRESS_DB_PASSWORD=wordpress
       - WORDPRESS_DB_NAME=wordpress
     depends_on:
-      - mariadb
+      - gcb-wordpress-mariadb
 

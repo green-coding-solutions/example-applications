@@ -1,8 +1,8 @@
 version: '2'
 services:
-  hugo-apache:
+  gcb-hugo-apache:
     image: httpd
-    container_name: gcb_hugo_apache
+    container_name: gcb-hugo-apache
     restart: always
     ports:
        - 8080:80

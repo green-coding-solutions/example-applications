@@ -1,13 +1,13 @@
 version: '2'
 services:
-  curl:
+  gcb-alpine-curl:
     build: .
-    container_name: gcb_alpine_curl
+    container_name: gcb-alpine-curl
     image: gcb_alpine_curl
     restart: always
-  apache2:
+  gcb-apache2:
     image: httpd
-    container_name: gcb_apache2
+    container_name: gcb-apache2
     restart: always
     volumes:
       - ./test_1MB.jpg:/usr/local/apache2/htdocs/test_1MB.jpg
