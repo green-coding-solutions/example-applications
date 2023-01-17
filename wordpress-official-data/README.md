@@ -64,3 +64,12 @@ get a database connection error from Wordpress.
 ## Running the measurement
 
 To check how to run the measurements check out our [Documentation](https://docs.green-coding.berlin)
+
+## OpenEnergyBadge
+These badges show the energy cost for running this code on a single machine.
+
+- <a href="https://metrics.green-coding.berlin/stats.html?id=42a532c6-494c-4873-a288-dc9ef3d43a59"><img src="https://api.green-coding.berlin/v1/badge/single/42a532c6-494c-4873-a288-dc9ef3d43a59?metric=ml-estimated"></a>
+- <a href="https://metrics.green-coding.berlin/stats.html?id=42a532c6-494c-4873-a288-dc9ef3d43a59"><img src="https://api.green-coding.berlin/v1/badge/single/42a532c6-494c-4873-a288-dc9ef3d43a59?metric=RAPL"></a>
+- <a href="https://metrics.green-coding.berlin/stats.html?id=42a532c6-494c-4873-a288-dc9ef3d43a59"><img src="https://api.green-coding.berlin/v1/badge/single/42a532c6-494c-4873-a288-dc9ef3d43a59?metric=DC"></a>
+
+
