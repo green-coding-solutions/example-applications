@@ -47,7 +47,7 @@ docker run --rm -it -e DISPLAY=$DISPLAY -v /tmp/.X11-unix:/tmp/.X11-unix -v $(pw
 
 ## Using this container for development
 
-A simple puppeteer script that fetches data from the <green-coding.org> is present  
+A simple puppeteer script that fetches data from the <green-coding.berlin> is present  
 in this directory in a Firefox and Chrome variant.  
 
 ### Using Firefox

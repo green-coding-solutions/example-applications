@@ -12,7 +12,7 @@ repository.
 
 ## Measurements
 
-You can find all the measurements on <https://metrics.green-coding.org/> by searching
+You can find all the measurements on <https://metrics.green-coding.berlin/> by searching
 for the repository URL.
 
 If you want to run the measurements locally to falsify be sure to append the  
@@ -25,4 +25,4 @@ If you want to run the measurements locally to falsify be sure to append the
 
 ## Case Studies
 
-Look at our case studies where we analyze the data: <https://www.green-coding.org/case-studies/wordpress-vs-hugo-cloudflare/>
+Look at our case studies where we analyze the data: <https://www.green-coding.berlin/case-studies/wordpress-vs-hugo-cloudflare/>

@@ -63,4 +63,4 @@ get a database connection error from Wordpress.
 
 ## Running the measurement
 
-To check how to run the measurements check out our [Documentation](https://docs.green-coding.org)
+To check how to run the measurements check out our [Documentation](https://docs.green-coding.berlin)

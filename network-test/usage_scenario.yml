@@ -24,7 +24,7 @@ flow:
     container: gcb-alpine-curl
     commands:
       - type: console
-        command: curl https://www.green-coding.org/img/blog/dc-power-readings-prototype-workplace.webp --output /tmp/test.webp --silent
+        command: curl https://www.green-coding.berlin/img/blog/dc-power-readings-prototype-workplace.webp --output /tmp/test.webp --silent
         note: Downloading 33.8 kB demo file
       - type: console
         command: sleep 2

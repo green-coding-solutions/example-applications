@@ -13,7 +13,7 @@ Some interesting examples are:
 
 ## How to use
 
-Please see the [documentation](https://docs.green-coding.org/docs/contributing/example-applications-contribution/)
+Please see the [documentation](https://docs.green-coding.berlin/docs/contributing/example-applications-contribution/)
 
 ## Building and starting
 

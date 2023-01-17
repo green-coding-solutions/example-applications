@@ -84,4 +84,4 @@ the compose instructions directly to the docker daemon.
 
 ## Running measurements
 
-To check how to run the measurements check out our [Documentation](https://docs.green-coding.org)
+To check how to run the measurements check out our [Documentation](https://docs.green-coding.berlin)
