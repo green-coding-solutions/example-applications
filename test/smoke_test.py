@@ -36,8 +36,12 @@ def example_directories():
 def test_all_directories(example_directory, capsys):
     project_name = f"test_{utils.randomword(12)}"
 
-    # Docker compose build example application
-    subprocess.run(["docker", "compose", "-f", f"{example_directory}/compose.yml", "build"])
+        # This is needed so that examples whose compose's are lesewhere (such as the shared
+        # directory for the stress tests, still get built
+    if os.path.exists(f"{example_directory}/build.sh"):
+        subprocess.run(["bash", f"{example_directory}/build.sh"])
+    else:
+        subprocess.run(["docker", "compose", "-f", f"{example_directory}/compose.yml", "build"])
 
     # Insert Project into testing DB
     project_id = DB().fetch_one('INSERT INTO "projects" ("name","uri","email","last_run","created_at") \

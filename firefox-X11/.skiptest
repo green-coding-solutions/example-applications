@@ -1,0 +1,3 @@
+Skips the current directory during automated test runs.
+
+Skipping this test because it is run non-headless, which does not fly in a VM for our automated tests.
