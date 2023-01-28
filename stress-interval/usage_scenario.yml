@@ -1,0 +1,88 @@
+---
+name: Stress Containers for short spikes to test reporting quality of metric providers
+author: Arne Tarara
+version: 1
+architecture: linux
+
+services:
+  gcb-alpine-stress:
+    image: gcb_alpine_stress
+
+flow:
+  - name: Stress
+    container: gcb-alpine-stress
+    commands:
+# Alpine does not have stress, so we use stress-ng
+# We need the -q flag because otherwise it will write debug to STDERR
+      - type: console
+        command: timeout 0.1 stress-ng -c 1 -q
+        ignore-erros: true
+        note: Starting Stress
+      - type: console
+        command: sleep 0.1
+        ignore-erros: true
+        note: Sleeping
+      - type: console
+        command: timeout 0.1 stress-ng -c 1 -q
+        ignore-erros: true
+        note: Starting Stress
+      - type: console
+        command: sleep 0.1
+        ignore-erros: true
+        note: Sleeping
+      - type: console
+        command: timeout 0.1 stress-ng -c 1 -q
+        ignore-erros: true
+        note: Starting Stress
+      - type: console
+        command: sleep 0.1
+        ignore-erros: true
+        note: Sleeping
+      - type: console
+        command: timeout 0.2 stress-ng -c 1 -q
+        ignore-erros: true
+        note: Starting Stress
+      - type: console
+        command: sleep 0.2
+        ignore-erros: true
+        note: Sleeping
+      - type: console
+        command: timeout 0.2 stress-ng -c 1 -q
+        ignore-erros: true
+        note: Starting Stress
+      - type: console
+        command: sleep 0.2
+        ignore-erros: true
+        note: Sleeping
+      - type: console
+        command: timeout 0.2 stress-ng -c 1 -q
+        ignore-erros: true
+        note: Starting Stress
+      - type: console
+        command: sleep 0.2
+        ignore-erros: true
+        note: Sleeping
+      - type: console
+        command: timeout 0.5 stress-ng -c 1 -q
+        ignore-erros: true
+        note: Starting Stress
+      - type: console
+        command: sleep 0.5
+        ignore-erros: true
+        note: Sleeping
+      - type: console
+        command: timeout 0.5 stress-ng -c 1 -q
+        ignore-erros: true
+        note: Starting Stress
+      - type: console
+        command: sleep 0.5
+        ignore-erros: true
+        note: Sleeping
+      - type: console
+        command: timeout 0.5 stress-ng -c 1 -q
+        ignore-erros: true
+        note: Starting Stress
+      - type: console
+        command: sleep 0.5
+        ignore-erros: true
+        note: Sleeping
