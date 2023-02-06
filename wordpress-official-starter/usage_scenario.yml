@@ -2,7 +2,6 @@
 name: Wordpress Basic Puppeteer Scenario
 author: Arne Tarara
 version: 1
-architecture: linux
 
 services:
   gcb-mariadb:

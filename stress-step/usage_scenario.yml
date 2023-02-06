@@ -2,7 +2,6 @@
 name: Stress Container in 1 core steps for 5 Seconds each
 author: Arne Tarara
 version: 1
-architecture: linux
 
 services:
   gcb-alpine-stress:
