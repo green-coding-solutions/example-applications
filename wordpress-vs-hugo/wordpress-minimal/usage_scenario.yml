@@ -2,7 +2,7 @@
 name: Wordpress Minimal
 author: Arne Tarara
 version: 1
-architecture: linux
+
 services:
   gcb-mariadb:
     image: gcb_mariadb

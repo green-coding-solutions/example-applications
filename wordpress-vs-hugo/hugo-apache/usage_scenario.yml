@@ -2,7 +2,6 @@
 name: Hugo Static Site
 author: Arne Tarara
 version: 1
-architecture: linux
 
 services:
   gcb-hugo-apache:

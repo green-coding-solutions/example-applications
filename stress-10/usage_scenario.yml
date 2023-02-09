@@ -2,7 +2,6 @@
 name: Stress Container 10 cores Core 5 Seconds
 author: Arne Tarara
 version: 1
-architecture: linux
 
 services:
   gcb-alpine-stress:
