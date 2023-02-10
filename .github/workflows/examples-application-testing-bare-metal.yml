@@ -16,23 +16,24 @@ jobs:
     runs-on: ubuntu-latest
     name: Check latest commit
     outputs:
-      recent_gmt_commit: ${{ steps.check_gmt_commits.outputs.recent_commit }}
-      recent_examples_commit: ${{ steps.check_examples_commits.outputs.recent_commit }}
+      recent_gmt_commit: ${{ steps.check_gmt_commits.outputs.should_run }}
+      recent_examples_commit: ${{ steps.check_examples_commits.outputs.should_run }}
     steps:
       - id: check_gmt_commits
         uses: green-coding-berlin/green-ci-activity-checker@main
         with:
          repo: 'green-coding-berlin/green-metrics-tool'
          branch: 'dev'
+         workflow-id: 45266618
 
       - id: check_examples_commits
         uses: green-coding-berlin/green-ci-activity-checker@main
         with:
          repo: 'green-coding-berlin/example-applications'
          branch: 'main'
+         workflow-id: 45266618
 
   run-tests:
-    needs: check-commits
     if: ${{ needs.check-commits.outputs.recent_examples_commit == 'true' ||  needs.check-commits.outputs.recent_gmt_commit == 'true' || github.event_name == 'workflow_dispatch'}}
     runs-on: self-hosted
     steps:
