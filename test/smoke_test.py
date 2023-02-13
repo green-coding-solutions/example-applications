@@ -49,14 +49,14 @@ def test_all_directories(example_directory, capsys):
                 (%s,%s,\'manual\',NULL,NOW()) RETURNING id;', params=(project_name, example_directory))[0]
 
     # Run the application
-    runner = Runner(allow_unsafe=True)
-    runner.run(uri=example_directory, uri_type="folder", project_id=project_id)
+    runner = Runner(uri=example_directory, uri_type="folder", pid=project_id, allow_unsafe=True)
+    runner.run()
 
     # Capture Std.Out and Std.Err and make Assertions
     captured = capsys.readouterr()
 
     # Assert that Cleanup has run
-    assert re.search(">>>> MEASUREMENT SUCCESSFULLY COMPLETED <<<<", captured.out)
+    assert re.search("MEASUREMENT SUCCESSFULLY COMPLETED", captured.out)
 
     # Assert that there is no std.err output
     assert captured.err == ''
