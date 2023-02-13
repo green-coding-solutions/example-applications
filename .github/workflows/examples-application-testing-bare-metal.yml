@@ -34,6 +34,7 @@ jobs:
          workflow-id: 45266618
 
   run-tests:
+    needs: check-commits
     if: ${{ needs.check-commits.outputs.recent_examples_commit == 'true' ||  needs.check-commits.outputs.recent_gmt_commit == 'true' || github.event_name == 'workflow_dispatch'}}
     runs-on: self-hosted
     steps:
