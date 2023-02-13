@@ -16,8 +16,8 @@ jobs:
     runs-on: ubuntu-latest
     name: Check latest commit
     outputs:
-      recent_gmt_commit: ${{ steps.check_gmt_commits.outputs.recent_commit }}
-      recent_examples_commit: ${{ steps.check_examples_commits.outputs.recent_commit }}
+      recent_gmt_commit: ${{ steps.check_gmt_commits.outputs.should_run }}
+      recent_examples_commit: ${{ steps.check_examples_commits.outputs.should_run }}
     steps:
       - id: check_gmt_commits
         uses: green-coding-berlin/green-ci-activity-checker@main
