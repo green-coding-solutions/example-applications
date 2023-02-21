@@ -14,6 +14,8 @@ from global_config import GlobalConfig
 import utils
 from db import DB
 
+#pylint: disable=expression-not-assigned
+GlobalConfig(config_name='test-config.yml').config
 
 def example_directories():
     example_dirs = []
