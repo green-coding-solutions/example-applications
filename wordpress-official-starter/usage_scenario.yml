@@ -11,12 +11,6 @@ services:
       - cp /tmp/repo/puppeteer-flow.js /var/www/puppeteer-flow.js
     networks:
       - gcb-mariadb-wordpress-network
-  gcb-mariadb:
-    networks:
-      - gcb-mariadb-wordpress-network
-  gcb-wordpress:
-    networks:
-      - gcb-mariadb-wordpress-network
 
 flow:
   - name: Check Website

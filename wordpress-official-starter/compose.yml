@@ -12,6 +12,9 @@ services:
       MYSQL_PASSWORD: wordpress
     expose:
       - 3306
+    networks:
+      - gcb-mariadb-wordpress-network
+
   gcb-wordpress:
     image: wordpress:latest
     container_name: gcb-wordpress
@@ -22,3 +25,5 @@ services:
       - gcb-mariadb
     volumes:
       - ./wordpress.conf:/etc/apache2/sites-enabled/wordpress.conf:ro
+    networks:
+      - gcb-mariadb-wordpress-network
