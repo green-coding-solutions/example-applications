@@ -5,11 +5,17 @@ services:
     container_name: gcb-alpine-curl
     image: gcb_alpine_curl
     restart: always
+    networks:
+      - network-test
+
   gcb-apache2:
     image: httpd
     container_name: gcb-apache2
     restart: always
     volumes:
       - ./test_1MB.jpg:/usr/local/apache2/htdocs/test_1MB.jpg
-    ports:
-      - 9000:80
+    networks:
+      - network-test
+
+networks:
+  network-test:
