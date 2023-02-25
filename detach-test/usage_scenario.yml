@@ -1,0 +1,31 @@
+---
+name: Detach processes example
+author: Arne Tarara
+description: This is an example on how to detach processes with the Green Metrics Tool that should run in the background during a `usage_scenario` execution. the output can still be read, although the process does not finish itself but is terminated.
+version: 1
+
+services:
+  gcb-alpine-stress:
+    image: gcb_alpine_stress
+
+flow:
+  - name: Stress
+    container: gcb-alpine-stress
+    commands:
+# Alpine does not have stress, so we use stress-ng
+# We need the -q flag because otherwise it will write debug to STDERR
+      - type: console
+        command: echo $(date +%s000000)" I am starting stress now forever"; stress-ng -c 1 -q
+        read-notes-stdout: true
+        detach: true
+      - type: console
+        command: sleep 5
+
+  - name: Stress
+    container: gcb-alpine-stress
+    commands:
+# Alpine does not have stress, so we use stress-ng
+# We need the -q flag because otherwise it will write debug to STDERR
+      - type: console
+        command: stress-ng -c 1 -t 5 -q
+        note: I am starting stress only for 5 seconds
