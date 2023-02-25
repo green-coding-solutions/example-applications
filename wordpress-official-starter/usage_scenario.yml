@@ -2,31 +2,9 @@
 name: Wordpress Basic Puppeteer Scenario
 author: Arne Tarara
 version: 1
+compose-file: !include compose.yml
 
 services:
-  gcb-mariadb:
-    image: mariadb:10.6.4-focal
-    environment:
-      MYSQL_ROOT_PASSWORD: somewordpress
-      MYSQL_DATABASE: wordpress
-      MYSQL_USER: wordpress
-      MYSQL_PASSWORD: wordpress
-    networks:
-      - gcb-mariadb-wordpress-network
-# This command is needed, cause the container needs a bootup time to work
-    setup-commands:
-      - sleep 20
-  gcb-wordpress:
-    image: wordpress:latest
-    environment:
-      WORDPRESS_DB_HOST: gcb-mariadb
-      WORDPRESS_DB_USER: wordpress
-      WORDPRESS_DB_PASSWORD: wordpress
-      WORDPRESS_DB_NAME: wordpress
-    networks:
-      - gcb-mariadb-wordpress-network
-    setup-commands:
-      - cp /tmp/repo/wordpress.conf /etc/apache2/sites-enabled/wordpress.conf
   gcb-puppeteer:
     image: greencoding/puppeteer-chrome
     setup-commands:
