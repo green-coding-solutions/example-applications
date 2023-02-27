@@ -1,6 +1,7 @@
 import os, sys
 import subprocess, re
 import pytest
+import yaml
 
 # These tests assumes the green-metrics-tool directory lives side by side with the examples-repository
 current_dir = os.path.dirname(os.path.abspath(__file__))
@@ -33,7 +34,7 @@ def example_directories():
 
     return example_dirs
 
-def run_test_on_directory(directory, capsys):
+def run_test_on_directory(directory, capsys, allow_unsafe=False):
     project_name = f"test_{utils.randomword(12)}"
 
         # This is needed so that examples whose compose's are lesewhere (such as the shared
@@ -49,7 +50,7 @@ def run_test_on_directory(directory, capsys):
                 (%s,%s,\'manual\',NULL,NOW()) RETURNING id;', params=(project_name, directory))[0]
 
     # Run the application
-    runner = Runner(uri=directory, uri_type="folder", pid=project_id, allow_unsafe=True)
+    runner = Runner(uri=directory, uri_type="folder", pid=project_id, allow_unsafe=allow_unsafe)
     runner.run()
 
     # Capture Std.Out and Std.Err and make Assertions
@@ -61,11 +62,22 @@ def run_test_on_directory(directory, capsys):
     # Assert that there is no std.err output
     assert captured.err == ''
 
+def check_for_ports(directory):
+    if os.path.exists(f"{directory}/usage_scenario.yml"):
+        with open(f"{directory}/usage_scenario.yml", encoding='utf8') as f:
+            usage_scenario = yaml.safe_load(f)
+            for service in usage_scenario['services']:
+                if 'ports' in usage_scenario['services'][service]:
+                    return True
+    return False
+
 @pytest.mark.parametrize("example_directory", example_directories())
 def test_all_directories(example_directory, capsys):
-    run_test_on_directory(example_directory, capsys)
+    allow_unsafe = check_for_ports(example_directory)
+    run_test_on_directory(example_directory, capsys, allow_unsafe=allow_unsafe)
 
 def test_a_directory(name, capsys):
     uri = os.path.abspath(f"{current_dir}/../{name}")
-    run_test_on_directory(uri, capsys)
+    allow_unsafe = check_for_ports(uri)
+    run_test_on_directory(uri, capsys, allow_unsafe=allow_unsafe)
 
