@@ -27,3 +27,6 @@ services:
       - ./wordpress.conf:/etc/apache2/sites-enabled/wordpress.conf:ro
     networks:
       - gcb-mariadb-wordpress-network
+
+networks:
+  gcb-mariadb-wordpress-network:

@@ -21,5 +21,3 @@ flow:
         note: Starting Puppeteer Flow
         parse-stdout-as-note: true
 
-networks:
-  gcb-mariadb-wordpress-network:
