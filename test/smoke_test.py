@@ -34,7 +34,7 @@ def example_directories():
 
     return example_dirs
 
-def run_test_on_directory(directory, capsys, allow_unsafe=False):
+def run_test_on_directory(directory, capsys, skip_unsafe=False):
     project_name = f"test_{utils.randomword(12)}"
 
         # This is needed so that examples whose compose's are lesewhere (such as the shared
@@ -50,7 +50,7 @@ def run_test_on_directory(directory, capsys, allow_unsafe=False):
                 (%s,%s,\'manual\',NULL,NOW()) RETURNING id;', params=(project_name, directory))[0]
 
     # Run the application
-    runner = Runner(uri=directory, uri_type="folder", pid=project_id, allow_unsafe=allow_unsafe)
+    runner = Runner(uri=directory, uri_type="folder", pid=project_id, skip_unsafe=skip_unsafe)
     runner.run()
 
     # Capture Std.Out and Std.Err and make Assertions
@@ -131,11 +131,11 @@ def check_for_ports(directory):
 
 @pytest.mark.parametrize("example_directory", example_directories())
 def test_all_directories(example_directory, capsys):
-    allow_unsafe = check_for_ports(example_directory)
-    run_test_on_directory(example_directory, capsys, allow_unsafe=allow_unsafe)
+    skip_unsafe = check_for_ports(example_directory)
+    run_test_on_directory(example_directory, capsys, skip_unsafe=skip_unsafe)
 
 def test_a_directory(name, capsys):
     uri = os.path.abspath(f"{current_dir}/../{name}")
-    allow_unsafe = check_for_ports(uri)
-    run_test_on_directory(uri, capsys, allow_unsafe=allow_unsafe)
+    skip_unsafe = check_for_ports(uri)
+    run_test_on_directory(uri, capsys, skip_unsafe=skip_unsafe)
 
