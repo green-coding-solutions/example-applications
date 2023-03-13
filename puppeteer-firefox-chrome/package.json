@@ -4,7 +4,7 @@
 	"description": "",
 	"main": "puppeteer.js",
 	"dependencies": {
-		"puppeteer": "^19.4.1",
+		"puppeteer": "^19.7.4",
         "microtime": "^3.1.0"
 	},
 	"devDependencies": {},
