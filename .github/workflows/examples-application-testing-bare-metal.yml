@@ -58,3 +58,4 @@ jobs:
            gmt-directory: './green-metrics-tool'
            tests-directory: './examples-directory/test'
            tests-command: 'pytest smoke_test.py -k "test_all_directories"'
+           github-token: ${{ secrets.GITHUB_TOKEN }}
