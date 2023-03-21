@@ -17,6 +17,8 @@ services:
   gcb-wordpress:
     networks:
       - gcb-mariadb-wordpress-network
+    volumes:
+      - ./wordpress_two.conf:/etc/apache2/sites-enabled/wordpress.conf:ro
 
 flow:
   - name: Check Website
