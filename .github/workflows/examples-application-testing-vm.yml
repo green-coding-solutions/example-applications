@@ -40,6 +40,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Initialize Energy Estimation
+        uses: green-coding-berlin/eco-ci-energy-estimation@main
+        with:
+          task: start-measurement
+
       - name: Checkout Examples Directory
         uses: actions/checkout@v3
         with:
@@ -61,3 +66,13 @@ jobs:
            tests-directory: './examples-directory/test'
            tests-command: 'pytest smoke_test.py -k "test_all_directories"'
            github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Energy Estimation - Get Measurement
+        uses: green-coding-berlin/eco-ci-energy-estimation@main
+        with:
+          task: get-measurement
+
+      - name: Energy Estimation - End Measurement
+        uses: green-coding-berlin/eco-ci-energy-estimation@main
+        with:
+          task: end-measurement
