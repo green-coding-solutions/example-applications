@@ -1,11 +1,13 @@
 ---
 name: Stress Container 10 cores Core 5 Seconds
 author: Arne Tarara
-version: 1
+version: 2
+description: A simple 10 seconds stress on the system with one core. Expected display result is a rectangle shaped load.
 
 services:
   gcb-alpine-stress:
     image: gcb_alpine_stress
+    build: .
 
 flow:
   - name: Stress
