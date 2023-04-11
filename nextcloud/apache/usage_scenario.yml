@@ -6,19 +6,28 @@ compose-file: !include compose.yml
 
 services:
   gcb-puppeteer:
+    privileged: true
     image: greencoding/puppeteer-chrome
+    container_name: gcb-puppeteer-chrome
+    environment:
+      - DISPLAY=:0
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
     setup-commands:
-      - cp /tmp/repo/install_puppeteer.js /var/www/install_puppeteer.js
+      - cp /tmp/repo/nextcloud-usage.js /var/www/nextcloud-usage.js
     networks:
       - nextcloud-setup-network
   # We don't need the volumes are we don't want to persist any data
   db:
-    volumes: []
+    # volumes: []
     networks:
       - nextcloud-setup-network
 
   app:
-    volumes: []
+    # volumes: []
+    setup-commands:
+      - cp -R /tmp/nextcloud-data/* /var/www/html/
+      - chown -R www-data /var/www/html/
     networks:
       - nextcloud-setup-network
 
@@ -30,6 +39,6 @@ flow:
     container: gcb-puppeteer
     commands:
       - type: console
-        command: node /var/www/install_puppeteer.js
+        command: node /var/www/nextcloud-usage.js
         note: Starting Puppeteer Flow
         parse-stdout-as-note: true
