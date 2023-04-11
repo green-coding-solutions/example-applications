@@ -1,7 +1,7 @@
 ---
 name: Stress Container 10 cores Core 5 Seconds
 author: Arne Tarara
-version: 2
+version: 1
 description: A simple 10 seconds stress on the system with one core. Expected display result is a rectangle shaped load.
 
 services:

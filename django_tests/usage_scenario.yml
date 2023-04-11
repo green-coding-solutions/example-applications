@@ -2,10 +2,13 @@
 name: Django test container
 author: Didi Hoffmann
 version: 1
+description: Encapsulation of the Django official unit tests for energy measurement
+
 
 services:
   gcb-django-tests:
     image: gcb_django_tests
+    build: .
 
 flow:
   - name: Django test
