@@ -21,7 +21,7 @@ const puppeteer = require('puppeteer'); // v13.0.0 or later
         const targetPage = page;
         const promises = [];
         promises.push(targetPage.waitForNavigation());
-        await targetPage.goto('http://app:80/');
+        await targetPage.goto('http://app/index.php/login');
         await Promise.all(promises);
     }
     {

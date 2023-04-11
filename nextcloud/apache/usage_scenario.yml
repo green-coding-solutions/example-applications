@@ -3,12 +3,13 @@ name: NextCloud
 author: Didi Hoffmann <didi@green-coding.berlin>
 version: 1
 compose-file: !include compose.yml
+description: A test for nextcloud in the GMT
 
 services:
   gcb-puppeteer:
     privileged: true
     image: greencoding/puppeteer-chrome
-    container_name: gcb-puppeteer-chrome
+    #container_name: gcb-puppeteer-chrome #This didn't match with the name below
     environment:
       - DISPLAY=:0
     volumes:
@@ -19,14 +20,22 @@ services:
       - nextcloud-setup-network
   # We don't need the volumes are we don't want to persist any data
   db:
-    # volumes: []
+    #volumes: # this is already done in the compose. We should refactor this once everything is working
+    #  - ./database/:/docker-entrypoint-initdb.d/:ro
     networks:
       - nextcloud-setup-network
 
   app:
-    # volumes: []
+    volumes:
+    # Binding an empty dir is a hack for the problem that a process might rely on data in that dir before we copy into it. In this case
+    # the apache process already loads files from the html dir which is populated in the original image. So when
+    # we try to copy data over it might not work as apache is 'locking' some files/ dirs. By starting with an empty
+    # dir we avoid this. You will need to make sure that the folder is really empty when starting the GMT
+    # I will talk to Arne today on how to manage this as there are multiple ways. This is just a quickfix
+      - ./empty:/var/www/html
+      - ./nextcloud-data:/tmp/nextcloud-data
     setup-commands:
-      - cp -R /tmp/nextcloud-data/* /var/www/html/
+      - cp -Rf /tmp/nextcloud-data/* /var/www/html/
       - chown -R www-data /var/www/html/
     networks:
       - nextcloud-setup-network
