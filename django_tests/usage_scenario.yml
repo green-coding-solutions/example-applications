@@ -2,6 +2,7 @@
 name: Django test container
 author: Didi Hoffmann
 version: 1
+description: lol
 
 services:
   gcb-django-tests:

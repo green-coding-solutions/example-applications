@@ -1,10 +1,9 @@
 ---
-name: NextCloud Firefox MariaDB
+name: NextCloud SqLite
 author: Didi Hoffmann <didi@green-coding.berlin>
 version: 1
 description: Installs the official NextCloud image and creates an user and event
 compose-file: !include compose.yml
-
 
 services:
   gcb-puppeteer:
@@ -19,16 +18,7 @@ services:
     # environment:
     #   DISPLAY: ":0"
 
-  db:
-    volumes: []
-    networks:
-      - nextcloud-setup-network
-
   app:
-    networks:
-      - nextcloud-setup-network
-
-  web:
     networks:
       - nextcloud-setup-network
 

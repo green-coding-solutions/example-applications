@@ -8,7 +8,7 @@ compose-file: !include compose.yml
 
 services:
   gcb-puppeteer:
-    image: greencoding/puppeteer-chrome
+    image: greencoding/puppeteer-firefox
     setup-commands:
       - cp /tmp/repo/nextcloud_install_puppeteer.js /var/www/nextcloud_install_puppeteer.js
       - cp /tmp/repo/nextcloud_create_event_puppeteer.js /var/www/nextcloud_create_event_puppeteer.js
@@ -25,10 +25,10 @@ services:
       - nextcloud-setup-network
 
   app:
-    networks:
-      - nextcloud-setup-network
-
-  web:
+    # This is all that is needed to build a docker file and use it in your benchmark
+    image: gcb_nextcloud
+    #build: .
+    volumes: []
     networks:
       - nextcloud-setup-network
 
