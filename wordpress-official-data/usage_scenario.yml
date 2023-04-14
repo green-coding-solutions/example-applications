@@ -1,16 +1,13 @@
 ---
 name: Wordpress Data Puppeteer Scenario
 author: Arne Tarara
-version: 1
+version: 2
+description: Wordpress sample with pre-populated DB (pages and plugins) where a simple Puppeteer flow is executed
+
+compose-file: !include compose.yml
 
 services:
   gcb-wordpress-mariadb:
-    image: gcb_wordpress_mariadb
-    environment:
-      MYSQL_ROOT_PASSWORD: somewordpress
-      MYSQL_DATABASE: wordpress
-      MYSQL_USER: wordpress
-      MYSQL_PASSWORD: wordpress
     ports:
       - 3306:3306
 # This command is needed, cause the container needs a bootup time to work
@@ -19,12 +16,6 @@ services:
     networks:
       - gcb-wordpress-mariadb-network
   gcb-wordpress-apache:
-    image: gcb_wordpress_apache
-    environment:
-      WORDPRESS_DB_HOST: gcb-wordpress-mariadb
-      WORDPRESS_DB_USER: wordpress
-      WORDPRESS_DB_PASSWORD: wordpress
-      WORDPRESS_DB_NAME: wordpress
     ports:
       - 9875:9875
     networks:
@@ -36,6 +27,7 @@ services:
       - cp /tmp/repo/puppeteer-flow.js /var/www/puppeteer-flow.js
     networks:
       - gcb-wordpress-mariadb-network
+
 flow:
   - name: Check Website
     container: gcb-puppeteer

@@ -2,10 +2,14 @@
 name: Stress Container in 1 core steps for 5 Seconds each
 author: Arne Tarara
 version: 1
+description: Stress of the system with increasing core count up to 10 cores
 
 services:
   gcb-alpine-stress:
     image: gcb_alpine_stress
+    build: .
+
+
 
 flow:
   - name: Stress

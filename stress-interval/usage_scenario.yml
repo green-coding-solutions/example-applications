@@ -2,10 +2,12 @@
 name: Stress Containers for short spikes to test reporting quality of metric providers
 author: Arne Tarara
 version: 1
+description: A simple stress in sort interval to evaluate CPU burst energy.
 
 services:
   gcb-alpine-stress:
     image: gcb_alpine_stress
+    build: .
 
 flow:
   - name: Stress
