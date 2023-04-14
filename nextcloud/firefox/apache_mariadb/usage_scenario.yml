@@ -27,7 +27,7 @@ services:
   app:
     # This is all that is needed to build a docker file and use it in your benchmark
     image: gcb_nextcloud
-    #build: .
+    build: .
     volumes: []
     networks:
       - nextcloud-setup-network
