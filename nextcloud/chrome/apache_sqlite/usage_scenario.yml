@@ -32,8 +32,8 @@ flow:
       - type: console
         command: node nextcloud_install_puppeteer.js
         note: Installing Nextcloud
-        parse-stdout-as-note: true
+        read-notes-stdout: true
       - type: console
         command: node nextcloud_create_event_puppeteer.js
         note: Creating Event
-        parse-stdout-as-note: true
+        read-notes-stdout: true
