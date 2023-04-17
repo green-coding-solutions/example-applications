@@ -18,6 +18,10 @@ In green-metris-tool tests subfolder, make sure you first run the `green-metrics
 
 Then from the `example-applications/test` directory, just run `pytest`
 
+To test a single directory, run something like this:
+
+`pytest smoke_test.py::test_a_directory --name <name_of_directory_to_test>`
+
 ## Dotfiles
 The smoketests will iterate over all the directories and assumes that they are working applications with usage-scenario.yml and compose.yml files that are meant to used with the green metrics tool. 
 

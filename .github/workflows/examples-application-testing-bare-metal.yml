@@ -38,6 +38,11 @@ jobs:
     if: ${{ needs.check-commits.outputs.recent_examples_commit == 'true' ||  needs.check-commits.outputs.recent_gmt_commit == 'true' || github.event_name == 'workflow_dispatch'}}
     runs-on: self-hosted
     steps:
+      - name: Initialize Energy Estimation
+        uses: green-coding-berlin/eco-ci-energy-estimation@main
+        with:
+          task: start-measurement
+
       - name: Checkout Examples Directory
         uses: actions/checkout@v3
         with:
@@ -50,6 +55,11 @@ jobs:
           submodules: 'true'
           path: green-metrics-tool
 
+      - name: Energy Estimation - Get Measurement
+        uses: green-coding-berlin/eco-ci-energy-estimation@main
+        with:
+          task: get-measurement
+          label: setup
 
       - name: 'Setup, Run, and Teardown Tests'
         uses: green-coding-berlin/green-metrics-tool/.github/actions/gmt-pytest@dev
@@ -59,3 +69,15 @@ jobs:
            tests-directory: './examples-directory/test'
            tests-command: 'pytest smoke_test.py -k "test_all_directories"'
            github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Energy Estimation - Get Measurement
+        uses: green-coding-berlin/eco-ci-energy-estimation@main
+        with:
+          task: get-measurement
+          label: tests
+
+      - name: Energy Estimation - End Measurement
+        uses: green-coding-berlin/eco-ci-energy-estimation@main
+        with:
+          task: display-results
+
