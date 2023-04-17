@@ -55,6 +55,12 @@ jobs:
           submodules: 'true'
           path: green-metrics-tool
 
+      - name: Energy Estimation - Get Measurement
+        uses: green-coding-berlin/eco-ci-energy-estimation@main
+        with:
+          task: get-measurement
+          label: setup
+
       - name: 'Setup, Run, and Teardown Tests'
         uses: green-coding-berlin/green-metrics-tool/.github/actions/gmt-pytest@dev
         with:
@@ -68,9 +74,10 @@ jobs:
         uses: green-coding-berlin/eco-ci-energy-estimation@main
         with:
           task: get-measurement
+          label: tests
 
       - name: Energy Estimation - End Measurement
         uses: green-coding-berlin/eco-ci-energy-estimation@main
         with:
-          task: final-measurement
+          task: display-results
 
