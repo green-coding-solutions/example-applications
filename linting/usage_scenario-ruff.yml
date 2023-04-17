@@ -1,0 +1,21 @@
+name: Ruff
+author: Danilo Jesic <danilo@green-coding.berlin>
+version: 1
+description: Lint our repo from the dev branch
+
+
+services:
+  linting:
+    image: gcb_lint
+    build: .
+
+
+flow:
+  - name: Ruff linting
+    container: linting
+    commands:
+      - type: console
+        command: /tmp/linting/venv/bin/python3 -m ruff --config /tmp/src/pyproject.toml /tmp/linting/
+        note: Lint
+        ignore-errors: true  # We expect some linting errors to occur
+
