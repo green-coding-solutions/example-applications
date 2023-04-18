@@ -3,5 +3,6 @@ name: Stress Container One Core 5 Seconds
 version: '2'
 services:
   gcb-alpine-stress:
+    container_name: gcb-alpine-stress
     image: gcb_alpine_stress
     build: .
