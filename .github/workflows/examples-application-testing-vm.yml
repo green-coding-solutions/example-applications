@@ -24,7 +24,6 @@ jobs:
         with:
          repo: 'green-coding-berlin/green-metrics-tool'
          branch: 'dev'
-         workflow-id: 45266619
 
       - id: check_examples_commits
         uses: green-coding-berlin/green-ci-activity-checker@main
