@@ -11,3 +11,6 @@ Ruff is a up-and-coming linter that is implemented in Rust and is experiencing a
 
 While both of these tools implement different rules for linting, there is a considerable overlap.
 The intent of this example is to show the results of two tools running on the same code with the same settings.
+
+The default configuration was generated for both tools, and then then modified to only use the union of rules  
+available in both tools. See `rules.md` for details.
