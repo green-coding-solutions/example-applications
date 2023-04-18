@@ -1,3 +1,0 @@
-This directory is excluded from our automated testing pipeline, due to the long
-runtime and flaky test reliability in case of display resolution changes.
-Thes reliability is due to the restrictions from the original Blauer Engel submission.
