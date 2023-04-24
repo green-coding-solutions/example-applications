@@ -1,6 +1,6 @@
 ---
 name: Wordpress Data Puppeteer Scenario
-author: Arne Tarara
+author: Arne Tarara <arne@green-coding.berlin>
 version: 2
 description: Wordpress sample with pre-populated DB (pages and plugins) where a simple Puppeteer flow is executed
 

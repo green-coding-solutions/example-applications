@@ -1,6 +1,6 @@
 ---
 name: Django test container
-author: Didi Hoffmann
+author: Didi Hoffmann <didi@green-coding.berlin>
 version: 1
 description: Encapsulation of the Django official unit tests for energy measurement
 

@@ -1,6 +1,6 @@
 ---
 name: Detach processes example
-author: Arne Tarara
+author: Arne Tarara <arne@green-coding.berlin>
 description: This is an example on how to detach processes with the Green Metrics Tool that should run in the background during a `usage_scenario` execution. the output can still be read, although the process does not finish itself but is terminated.
 version: 1
 

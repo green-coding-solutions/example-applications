@@ -9,7 +9,7 @@
 # Your menu bar must also be active and on the left side
 
 name: Blauer Engel Okular Standard Usage Scenario (xdotool)
-author: Arne Tarara
+author: Arne Tarara <arne@green-coding.berlin>
 version: 1
 architecture: linux
 
