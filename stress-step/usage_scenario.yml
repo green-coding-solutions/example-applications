@@ -1,6 +1,6 @@
 ---
 name: Stress Container in 1 core steps for 5 Seconds each
-author: Arne Tarara
+author: Arne Tarara <arne@green-coding.berlin>
 version: 1
 description: Stress of the system with increasing core count up to 10 cores
 

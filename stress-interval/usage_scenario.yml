@@ -1,6 +1,6 @@
 ---
 name: Stress Containers for short spikes to test reporting quality of metric providers
-author: Arne Tarara
+author: Arne Tarara <arne@green-coding.berlin>
 version: 1
 description: A simple stress in sort interval to evaluate CPU burst energy.
 
