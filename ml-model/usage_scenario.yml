@@ -1,7 +1,8 @@
 ---
-name: Test-Scenario
+name: Machine learning model
 author: Arne Tarara <arne@green-coding.berlin>
 version: 1
+description: Train a machine learning model
 
 services:
   gcb-ml-model:
