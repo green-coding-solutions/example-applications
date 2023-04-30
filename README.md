@@ -22,10 +22,3 @@ Please see the [documentation](https://docs.green-coding.berlin/docs/contributin
 ## Changing after rebuild
 
 If you make changes to the Dockerfile remember to use `docker compose build` to rebuild.
-
-## Notes
-
-In order to avoid code duplication we have created a `./shared` folder in which we have placed files that are
-generally shared between multiple examples. For example the `stress`, `stress-10` and `stress-step` all share the
-same dockerfile but vary in their measurement setup. So we have placed the docker file in the `shared` folder an
-symlinked the file into the various directories. Please keep this in mind when editing files.
