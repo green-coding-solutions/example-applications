@@ -144,7 +144,7 @@ exclude = [
     "dist",
     "node_modules",
     "venv",
-    "/tmp/linting/metric_providers/psu/energy/ac/xgboost/system/model/*"  # git submodule
+    "/tmp/linting/metric_providers/psu/energy/ac/xgboost/machine/model/*"  # git submodule
 ]
 
 [tool.ruff.mccabe]
