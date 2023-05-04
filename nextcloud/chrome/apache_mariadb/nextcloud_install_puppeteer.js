@@ -16,7 +16,7 @@ const microtime = require("microtime");
     });
 
     const page = await browser.newPage();
-    await page.setDefaultTimeout(300000);
+    await page.setDefaultTimeout(60_000); // milliseconds
     await page.goto('http://app/');
 
     // 1. Create User

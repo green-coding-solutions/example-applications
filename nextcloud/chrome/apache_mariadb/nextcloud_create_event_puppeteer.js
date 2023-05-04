@@ -16,7 +16,7 @@ const microtime = require("microtime");
     });
 
     const page = await browser.newPage();
-    await page.setDefaultTimeout(300000);
+    await page.setDefaultTimeout(60_000); // milliseconds
     await page.goto('http://app/login');
 
     // 1. Login
@@ -39,7 +39,7 @@ const microtime = require("microtime");
     });
 
     // Wait for the modal to load. As it seems you can't close it while it is showing the opening animation.
-    await new Promise(r => setTimeout(r, 3000));
+    await new Promise(r => setTimeout(r, 3_000));
 
     // 2. Close Modal
     const modalClose = await page.waitForSelector('.modal-container__close');
@@ -47,7 +47,7 @@ const microtime = require("microtime");
     console.log(microtime.now(),"Intro video modal clicked");
 
     // We need to sleep here as the modal animation takes some time to close and otherwise catches the click event.
-    await new Promise(r => setTimeout(r, 3000));
+    await new Promise(r => setTimeout(r, 3_000));
 
     // 3.Go to Cal
     await page.click('a[href="/apps/calendar/"]');
