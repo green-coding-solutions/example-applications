@@ -1,0 +1,8 @@
+version: '2'
+
+services:
+  app:
+    image: nextcloud
+    restart: always
+    ports:
+      - 8080:80
