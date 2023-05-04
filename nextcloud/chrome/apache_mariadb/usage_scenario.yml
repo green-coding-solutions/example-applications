@@ -9,8 +9,8 @@ services:
   gcb-puppeteer:
     image: greencoding/puppeteer-chrome
     setup-commands:
-      - cp /tmp/repo/nextcloud_install_puppeteer.js /var/www/nextcloud_install_puppeteer.js
-      - cp /tmp/repo/nextcloud_create_event_puppeteer.js /var/www/nextcloud_create_event_puppeteer.js
+      - cp /tmp/repo/nextcloud/chrome/apache_mariadb/nextcloud_install_puppeteer.js /var/www/nextcloud_install_puppeteer.js
+      - cp /tmp/repo/nextcloud/chrome/apache_mariadb/nextcloud_create_event_puppeteer.js /var/www/nextcloud_create_event_puppeteer.js
 
     networks:
       - nextcloud-setup-network
