@@ -50,7 +50,7 @@ def run_test_on_directory(directory, capsys, skip_unsafe=False):
                 (%s,%s,\'manual\',NULL,NOW()) RETURNING id;', params=(project_name, directory))[0]
 
     # Run the application
-    runner = Runner(uri=directory, uri_type="folder", pid=project_id, skip_unsafe=skip_unsafe)
+    runner = Runner(uri=directory, uri_type="folder", pid=project_id, skip_unsafe=skip_unsafe, skip_config_check=True)
     runner.run()
 
     # Capture Std.Out and Std.Err and make Assertions
