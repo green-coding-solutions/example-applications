@@ -1,6 +1,6 @@
 ---
 name: Wordpress Basic Puppeteer Scenario
-author: Arne Tarara
+author: Arne Tarara <arne@green-coding.berlin>
 version: 1
 description: Simple Wordpress where just the Homepage with the install instructions is accessed. Mostly used for testing wordpress build and startup times.
 compose-file: !include compose.yml

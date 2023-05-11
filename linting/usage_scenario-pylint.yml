@@ -1,0 +1,22 @@
+name: Linting tools comparison - Pylint
+author: Danilo Jesic <danilo@green-coding.berlin>
+version: 1
+description: Lint the dev branch of green-metrics-tool using pylint
+
+
+services:
+  linting:
+    image: gcb_lint
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+
+flow:
+  - name: Linting
+    container: linting
+    commands:
+      - type: console
+        command: /tmp/linting/venv/bin/python3 -m pylint --rcfile /tmp/src/pylint.toml /tmp/linting/
+        note: Linting with Pylint
+        ignore-errors: true  # We expect some linting errors to occur

@@ -1,7 +1,8 @@
 ---
 name: Idle Container for 5 Seconds
-author: Arne Tarara
+author: Arne Tarara <arne@green-coding.berlin>
 version: 1
+description: Idle the container for 5 seconds
 
 services:
   gcb-idle:
