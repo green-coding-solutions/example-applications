@@ -7,9 +7,10 @@ version: 1
 services:
   gcb-alpine-stress:
     image: gcb_alpine_stress
+    build: .
 
 flow:
-  - name: Stress
+  - name: Stress detached
     container: gcb-alpine-stress
     commands:
 # Alpine does not have stress, so we use stress-ng
