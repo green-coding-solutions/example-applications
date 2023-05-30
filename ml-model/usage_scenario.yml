@@ -7,6 +7,7 @@ description: Train a machine learning model
 services:
   gcb-ml-model:
     image: gcb_ml_model
+    build: .
 
 flow:
   - name: Load 1000
