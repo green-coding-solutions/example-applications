@@ -17,7 +17,7 @@ flow:
         command: sleep 1
         note: Sleep 1 s
       - type: console
-        command: curl --fail https://file-examples.com/wp-content/uploads/2017/10/file_example_JPG_1MB.jpg --output /tmp/test_image.jpg --silent
+        command: curl --fail https://file-examples.com/wp-content/storage/2017/10/file_example_JPG_1MB.jpg --output /tmp/test_image.jpg --silent
         note: Downloading 1 MB demo file
   - name: Pause
     container: gcb-alpine-curl
