@@ -65,7 +65,7 @@ jobs:
       - name: 'Setup, Run, and Teardown Tests'
         uses: green-coding-berlin/green-metrics-tool/.github/actions/gmt-pytest@dev
         with:
-           metrics-to-turn-off: '--categories RAPL System Sensors Debug CGroupV2 MacOS --providers CpuFrequencySysfsCoreProvider'
+           metrics-to-turn-off: '--categories RAPL Machine Sensors Debug CGroupV2 MacOS --providers CpuFrequencySysfsCoreProvider'
            gmt-directory: './green-metrics-tool'
            tests-directory: './examples-directory/test'
            tests-command: 'pytest smoke_test.py -k "test_all_directories"'
