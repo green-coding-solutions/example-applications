@@ -17,6 +17,7 @@ services:
 # Sleep command cause container needs bootup time to ingest SQL dump
     setup-commands:
       - sleep 20
+    build: .
   gcb-wordpress:
     image: wordpress:latest
     environment:
