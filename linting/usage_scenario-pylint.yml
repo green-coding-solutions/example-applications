@@ -17,6 +17,6 @@ flow:
     container: linting
     commands:
       - type: console
-        command: /tmp/linting/venv/bin/python3 -m pylint --rcfile /tmp/src/pylint.toml /tmp/linting/
+        command: /tmp/linting/venv/bin/python3 -m pylint --rcfile /tmp/src/pylint.toml /tmp/linting/*
         note: Linting with Pylint
         ignore-errors: true  # We expect some linting errors to occur
