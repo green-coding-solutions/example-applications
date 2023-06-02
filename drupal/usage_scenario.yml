@@ -1,0 +1,48 @@
+---
+name: Drupal Data Puppeteer Scenario
+author: Marco Villegas <marco.villegas@adaptagency.com>
+version: 2
+description: Drupal sample with pre-populated DB (pages and plugins) where a simple Puppeteer flow is executed
+
+compose-file: !include compose.yml
+
+services:
+  drupal-mariadb:
+    ports:
+      - 3306:3306
+# This command is needed, cause the container needs a bootup time to work
+    setup-commands:
+      - sleep 20
+    networks:
+      - drupal-mariadb-network
+  drupal-apache:
+    ports:
+      - 9875:9875
+    networks:
+      - drupal-mariadb-network
+    folder-destination: "/tmp/repo"
+  gcb-puppeteer:
+    image: greencoding/puppeteer-chrome
+    setup-commands:
+      - cp /tmp/repo/puppeteer-flow.js /var/www/puppeteer-flow.js
+    networks:
+      - drupal-mariadb-network
+
+flow:
+  - name: Check Website
+    container: gcb-puppeteer
+    commands:
+      - type: console
+        command: node /var/www/puppeteer-flow.js
+        note: Starting Puppeteer Flow
+        read-notes-stdout: true
+      - type: console
+        command: sleep 30
+        note: Idling
+      - type: console
+        command: node /var/www/puppeteer-flow.js
+        note: Starting Puppeteer Flow again
+        read-notes-stdout: true
+
+networks:
+  drupal-mariadb-network:
