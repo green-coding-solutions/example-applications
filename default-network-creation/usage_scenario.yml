@@ -1,0 +1,15 @@
+---
+name: Default network creation Test Scenario
+author: Arne Tarara <arne@green-coding.berlin>
+version: 1
+description: Demonstrating that the GMT can create default networks, similar to docker compose
+
+compose-file: !include compose.yml
+
+flow:
+  - name: Internal-Network-Test
+    container: gcb-alpine-curl
+    commands:
+      - type: console
+        command: curl --fail http://gcb-apache2/test_1MB.jpg --output /tmp/test_1MB.jpg --silent
+        note: transfer of 1 MB file in internal docker network
