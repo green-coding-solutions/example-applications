@@ -14,6 +14,9 @@ on:
 jobs:
   check-commits:
     runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
     name: Check latest commit
     outputs:
       recent_gmt_commit: ${{ steps.check_gmt_commits.outputs.should_run }}
