@@ -1,6 +1,5 @@
 name: Linting tools comparison - Ruff
 author: Danilo Jesic <danilo@green-coding.berlin>
-version: 1
 description: Lint the dev branch of green-metrics-tool using ruff
 
 

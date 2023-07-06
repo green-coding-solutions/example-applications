@@ -1,7 +1,6 @@
 ---
 name: Network Reporter Test Scenario
 author: Arne Tarara <arne@green-coding.berlin>
-version: 1
 description: Demonstrating the resource consumption of two containers communicating an internal network.
 
 compose-file: !include compose.yml
