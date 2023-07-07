@@ -1,0 +1,26 @@
+---
+name: Alpine container to create some logs synchronously and async
+author: Arne Tarara <arne@green-coding.berlin>
+description: The container will write a couple of 10.000 lines to the logs.
+
+services:
+  gcb-alpine:
+    image: alpine
+    setup-commands:
+      - echo "asd" && echo "123"
+    shell: sh
+
+flow:
+  - name: Dump filesystem async
+    container: gcb-alpine
+    commands:
+      - type: console
+        command: echo "123" && echo "xyz"
+        log-stderr: true
+        log-stdout: true
+        shell: sh
+      - type: console
+        command: ls /tmp && echo "This will fail" && echo "But we force continue with ignore-errors"
+        log-stderr: true
+        log-stdout: true
+        ignore-errors: true
