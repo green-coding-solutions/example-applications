@@ -9,7 +9,7 @@ services:
     build: .
 
 flow:
-  - name: Stress detached
+  - name: Stress detached incl. Stderr
     container: gcb-alpine-stress
     commands:
 # Alpine does not have stress, so we use stress-ng
@@ -21,11 +21,20 @@ flow:
       - type: console
         command: sleep 5
 
+  - name: Stress detached no Stderr
+    container: gcb-alpine-stress
+    commands:
+# Alpine does not have stress, so we use stress-ng
+# We need the -q flag because otherwise it will write debug to STDERR
+      - type: console
+        command: stress-ng -c 1
+        detach: true
+
   - name: Stress
     container: gcb-alpine-stress
     commands:
 # Alpine does not have stress, so we use stress-ng
 # We need the -q flag because otherwise it will write debug to STDERR
       - type: console
-        command: stress-ng -c 1 -t 5 -q
+        command: stress-ng -c 1 -t 5
         note: I am starting stress only for 5 seconds
