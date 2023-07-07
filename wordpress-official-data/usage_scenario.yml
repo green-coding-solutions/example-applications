@@ -23,7 +23,7 @@ services:
   gcb-puppeteer:
     image: greencoding/puppeteer-chrome
     setup-commands:
-      - cp /tmp/repo/wordpress-official-data/puppeteer-flow.js /var/www/puppeteer-flow.js
+      - cp /tmp/repo/puppeteer-flow.js /var/www/puppeteer-flow.js
     networks:
       - gcb-wordpress-mariadb-network
 
