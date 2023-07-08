@@ -23,7 +23,7 @@ flow:
         command: stress-ng -c 1 -t 60
         note: Starting Stress
 
-  - name: Idle
+  - name: Idle 2
     container: gcb-alpine-stress
     commands:
       - type: console
