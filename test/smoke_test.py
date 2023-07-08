@@ -37,13 +37,6 @@ def example_directories():
 def run_test_on_directory(directory, capsys, skip_unsafe=False):
     project_name = f"test_{utils.randomword(12)}"
 
-        # This is needed so that examples whose compose's are elsewhere (such as the shared
-        # directory for the stress tests, still get built
-    if os.path.exists(f"{directory}/build.sh"):
-        subprocess.run(["bash", f"{directory}/build.sh"])
-    else:
-        subprocess.run(["docker", "compose", "-f", f"{directory}/compose.yml", "build"])
-
     # Insert Project into testing DB
     project_id = DB().fetch_one('INSERT INTO "projects" ("name","uri","email","last_run","created_at") \
                 VALUES \
