@@ -13,9 +13,10 @@ flow:
     commands:
       - type: console
         # The // notiation is just to distinguish the command in the logs
-        command: ls -R //tmp
+        command: ls -R //
         log-stderr: false
         log-stdout: false
+        ignore-errors: true
 
 
   - name: Dump filesystem synchronously (default)
@@ -25,6 +26,7 @@ flow:
         command: ls -R /
         log-stderr: true
         log-stdout: true
+        ignore-errors: true
 
   - name: Dump filesystem async
     container: gcb-alpine
@@ -35,6 +37,7 @@ flow:
         detach: true
         log-stderr: true
         log-stdout: true
+        ignore-errors: true
       - type: console
         command: sleep 1
 
