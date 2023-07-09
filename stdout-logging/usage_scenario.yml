@@ -49,3 +49,12 @@ flow:
         log-stderr: true
         log-stdout: true
         ignore-errors: true
+
+  - name: Log notes
+    container: gcb-alpine
+    commands:
+      - type: console
+        command: echo $(date +%s000000)" I am a note in the graph"
+        log-stdout: true
+        read-notes-stdout: true
+        shell: sh
