@@ -29,6 +29,7 @@ flow:
         command: node /var/www/puppeteer-flow.js
         note: Starting Puppeteer Flow
         read-notes-stdout: true
+        log-stdout: true
 
 networks:
   firefox-headless:

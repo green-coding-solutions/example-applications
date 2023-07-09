@@ -17,6 +17,7 @@ flow:
       - type: console
         command: echo $(date +%s000000)" I am starting stress now forever"; stress-ng -c 1 -q
         read-notes-stdout: true
+        log-stdout: true
         detach: true
       - type: console
         command: sleep 5

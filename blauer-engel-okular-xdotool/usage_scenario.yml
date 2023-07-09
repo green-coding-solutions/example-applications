@@ -31,3 +31,5 @@ flow:
         command: bash /tmp/repo/standardnutzungsseznarioKDEOkular.xdo
         note: Starting xdotool flow
         read-notes-stdout: true
+        log-stdout: true
+

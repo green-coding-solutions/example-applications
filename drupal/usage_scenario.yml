@@ -36,6 +36,7 @@ flow:
         command: node /var/www/puppeteer-flow.js
         note: Starting Puppeteer Flow
         read-notes-stdout: true
+        log-stdout: true
       - type: console
         command: sleep 30
         note: Idling
@@ -43,6 +44,7 @@ flow:
         command: node /var/www/puppeteer-flow.js
         note: Starting Puppeteer Flow again
         read-notes-stdout: true
+        log-stdout: true
 
 networks:
   drupal-mariadb-network:

@@ -15,3 +15,5 @@ flow:
       - type: console
         command: python3 /tmp/hyperparameter_tuning.py
         read-notes-stdout: true
+        log-stdout: true
+

@@ -19,5 +19,7 @@ flow:
       - type: console
         command: node /var/www/puppeteer-flow.js
         note: Starting Puppeteer Flow
-        parse-stdout-as-note: true
+        read-notes-stdout: true
+        log-stdout: true
+
 
