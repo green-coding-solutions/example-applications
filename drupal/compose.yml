@@ -1,0 +1,34 @@
+version: '2'
+services:
+  drupal-mariadb:
+    build:
+      context: .
+      dockerfile: Dockerfile-mariadb
+    container_name: drupal-mariadb
+    image: drupal_mariadb
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=somedrupal
+      - MYSQL_DATABASE=drupal
+      - MYSQL_USER=drupal
+      - MYSQL_PASSWORD=drupal
+    expose:
+      - 3306
+  drupal-apache:
+    build:
+      context: .
+      dockerfile: Dockerfile-drupal
+    container_name: drupal-apache
+    image: drupal_apache
+    expose:
+      - 9876
+    ports:
+      - 9876:9876
+    restart: always
+    #environment:
+      #- WORDPRESS_DB_HOST=gcb-wordpress-mariadb
+      #- WORDPRESS_DB_USER=wordpress
+      #- WORDPRESS_DB_PASSWORD=wordpress
+      #- WORDPRESS_DB_NAME=wordpress
+    depends_on:
+      - drupal-mariadb
