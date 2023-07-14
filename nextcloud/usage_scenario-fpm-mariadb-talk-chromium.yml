@@ -1,7 +1,7 @@
 ---
-name: Nextcloud - FPM - MariaDB - Event - Chromium
+name: Nextcloud - FPM - MariaDB - Talk - Chromium
 author: Danilo Jesic <danilo@green-coding.berlin>
-description: Installs the official Nextcloud FPM image with a MariaDB and creates a calendar event. Uses a playwright script running Chromium to create an admin account, install the recommended apps and then create an event.
+description: Installs the official Nextcloud FPM image with a MariaDB and starts a Talk conversation. Uses a playwright script running Chromium to create an admin account, install the recommended apps and then create a Talk conversation where guest users will send each other random text.
 compose-file: !include compose-fpm-mariadb.yml
 
 services:
@@ -9,7 +9,7 @@ services:
     image: greencoding/gcb_playwright
     setup-commands:
       - cp /tmp/repo/nextcloud_install.py /tmp/nextcloud_install.py
-      - cp /tmp/repo/nextcloud_create_event.py /tmp/nextcloud_create_event.py
+      - cp /tmp/repo/nextcloud_talk.py /tmp/nextcloud_talk.py
 
     networks:
       - nextcloud-setup-network
@@ -46,12 +46,12 @@ flow:
         read-notes-stdout: true
         log-stdout: true
         log-stderr: true
-  - name: Login and create event
+  - name: Talk conversation
     container: gcb-playwright
     commands:
       - type: console
-        command: python3 /tmp/nextcloud_create_event.py
-        note: Creating event
+        command: python3 /tmp/nextcloud_talk.py
+        note: Starting conversation
         read-notes-stdout: true
         log-stdout: true
         log-stderr: true
