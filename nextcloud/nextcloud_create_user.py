@@ -30,6 +30,9 @@ def create_user(playwright: Playwright, browser_name: str, username: str, passwo
         log_note("Create user")
         page.get_by_role("link", name="Open settings menu").click()
         page.get_by_role("link", name="Users").first.click()
+        # Second welcome screen sometimes appears
+        with contextlib.suppress(Exception):
+            page.get_by_role("button", name="Close modal").click(timeout=15_000)
         page.get_by_role("button", name="New user").click()
         page.get_by_placeholder("Username").click()
         page.get_by_placeholder("Username").fill(username)
