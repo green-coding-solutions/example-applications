@@ -1,0 +1,31 @@
+---
+name: Long running test
+author: Arne Tarara <arne@green-coding.berlin>
+description: A very long running test to check how the GMT behaves with a lot of data on your machine
+
+services:
+  gcb-alpine-stress:
+    image: gcb_alpine_stress
+    build: .
+
+flow:
+  - name: Idle
+    container: gcb-alpine-stress
+    commands:
+      - type: console
+        command: sleep 3600
+        note: Starting Sleep \#1
+
+  - name: Stress
+    container: gcb-alpine-stress
+    commands:
+      - type: console
+        command: stress-ng -c 1 -t 60
+        note: Starting Stress
+
+  - name: Idle 2
+    container: gcb-alpine-stress
+    commands:
+      - type: console
+        command: sleep 3600
+        note: Starting Sleep \#2

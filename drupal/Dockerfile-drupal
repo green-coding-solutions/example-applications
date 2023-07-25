@@ -1,0 +1,4 @@
+FROM drupal:latest
+EXPOSE 9876
+COPY ./settings.php /var/www/html/sites/default/settings.php
+COPY ./drupal.conf /etc/apache2/sites-enabled/drupal.conf

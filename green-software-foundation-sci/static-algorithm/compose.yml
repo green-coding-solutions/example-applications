@@ -1,0 +1,7 @@
+---
+#name: Stress Container One Core 5 Seconds
+version: '2'
+services:
+  gcb-alpine-sysbench:
+    container_name: gcb-alpine-sysbench
+    build: .

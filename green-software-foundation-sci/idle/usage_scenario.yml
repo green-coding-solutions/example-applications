@@ -1,0 +1,24 @@
+---
+name: Idle Container for 5 Seconds
+author: Arne Tarara <arne@green-coding.berlin>
+description: Idle the container for 5 seconds
+green-software-foundation-sci:
+  R: per minute of idling
+
+services:
+  gcb-idle:
+    image: alpine
+    cmd: sh
+
+flow:
+  - name: Idle
+    container: gcb-idle
+    commands:
+      - type: console
+        command: sleep 5
+        note: Starting Sleep
+      - type: console
+        note: Writing SCI to stdout
+        command: echo GMT_SCI_R=1
+        log-stdout: True
+        read-sci-stdout: True

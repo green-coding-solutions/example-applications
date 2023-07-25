@@ -1,0 +1,60 @@
+---
+name: Alpine container to create some logs synchronously and async
+author: Arne Tarara <arne@green-coding.berlin>
+description: The container will write a couple of 10.000 lines to the logs.
+
+services:
+  gcb-alpine:
+    image: alpine
+
+flow:
+  - name: Dump filesystem without capturing
+    container: gcb-alpine
+    commands:
+      - type: console
+        # The // notiation is just to distinguish the command in the logs
+        command: ls -R //
+        log-stderr: false
+        log-stdout: false
+        ignore-errors: true
+
+
+  - name: Dump filesystem synchronously (default)
+    container: gcb-alpine
+    commands:
+      - type: console
+        command: ls -R /
+        log-stderr: true
+        log-stdout: true
+        ignore-errors: true
+
+  - name: Dump filesystem async
+    container: gcb-alpine
+    commands:
+      - type: console
+        # The /// notiation is just to distinguish the command in the logs
+        command: ls -R ///
+        detach: true
+        log-stderr: true
+        log-stdout: true
+        ignore-errors: true
+      - type: console
+        command: sleep 1
+
+  - name: Log error even if ignore-errors set
+    container: gcb-alpine
+    commands:
+      - type: console
+        command: timeout -v 1 sleep 2
+        log-stderr: true
+        log-stdout: true
+        ignore-errors: true
+
+  - name: Log notes
+    container: gcb-alpine
+    commands:
+      - type: console
+        command: echo $(date +%s000000)" I am a note in the graph"
+        log-stdout: true
+        read-notes-stdout: true
+        shell: sh
