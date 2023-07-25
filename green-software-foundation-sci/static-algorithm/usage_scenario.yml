@@ -15,9 +15,7 @@ flow:
     commands:
       - type: console
         note: Starting sysbench
-        command: sysbench --cpu-max-prime=25000 --threads=1 --time=0 --test=cpu run --events=2000 --rate=0 --debug=off
-      - type: console
-        note: Writing SCI to stdout
-        command: echo "GMT_SCI_R=20000"
+        command: sysbench --cpu-max-prime=25000 --threads=1 --time=3 --test=cpu run --events=0 --rate=0 --debug=off | awk '/total number of events:/{print "GMT_SCI_R="$NF}'
+        shell: bash
         log-stdout: True
         read-sci-stdout: True
