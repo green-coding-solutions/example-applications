@@ -5,6 +5,12 @@ description: A simple 5 seconds stress on the system with one core. Expected dis
 
 compose-file: !include compose.yml
 
+services:
+  gcb-alpine-sysbench:
+    setup-commands:
+      - apk add gawk
+
+
 sci:
   R-dimension: calculated prime numbers
   # defined as the Carbon intensity per event that sysbench produces
@@ -15,7 +21,7 @@ flow:
     commands:
       - type: console
         note: Starting sysbench
-        command: sysbench --cpu-max-prime=25000 --threads=1 --time=3 --test=cpu run --events=0 --rate=0 --debug=off | awk '/total number of events:/{print "GMT_SCI_R="$NF}'
+        command: sysbench --cpu-max-prime=25000 --threads=1 --time=3 --test=cpu run --events=0 --rate=0 --debug=off | gawk '/total number of events:/{print "GMT_SCI_R="$NF}'
         shell: bash
         log-stdout: True
         read-sci-stdout: True
