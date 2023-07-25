@@ -19,4 +19,5 @@ flow:
       - type: console
         note: Writing SCI to stdout
         command: echo "GMT_SCI_R=20000"
+        log-stdout: True
         read-sci-stdout: True
