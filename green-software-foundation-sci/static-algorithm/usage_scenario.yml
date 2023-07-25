@@ -1,0 +1,22 @@
+---
+name: Stress Container One Core 5 Seconds
+author: Arne Tarara <arne@green-coding.berlin>
+description: A simple 5 seconds stress on the system with one core. Expected display result is a rectangle shaped load.
+
+compose-file: !include compose.yml
+
+sci:
+  R-dimension: calculated prime numbers
+  # defined as the Carbon intensity per event that sysbench produces
+
+flow:
+  - name: Stress
+    container: gcb-alpine-sysbench
+    commands:
+      - type: console
+        note: Starting sysbench
+        command: sysbench --cpu-max-prime=25000 --threads=1 --time=0 --test=cpu run --events=2000 --rate=0 --debug=off
+      - type: console
+        note: Writing SCI to stdout
+        command: echo "GMT_SCI_R=20000"
+        read-sci-stdout: True

@@ -1,0 +1,7 @@
+version: '3'
+services:
+  gcb-idle:
+    image: alpine
+    container_name: gcb-idle
+    restart: always
+    tty: true

@@ -27,17 +27,21 @@ const microtime = require("microtime");
     await page.goto("http://gcb-wordpress-apache:9875", {
         waitUntil: "networkidle2",
     });
+    console.log(microtime.now(),"GMT_SCI_R=1");
 
     await page.screenshot({ path: "/tmp/filled-form.png", fullPage: true });
 
     console.log(microtime.now()," Contact Page");
     await page.click("a[href='http://gcb-wordpress-apache:9875/?page_id=34']");
     await page.waitForSelector(".wpcf7 form input");
+    console.log(microtime.now(),"GMT_SCI_R=1");
+
 
     console.log(microtime.now()," Long Text Page");
     await page.click("a[href='http://gcb-wordpress-apache:9875/?page_id=36']");
 
     await page.waitForXPath('//*[contains(text(), "Lorem ipsum dolor sit amet")]')
+    console.log(microtime.now(),"GMT_SCI_R=1");
 
     console.log(microtime.now()," Closing Browser");
     await browser.close();
