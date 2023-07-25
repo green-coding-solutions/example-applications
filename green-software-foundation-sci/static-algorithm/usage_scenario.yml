@@ -24,4 +24,5 @@ flow:
         command: sysbench --cpu-max-prime=25000 --threads=1 --time=3 --test=cpu run --events=0 --rate=0 --debug=off | gawk '/total number of events:/{print "GMT_SCI_R="$NF}'
         shell: bash
         log-stdout: True
+        log-stderr: True
         read-sci-stdout: True
