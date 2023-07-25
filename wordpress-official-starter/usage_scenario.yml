@@ -21,5 +21,6 @@ flow:
         note: Starting Puppeteer Flow
         read-notes-stdout: true
         log-stdout: true
+        log-stderr: true
 
 
