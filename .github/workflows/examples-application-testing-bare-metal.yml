@@ -23,7 +23,7 @@ jobs:
         uses: green-coding-berlin/green-ci-activity-checker@main
         with:
          repo: 'green-coding-berlin/green-metrics-tool'
-         branch: 'dev'
+         branch: 'main'
 
       - id: check_examples_commits
         uses: green-coding-berlin/green-ci-activity-checker@main
@@ -57,7 +57,7 @@ jobs:
           label: setup
 
       - name: 'Setup, Run, and Teardown Tests'
-        uses: green-coding-berlin/green-metrics-tool/.github/actions/gmt-pytest@dev
+        uses: green-coding-berlin/green-metrics-tool/.github/actions/gmt-pytest@main
         with:
            metrics-to-turn-off: '--categories Machine Sensors Debug MacOS'
            gmt-directory: './green-metrics-tool'
