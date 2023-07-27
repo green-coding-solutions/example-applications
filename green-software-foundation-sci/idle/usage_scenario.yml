@@ -4,7 +4,7 @@ author: Arne Tarara <arne@green-coding.berlin>
 description: Idle the container for 60 seconds and outputting SCI
 
 sci:
-  R: per minute of idling
+  R_d: per minute of idling
 
 services:
   gcb-idle:
