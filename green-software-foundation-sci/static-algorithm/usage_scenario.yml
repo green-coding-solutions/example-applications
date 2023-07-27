@@ -1,7 +1,7 @@
 ---
-name: Stress Container One Core 5 Seconds
+name: SCI with number crunching
 author: Arne Tarara <arne@green-coding.berlin>
-description: A simple 5 seconds stress on the system with one core. Expected display result is a rectangle shaped load.
+description: A simple sysbench run that outputs its performance as SCI metric
 
 compose-file: !include compose.yml
 

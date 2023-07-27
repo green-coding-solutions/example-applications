@@ -1,8 +1,9 @@
 ---
-name: Idle Container for 5 Seconds
+name: SCI for idle
 author: Arne Tarara <arne@green-coding.berlin>
-description: Idle the container for 5 seconds
-green-software-foundation-sci:
+description: Idle the container for 60 seconds and outputting SCI
+
+sci:
   R: per minute of idling
 
 services:
@@ -15,7 +16,7 @@ flow:
     container: gcb-idle
     commands:
       - type: console
-        command: sleep 5
+        command: sleep 60
         note: Starting Sleep
       - type: console
         note: Writing SCI to stdout
