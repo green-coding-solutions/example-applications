@@ -5,6 +5,9 @@ description: Wordpress sample with pre-populated DB (pages and plugins) where a 
 
 compose-file: !include compose.yml
 
+sci:
+  R-Dimension: Page Request
+
 services:
   gcb-wordpress-mariadb:
     ports:
