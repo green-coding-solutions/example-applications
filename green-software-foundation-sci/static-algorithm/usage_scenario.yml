@@ -12,7 +12,7 @@ services:
 
 
 sci:
-  R_d: calculated prime numbers
+  R_d: calculated prime number
   # defined as the Carbon intensity per event that sysbench produces
 
 flow:
