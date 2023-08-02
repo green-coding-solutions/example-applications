@@ -8,6 +8,10 @@ services:
     image: gcb_django_tests
     build: .
 
+sci:
+  R_d: Unit-Test
+
+
 flow:
   - name: Django test
     container: gcb-django-tests
