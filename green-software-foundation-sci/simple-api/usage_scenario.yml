@@ -19,7 +19,7 @@ flow:
     commands:
       - type: console
         note: Using curl
-        command: for i in {1..10}; do curl -X GET "http://gcb-simple-api:8000/json"; done
+        command: for i in {1..1000}; do curl -X GET "http://gcb-simple-api:8000/json"; done
         shell: bash
         log-stdout: True
         log-stderr: True
