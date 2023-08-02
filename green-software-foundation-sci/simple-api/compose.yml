@@ -1,0 +1,8 @@
+---
+version: '2'
+services:
+  gcb-simple-api:
+    container_name: gcb-simple-api
+    build: .
+    ports:
+      - 8000:8000

@@ -1,0 +1,26 @@
+---
+name: SCI with a simple API
+author: Arne Tarara <arne@green-coding.berlin>
+description: A simple FastAPI example for SCI calculation based in cost per API request
+
+compose-file: !include compose.yml
+
+services:
+  gcb-simple-api:
+    log-stdout: True
+    read-sci-stdout: True
+
+sci:
+  R_d: API request
+
+flow:
+  - name: Stress
+    container: gcb-simple-api
+    commands:
+      - type: console
+        note: Using curl
+        command: for i in {1..10}; do curl -X GET "http://gcb-simple-api:8000/json"; done
+        shell: bash
+        log-stdout: True
+        log-stderr: True
+        read-sci-stdout: True
