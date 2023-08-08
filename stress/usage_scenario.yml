@@ -3,10 +3,7 @@ name: Stress Container One Core 5 Seconds
 author: Arne Tarara <arne@green-coding.berlin>
 description: A simple 5 seconds stress on the system with one core. Expected display result is a rectangle shaped load.
 
-services:
-  gcb-alpine-stress:
-    image: gcb_alpine_stress
-    build: .
+compose-file: !include compose.yml
 
 flow:
   - name: Stress
