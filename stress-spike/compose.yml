@@ -1,0 +1,8 @@
+---
+name: Stress Container Spiking
+version: '2'
+services:
+  gcb-alpine-stress:
+    container_name: gcb-ubuntu-stress
+    image: gcb_ubuntu_stress
+    build: .

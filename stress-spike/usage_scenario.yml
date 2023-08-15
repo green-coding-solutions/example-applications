@@ -1,0 +1,150 @@
+---
+name: Stress Container Spiking
+author: Arne Tarara <arne@green-coding.berlin>
+description: A simple stress command that has a short duration and is pulsed to test reporter timings and undersampling
+
+compose-file: !include compose.yml
+
+flow:
+  - name: Increasing Timeouts
+    container: gcb-ubuntu-stress
+    commands:
+      - type: console
+        command: timeout 0.1 stress-ng -c 2
+        note: Starting Stress
+        ignore-errors: true
+      - type: console
+        command: sleep 0.1
+        note: Starting Stress
+        ignore-errors: true
+      - type: console
+        command: timeout 0.2 stress-ng -c 2
+        note: Starting Stress
+        ignore-errors: true
+      - type: console
+        command: sleep 0.2
+        note: Starting Stress
+        ignore-errors: true
+      - type: console
+        command: timeout 0.3 stress-ng -c 2
+        note: Starting Stress
+        ignore-errors: true
+      - type: console
+        command: sleep 0.3
+        note: Starting Stress
+        ignore-errors: true
+      - type: console
+        command: timeout 0.4 stress-ng -c 2
+        note: Starting Stress
+        ignore-errors: true
+      - type: console
+        command: sleep 0.4
+        note: Starting Stress
+        ignore-errors: true
+        command: timeout 0.4 stress-ng -c 2
+        note: Starting Stress
+        ignore-errors: true
+  - name: Decreasing Timeouts
+    container: gcb-ubuntu-stress
+    commands:
+      - type: console
+        command: sleep 0.3
+        note: Starting Stress
+        ignore-errors: true
+      - type: console
+        command: sleep 0.4
+        note: Starting Stress
+        ignore-errors: true
+        command: timeout 0.4 stress-ng -c 2
+        note: Starting Stress
+        ignore-errors: true
+      - type: console
+        command: sleep 0.2
+        note: Starting Stress
+        ignore-errors: true
+      - type: console
+        command: sleep 0.4
+        note: Starting Stress
+        ignore-errors: true
+        command: timeout 0.4 stress-ng -c 2
+        note: Starting Stress
+        ignore-errors: true
+      - type: console
+        command: sleep 0.1
+        note: Starting Stress
+        ignore-errors: true
+  - name: Fixed long Timeouts
+    container: gcb-ubuntu-stress
+    commands:
+      - type: console
+        command: sleep 1
+        note: Starting Stress
+        ignore-errors: true
+        command: timeout 0.1 stress-ng -c 2
+        note: Starting Stress
+        ignore-errors: true
+      - type: console
+        command: sleep 1
+        note: Starting Stress
+        ignore-errors: true
+        command: timeout 0.1 stress-ng -c 2
+        note: Starting Stress
+        ignore-errors: true
+      - type: console
+        command: sleep 1
+        note: Starting Stress
+        ignore-errors: true
+        command: timeout 0.1 stress-ng -c 2
+        note: Starting Stress
+        ignore-errors: true
+      - type: console
+        command: sleep 1
+        note: Starting Stress
+        ignore-errors: true
+        command: timeout 0.1 stress-ng -c 2
+        note: Starting Stress
+        ignore-errors: true
+      - type: console
+        command: sleep 1
+        note: Starting Stress
+        ignore-errors: true
+        command: timeout 0.1 stress-ng -c 2
+        note: Starting Stress
+        ignore-errors: true
+      - type: console
+        command: sleep 1
+        note: Starting Stress
+        ignore-errors: true
+        command: timeout 0.1 stress-ng -c 2
+        note: Starting Stress
+        ignore-errors: true
+      - type: console
+        command: sleep 1
+        note: Starting Stress
+        ignore-errors: true
+        command: timeout 0.1 stress-ng -c 2
+        note: Starting Stress
+        ignore-errors: true
+      - type: console
+        command: sleep 1
+        note: Starting Stress
+        ignore-errors: true
+        command: timeout 0.1 stress-ng -c 2
+        note: Starting Stress
+        ignore-errors: true
+      - type: console
+        command: sleep 1
+        note: Starting Stress
+        ignore-errors: true
+        command: timeout 0.1 stress-ng -c 2
+        note: Starting Stress
+        ignore-errors: true
+      - type: console
+        command: sleep 1
+        note: Starting Stress
+        ignore-errors: true
+        command: timeout 0.1 stress-ng -c 2
+        note: Starting Stress
+        ignore-errors: true
+
+
