@@ -15,7 +15,7 @@ flow:
         ignore-errors: true
       - type: console
         command: sleep 0.1
-        note: Starting Stress
+        note: Starting Sleep
         ignore-errors: true
       - type: console
         command: timeout 0.2 stress-ng -c 2
@@ -23,7 +23,7 @@ flow:
         ignore-errors: true
       - type: console
         command: sleep 0.2
-        note: Starting Stress
+        note: Starting Sleep
         ignore-errors: true
       - type: console
         command: timeout 0.3 stress-ng -c 2
@@ -31,7 +31,7 @@ flow:
         ignore-errors: true
       - type: console
         command: sleep 0.3
-        note: Starting Stress
+        note: Starting Sleep
         ignore-errors: true
       - type: console
         command: timeout 0.4 stress-ng -c 2
@@ -39,8 +39,9 @@ flow:
         ignore-errors: true
       - type: console
         command: sleep 0.4
-        note: Starting Stress
+        note: Starting Sleep
         ignore-errors: true
+      - type: console
         command: timeout 0.4 stress-ng -c 2
         note: Starting Stress
         ignore-errors: true
@@ -53,96 +54,123 @@ flow:
         ignore-errors: true
       - type: console
         command: sleep 0.4
-        note: Starting Stress
+        note: Starting Sleep
         ignore-errors: true
+
+      - type: console
         command: timeout 0.4 stress-ng -c 2
         note: Starting Stress
         ignore-errors: true
       - type: console
         command: sleep 0.2
-        note: Starting Stress
+        note: Starting Sleep
         ignore-errors: true
+
       - type: console
         command: sleep 0.4
-        note: Starting Stress
+        note: Starting Sleep
         ignore-errors: true
+      - type: console
         command: timeout 0.4 stress-ng -c 2
         note: Starting Stress
         ignore-errors: true
+
       - type: console
         command: sleep 0.1
-        note: Starting Stress
+        note: Starting Sleep
         ignore-errors: true
+
   - name: Fixed long Timeouts
     container: gcb-ubuntu-stress
     commands:
+
       - type: console
         command: sleep 1
-        note: Starting Stress
+        note: Starting Sleep
         ignore-errors: true
+      - type: console
         command: timeout 0.1 stress-ng -c 2
         note: Starting Stress
         ignore-errors: true
+
       - type: console
         command: sleep 1
-        note: Starting Stress
+        note: Starting Sleep
         ignore-errors: true
+      - type: console
         command: timeout 0.1 stress-ng -c 2
         note: Starting Stress
         ignore-errors: true
+
       - type: console
         command: sleep 1
-        note: Starting Stress
+        note: Starting Sleep
         ignore-errors: true
+      - type: console
         command: timeout 0.1 stress-ng -c 2
         note: Starting Stress
         ignore-errors: true
+
       - type: console
         command: sleep 1
-        note: Starting Stress
+        note: Starting Sleep
         ignore-errors: true
+      - type: console
         command: timeout 0.1 stress-ng -c 2
         note: Starting Stress
         ignore-errors: true
+
       - type: console
         command: sleep 1
-        note: Starting Stress
+        note: Starting Sleep
         ignore-errors: true
+      - type: console
         command: timeout 0.1 stress-ng -c 2
         note: Starting Stress
         ignore-errors: true
+
       - type: console
         command: sleep 1
-        note: Starting Stress
+        note: Starting Sleep
         ignore-errors: true
+      - type: console
         command: timeout 0.1 stress-ng -c 2
         note: Starting Stress
         ignore-errors: true
+
       - type: console
         command: sleep 1
-        note: Starting Stress
+        note: Starting Sleep
         ignore-errors: true
+      - type: console
         command: timeout 0.1 stress-ng -c 2
         note: Starting Stress
         ignore-errors: true
+
       - type: console
         command: sleep 1
-        note: Starting Stress
+        note: Starting Sleep
         ignore-errors: true
+      - type: console
         command: timeout 0.1 stress-ng -c 2
         note: Starting Stress
         ignore-errors: true
+
       - type: console
         command: sleep 1
-        note: Starting Stress
+        note: Starting Sleep
         ignore-errors: true
+      - type: console
         command: timeout 0.1 stress-ng -c 2
         note: Starting Stress
         ignore-errors: true
+
+
       - type: console
         command: sleep 1
-        note: Starting Stress
+        note: Starting Sleep
         ignore-errors: true
+      - type: console
         command: timeout 0.1 stress-ng -c 2
         note: Starting Stress
         ignore-errors: true
