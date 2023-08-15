@@ -175,4 +175,52 @@ flow:
         note: Starting Stress
         ignore-errors: true
 
+  - name: Fixed longer Timeout
+    container: gcb-ubuntu-stress
+    commands:
+
+      - type: console
+        command: sleep 0.5
+        note: Starting Sleep
+        ignore-errors: true
+      - type: console
+        command: timeout 0.5 stress-ng -c 4
+        note: Starting Stress
+        ignore-errors: true
+
+      - type: console
+        command: sleep 0.5
+        note: Starting Sleep
+        ignore-errors: true
+      - type: console
+        command: timeout 0.5 stress-ng -c 4
+        note: Starting Stress
+        ignore-errors: true
+
+      - type: console
+        command: sleep 0.5
+        note: Starting Sleep
+        ignore-errors: true
+      - type: console
+        command: timeout 0.5 stress-ng -c 4
+        note: Starting Stress
+        ignore-errors: true
+
+      - type: console
+        command: sleep 0.5
+        note: Starting Sleep
+        ignore-errors: true
+      - type: console
+        command: timeout 0.5 stress-ng -c 4
+        note: Starting Stress
+        ignore-errors: true
+
+      - type: console
+        command: sleep 0.5
+        note: Starting Sleep
+        ignore-errors: true
+      - type: console
+        command: timeout 0.5 stress-ng -c 4
+        note: Starting Stress
+        ignore-errors: true
 
