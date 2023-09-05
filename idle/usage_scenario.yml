@@ -1,5 +1,5 @@
 ---
-name: Idle Container for 5 Seconds
+name: Idle Container for 5 Minutes
 author: Arne Tarara <arne@green-coding.berlin>
 description: Idle the container for 5 seconds
 
@@ -9,9 +9,9 @@ services:
     cmd: sh
 
 flow:
-  - name: Idle
+  - name: Idling for 5 Minutes
     container: gcb-idle
     commands:
       - type: console
-        command: sleep 5
+        command: sleep 300
         note: Starting Sleep
