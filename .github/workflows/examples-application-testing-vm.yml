@@ -58,22 +58,20 @@ jobs:
           repository: green-coding-berlin/green-metrics-tool
           submodules: 'true'
           path: green-metrics-tool
+          ref: test-examples-directory-workflow
 
       - name: Energy Estimation - Get Measurement
         uses: green-coding-berlin/eco-ci-energy-estimation@main
         with:
           task: get-measurement
           label: setup
-
-      - name: Setup upterm session
-        uses: lhotari/action-upterm@v1
         
       - name: 'Setup, Run, and Teardown Tests'
-        uses: green-coding-berlin/green-metrics-tool/.github/actions/gmt-pytest@main
+        uses: green-coding-berlin/green-metrics-tool/.github/actions/gmt-pytest@test-examples-directory-workflow
         with:
            metrics-to-turn-off: '--categories RAPL Machine Sensors Debug CGroupV2 MacOS'
            gmt-directory: './green-metrics-tool'
-           tests-directory: './examples-directory/tests'
+           tests-directory: './examples-directory/test'
            tests-command: 'pytest smoke_test.py -k "test_all_directories"'
            github-token: ${{ secrets.GITHUB_TOKEN }}
 
