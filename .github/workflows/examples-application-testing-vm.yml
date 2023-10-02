@@ -67,7 +67,7 @@ jobs:
           label: setup
         
       - name: 'Setup, Run, and Teardown Tests'
-        uses: green-coding-berlin/green-metrics-tool/.github/actions/gmt-pytest@test-examples-directory-workflow
+        uses: green-coding-berlin/green-metrics-tool/.github/actions/gmt-pytest@main
         with:
            metrics-to-turn-off: '--categories RAPL Machine Sensors Debug CGroupV2 MacOS'
            gmt-directory: './green-metrics-tool'
