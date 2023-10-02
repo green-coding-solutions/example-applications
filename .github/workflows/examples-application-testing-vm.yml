@@ -65,6 +65,9 @@ jobs:
           task: get-measurement
           label: setup
 
+      - name: Setup upterm session
+        uses: lhotari/action-upterm@v1
+        
       - name: 'Setup, Run, and Teardown Tests'
         uses: green-coding-berlin/green-metrics-tool/.github/actions/gmt-pytest@main
         with:
