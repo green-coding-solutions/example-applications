@@ -58,7 +58,7 @@ jobs:
           repository: green-coding-berlin/green-metrics-tool
           submodules: 'true'
           path: green-metrics-tool
-          ref: test-examples-directory-workflow
+          ref: examples-directory-fix
 
       - name: Energy Estimation - Get Measurement
         uses: green-coding-berlin/eco-ci-energy-estimation@main
