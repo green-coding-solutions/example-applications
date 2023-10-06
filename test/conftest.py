@@ -2,13 +2,10 @@ import os
 import sys
 import pytest
 
-current_dir = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(f"{current_dir}/../../green-metrics-tool/lib")
-
 ## VERY IMPORTANT to override the config file here
 ## otherwise it will automatically connect to non-test DB and delete all your real data
-from global_config import GlobalConfig
-from db import DB
+from lib.global_config import GlobalConfig
+from lib.db import DB
 GlobalConfig().override_config(config_name='test-config.yml')
 
 def pytest_addoption(parser):
