@@ -71,8 +71,7 @@ jobs:
         with:
            metrics-to-turn-off: '--categories RAPL Machine Sensors Debug CGroupV2 MacOS'
            gmt-directory: './green-metrics-tool'
-           tests-directory: './examples-directory/test'
-           tests-command: 'pytest smoke_test.py -k "test_all_directories"'
+           tests-command: 'pytest ../../example-applications/smoke_test.py -k "test_all_directories"'
            github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Energy Estimation - Get Measurement
