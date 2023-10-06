@@ -58,7 +58,7 @@ jobs:
           repository: green-coding-berlin/green-metrics-tool
           submodules: 'true'
           path: green-metrics-tool
-          ref: examples-directory-fix
+          ref: main
 
       - name: Energy Estimation - Get Measurement
         uses: green-coding-berlin/eco-ci-energy-estimation@main
@@ -67,7 +67,7 @@ jobs:
           label: setup
         
       - name: 'Setup, Run, and Teardown Tests'
-        uses: green-coding-berlin/green-metrics-tool/.github/actions/gmt-pytest@examples-directory-fix
+        uses: green-coding-berlin/green-metrics-tool/.github/actions/gmt-pytest@main
         with:
            metrics-to-turn-off: '--categories RAPL Machine Sensors Debug CGroupV2 MacOS'
            gmt-directory: './green-metrics-tool'
