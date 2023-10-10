@@ -16,16 +16,16 @@ flow:
         command: sleep 3600
         note: Starting Sleep \#1
 
-  - name: Stress
-    container: gcb-alpine-stress
-    commands:
-      - type: console
-        command: stress-ng -c 1 -t 60
-        note: Starting Stress
-
   - name: Idle 2
     container: gcb-alpine-stress
     commands:
       - type: console
         command: sleep 3600
         note: Starting Sleep \#2
+
+  - name: Idle 3
+    container: gcb-alpine-stress
+    commands:
+      - type: console
+        command: sleep 3600
+        note: Starting Sleep \#3
