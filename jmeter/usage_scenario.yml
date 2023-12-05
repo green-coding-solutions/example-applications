@@ -1,0 +1,28 @@
+---
+name: JMeter Test Plan Execution
+author: David Kopp <mail@davidkopp.de>
+description: Demonstrating the usage of JMeter executing a test plan.
+
+compose-file: !include compose.yml
+
+services:
+  gcb-postgres:
+    setup-commands:
+       - sleep 5 # wait some time to ensure that the database is ready
+  gcb-backend:
+    setup-commands:
+       - sleep 10 # wait some time to ensure that the backend is ready
+
+sci:
+  R_d: order
+  # One order consists of three sequential requests: get inventory, add product to cart, confirm order
+
+flow:
+  - name: Execute JMeter test plan # single user orders one product with a short think time of 1 second
+    container: gcb-jmeter
+    commands:
+      - type: console
+        command: jmeter -Jhostname=gcb-backend -Jport=8080 -JnumExecutions=1 -JnumUser=1 -JrampUp=0 -JnumProducts=1 -JthinkTimeMin=1000 -JthinkTimeAdditionalRange=0 -JloggingEnabled=true -n -t /tmp/repo/jmeter-test-plan.jmx
+        log-stdout: true
+        read-notes-stdout: true
+        read-sci-stdout: true
