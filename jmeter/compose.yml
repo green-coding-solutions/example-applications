@@ -13,7 +13,7 @@ services:
     networks:
       - t2-network
   gcb-backend:
-    image: t2project/modulith:gmt-jmeter-example
+    image: t2project/modulith@sha256:180c620862e6aa936f00245c04fe0510896c2c8059663e3f0fae2a76b7a56966
     depends_on:
       - gcb-postgres
       - gcb-mongo
@@ -24,7 +24,7 @@ services:
     networks:
       - t2-network
   gcb-jmeter:
-    image: t2project/jmeter:5.6.2
+    image: t2project/jmeter@sha256:8d0543345f747ae512da2f0732fbd0ee760c7168415d2dce87e77d42fd14390a
     environment:
       JVM_XMN: 100 # maximum nursery size
       JVM_XMS: 250 # initial heap size
