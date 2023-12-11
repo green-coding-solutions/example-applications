@@ -12,10 +12,10 @@ As an example web application the reference application [T2-Project](https://t2-
 JMeter gets executed as part of the flow in `usage_scenario.yml` with the following command:
 
 ```bash
-jmeter -Jhostname=gcb-backend -Jport=8080 -JnumExecutions=1 -JnumUser=1 -JrampUp=0 -JnumProducts=1 -JthinkTimeMin=0 -JthinkTimeAdditionalRange=0 -JtimeBetweenExecutions=0 -JloggingEnabled=true -n -t /tmp/repo/jmeter-test-plan.jmx
+jmeter -Jhostname=gcb-backend -Jport=8080 -JnumExecutions=1 -JnumUser=1 -JrampUp=0 -JnumProducts=1 -JthinkTimeMin=0 -JthinkTimeAdditionalRange=0 -JpauseBeforeExecution=0 -JpauseAfterExecution=0 -JloggingEnabled=true -n -t /tmp/repo/jmeter-test-plan.jmx
 ```
 
-`hostname`, `port`, `numExecutions`, `numUser`, `rampUp`, `numProducts`, `thinkTimeMin`, `thinkTimeAdditionalRange`, `timeBetweenExecutions` and `loggingEnabled` are environment variables that get passed to JMeter. They are specific for this test plan (`jmeter-test-plan.jmx`).
+`hostname`, `port`, `numExecutions`, `numUser`, `rampUp`, `numProducts`, `thinkTimeMin`, `thinkTimeAdditionalRange`, `pauseBeforeExecution`, `pauseAfterExecution` and `loggingEnabled` are environment variables that get passed to JMeter. They are specific for this test plan (`jmeter-test-plan.jmx`).
 If you want to understand this test plan you can use the JMeter GUI and open the file `jmeter-test-plan.jmx`.
 
 ## Running the measurement
