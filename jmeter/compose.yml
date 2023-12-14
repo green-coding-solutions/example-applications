@@ -1,0 +1,36 @@
+---
+version: "2"
+services:
+  gcb-postgres:
+    image: postgres:15.4
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    networks:
+      - t2-network
+  gcb-mongo:
+    image: mongo:5.0
+    networks:
+      - t2-network
+  gcb-backend:
+    image: t2project/modulith@sha256:180c620862e6aa936f00245c04fe0510896c2c8059663e3f0fae2a76b7a56966
+    depends_on:
+      - gcb-postgres
+      - gcb-mongo
+    environment:
+      MONGO_HOST: gcb-mongo
+      POSTGRES_HOST: gcb-postgres
+      SPRING_PROFILES_ACTIVE: gmt
+    networks:
+      - t2-network
+  gcb-jmeter:
+    image: t2project/jmeter@sha256:8d0543345f747ae512da2f0732fbd0ee760c7168415d2dce87e77d42fd14390a
+    environment:
+      JVM_XMN: 100 # maximum nursery size
+      JVM_XMS: 250 # initial heap size
+      JVM_XMX: 500 # maximum heap size
+    networks:
+      - t2-network
+
+networks:
+  t2-network:
