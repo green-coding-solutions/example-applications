@@ -48,10 +48,12 @@ Stop and remove the containers
 docker compose down
 ```
 
-Once you are finished testing and want to remove all WordPress data, delete the named volumes by passing the `-v` parameter:
+Once you are finished testing and want to remove all WordPress data you have to remove the image and delete the layer cache since we copy the data in:
 
 ``` bash
 docker compose down -v
+docker rmi -f gcb_wordpress_mariadb
+docker system prune --volumes
 ```
 
 ## Peculiarities
@@ -60,6 +62,12 @@ The MariaDB database takes a long time to boot.
 
 Therefore a `sleep 20` is in the `setup-commands` of the `usage_scenario.yml` so that Puppeteer will not  
 get a database connection error from Wordpress.
+
+## Changing the data in the admin
+
+Go to http://gcb-wordpress-apache:9875/wp-admin/ and use:
+- Username: arne
+- Password: arne
 
 ## Running the measurement
 

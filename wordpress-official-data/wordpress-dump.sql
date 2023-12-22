@@ -938,7 +938,7 @@ CREATE TABLE `wp_users` (
 
 LOCK TABLES `wp_users` WRITE;
 /*!40000 ALTER TABLE `wp_users` DISABLE KEYS */;
-INSERT INTO `wp_users` VALUES (1,'arne','$P$BhpMsv2Zrl5Od1MzHo.Gr8jwOZTG.B0','arne','x@x.local','http://gcb-wordpress-apache:9875','2022-06-16 21:39:47','',0,'arne');
+INSERT INTO `wp_users` VALUES (1,'arne','$P$BQiJff6kDxDDKHH1IgV3H7vv/a2iKo1','arne','x@x.local','http://gcb-wordpress-apache:9875','2022-06-16 21:39:47','',0,'arne');
 /*!40000 ALTER TABLE `wp_users` ENABLE KEYS */;
 UNLOCK TABLES;
 
