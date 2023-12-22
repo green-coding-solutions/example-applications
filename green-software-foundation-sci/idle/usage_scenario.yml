@@ -9,7 +9,7 @@ sci:
 services:
   gcb-idle:
     image: alpine
-    cmd: sh
+    command: sh
 
 flow:
   - name: Idle

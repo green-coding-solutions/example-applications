@@ -33,7 +33,7 @@ services:
     image: curlimages/curl
     networks:
       - wordpress-minimal-network
-    cmd: sh
+    command: sh
 
 flow:
   - name: Wordpress Minimal Homepage

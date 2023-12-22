@@ -14,7 +14,7 @@ services:
     image: curlimages/curl
     networks:
       - gcb-hugo-apache-network
-    cmd: sh
+    command: sh
 
 flow:
   - name: Check Website

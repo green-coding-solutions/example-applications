@@ -6,7 +6,7 @@ description: Idle the container for 5 seconds
 services:
   gcb-idle:
     image: alpine
-    cmd: sh
+    command: sh
 
 flow:
   - name: Idling for 5 Minutes
