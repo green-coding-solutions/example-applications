@@ -38,7 +38,7 @@ def run_test_on_directory(directory, capsys, skip_unsafe=False):
     name = f"test_{utils.randomword(12)}"
 
     # Run the application
-    runner = Runner(name=name, uri=directory, uri_type="folder", dev_repeat_run=True, skip_unsafe=skip_unsafe, skip_system_checks=True)
+    runner = Runner(name=name, uri=directory, uri_type="folder", dev_no_build=True, skip_unsafe=skip_unsafe, skip_system_checks=True)
     runner.run()
 
     # Capture Std.Out and Std.Err and make Assertions
