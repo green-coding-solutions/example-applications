@@ -17,18 +17,35 @@ services:
       - sleep 20
     networks:
       - gcb-wordpress-mariadb-network
+    deploy:
+      resources:
+        limits:
+          memory: 500M
+          cpus: 1
+
   gcb-wordpress-apache:
     ports:
       - 9875:9875
     networks:
       - gcb-wordpress-mariadb-network
     folder-destination: "/tmp/repo"
+    deploy:
+      resources:
+        limits:
+          memory: 500M
+          cpus: 1
   gcb-puppeteer:
     image: greencoding/puppeteer-chrome
     setup-commands:
       - cp /tmp/repo/puppeteer-flow.js /var/www/puppeteer-flow.js
     networks:
       - gcb-wordpress-mariadb-network
+    deploy:
+      resources:
+        limits:
+          memory: 500M
+          cpus: 1
+
 
 flow:
   - name: Check Website
