@@ -28,7 +28,7 @@ services:
     networks:
       - wordpress-minimal-network
     setup-commands:
-      - cp /tmp/repo/wordpress.conf /etc/apache2/sites-enabled/wordpress.conf
+      - cp /tmp/repo/wordpress-vs-hugo/wordpress-minimal/wordpress.conf /etc/apache2/sites-enabled/wordpress.conf
   gcb-curl:
     image: curlimages/curl
     networks:
