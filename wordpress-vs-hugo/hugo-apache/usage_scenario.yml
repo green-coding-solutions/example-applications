@@ -11,7 +11,8 @@ services:
     setup-commands:
       - cp -R /tmp/repo/wordpress-vs-hugo/hugo-apache/htdocs /usr/local/apache2/
   gcb-curl:
-    image: curlimages/curl
+    # Newer version of the curl image lead to an error with Docker rootless https://github.com/curl/curl-container/issues/55
+    image: curlimages/curl:8.1.0
     networks:
       - gcb-hugo-apache-network
     command: sh
