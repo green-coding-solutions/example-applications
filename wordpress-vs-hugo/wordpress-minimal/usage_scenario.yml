@@ -27,8 +27,8 @@ services:
       WORDPRESS_TABLE_PREFIX: wp_
     networks:
       - wordpress-minimal-network
-    setup-commands:
-      - cp /tmp/repo/wordpress-vs-hugo/wordpress-minimal/wordpress.conf /etc/apache2/sites-enabled/wordpress.conf
+    volumes:
+      - ./wordpress.conf:/etc/apache2/sites-enabled/wordpress.conf:ro
   gcb-curl:
     image: curlimages/curl
     networks:
