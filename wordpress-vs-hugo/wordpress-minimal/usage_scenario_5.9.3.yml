@@ -1,0 +1,49 @@
+---
+name: Wordpress Minimal
+author: Arne Tarara <arne@green-coding.berlin>
+description: Curl the wordpress server
+
+services:
+  gcb-mariadb:
+    image: gcb_mariadb
+    environment:
+      MYSQL_ROOT_PASSWORD: somewordpress
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+    networks:
+      - wordpress-minimal-network
+# Sleep command cause container needs bootup time to ingest SQL dump
+    setup-commands:
+      - sleep 20
+    build: .
+  gcb-wordpress:
+    image: wordpress:5.9.3
+    environment:
+      WORDPRESS_DB_HOST: gcb-mariadb
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_TABLE_PREFIX: wp_
+    networks:
+      - wordpress-minimal-network
+    volumes:
+      - ./wordpress.conf:/etc/apache2/sites-enabled/wordpress.conf:ro
+  gcb-curl:
+    # Newer version of the curl image lead to an error with Docker rootless https://github.com/curl/curl-container/issues/55
+    image: curlimages/curl:8.1.0
+    networks:
+      - wordpress-minimal-network
+    command: sh
+
+flow:
+  - name: Wordpress Minimal Homepage
+    container: gcb-curl
+    commands:
+      - type: console
+# Set curl to silent, otherwise the STDERR speed report bothers us
+        command: "curl -s http://gcb-wordpress:9875"
+        note: Accessing wordpress-minimal home page
+
+networks:
+  wordpress-minimal-network:
