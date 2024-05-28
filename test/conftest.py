@@ -9,7 +9,7 @@ from lib.db import DB
 GlobalConfig().override_config(config_name='test-config.yml')
 
 def pytest_addoption(parser):
-    parser.addoption("--name", action="store", default="stress")
+    parser.addoption("--name", action="store")
 
 def pytest_generate_tests(metafunc):
     # This is called for every test. Only get/set command line arguments

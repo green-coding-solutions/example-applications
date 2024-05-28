@@ -4,10 +4,11 @@ import pytest
 import yaml
 
 # These tests assumes the green-metrics-tool directory lives side by side with the examples-repository
-current_dir = os.path.dirname(os.path.abspath(__file__))
-sys.path.append(f"{current_dir}/../../green-metrics-tool")
-sys.path.append(f"{current_dir}/../../green-metrics-tool/tools")
-sys.path.append(f"{current_dir}/../../green-metrics-tool/lib")
+CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
+ROOT_DIR = os.path.abspath(f"{CURRENT_DIR}/../")
+sys.path.append(f"{CURRENT_DIR}/../../green-metrics-tool")
+sys.path.append(f"{CURRENT_DIR}/../../green-metrics-tool/tools")
+sys.path.append(f"{CURRENT_DIR}/../../green-metrics-tool/lib")
 
 from runner import Runner
 from global_config import GlobalConfig
@@ -20,25 +21,25 @@ GlobalConfig(config_name='test-config.yml').config
 
 def example_directories():
     example_dirs = []
-    root = f"{current_dir}/../"
-
-    for path, directories, files in os.walk(root):
+    for path, directories, files in os.walk(ROOT_DIR):
         dirname = path.split(os.path.sep)[-1]
-        if path == root or '.scantest' in files:
+        if path == ROOT_DIR or '.scantest' in files:
             continue
         if '.skiptest' in files or dirname.startswith("."):
             directories.clear()
             continue
-        example_dirs.append(os.path.abspath(path))
+        print(os.path.abspath(path))
+        repo_path = os.path.abspath(path)
+        repo_path_rel = repo_path[len(ROOT_DIR)+1:]
+        example_dirs.append(repo_path_rel)
         directories.clear()
-
     return example_dirs
 
-def run_test_on_directory(directory, capsys, skip_unsafe=False):
+def run_test_on_directory(directory, capsys):
     name = f"test_{utils.randomword(12)}"
 
     # Run the application
-    runner = Runner(name=name, uri=directory, uri_type="folder", dev_no_build=True, skip_unsafe=skip_unsafe, skip_system_checks=True)
+    runner = Runner(name=name, uri=ROOT_DIR, filename=f"{directory}/usage_scenario.yml", uri_type="folder", dev_no_build=True, dev_no_sleeps=True, skip_unsafe=True, skip_system_checks=True)
     runner.run()
 
     # Capture Std.Out and Std.Err and make Assertions
@@ -99,31 +100,11 @@ class Loader(yaml.SafeLoader):
 
 Loader.add_constructor('!include', Loader.include)
 
-def check_for_ports(directory):
-    if os.path.exists(f"{directory}/usage_scenario.yml"):
-        with open(f"{directory}/usage_scenario.yml", encoding='utf8') as f:
-            usage_scenario = yaml.load(f, Loader=Loader)
-            if 'services' in usage_scenario:
-                for service in usage_scenario['services']:
-                    if 'ports' in usage_scenario['services'][service]:
-                        return True
-                        
-    if os.path.exists(f"{directory}/compose.yml"):
-        with open(f"{directory}/compose.yml", encoding='utf8') as f:
-            compose_yml = yaml.load(f, Loader=Loader)
-            if 'services' in compose_yml:
-                for service in compose_yml['services']:
-                    if 'ports' in compose_yml['services'][service]:
-                        return True
-    return False
-
 @pytest.mark.parametrize("example_directory", example_directories())
 def test_all_directories(example_directory, capsys):
-    skip_unsafe = check_for_ports(example_directory)
-    run_test_on_directory(example_directory, capsys, skip_unsafe=skip_unsafe)
+    run_test_on_directory(example_directory, capsys)
 
+# Trigger a single test by supplying --name "my_directory" for this one
 def test_a_directory(name, capsys):
-    uri = os.path.abspath(f"{current_dir}/../{name}")
-    skip_unsafe = check_for_ports(uri)
-    run_test_on_directory(uri, capsys, skip_unsafe=skip_unsafe)
+    run_test_on_directory(name, capsys)
 
