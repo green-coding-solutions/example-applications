@@ -3,7 +3,7 @@ run-name: Examples Directory Test Run - ${{ github.ref_name }}
 
 on:
   schedule:
-    - cron: '0 0 * * *'
+    - cron: '0 3 * * 3' # every wednesday at 3 AM
       branches: [ "main" ]
 
   #push: 
