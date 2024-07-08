@@ -22,7 +22,7 @@ flow:
     container: gcb-jmeter
     commands:
       - type: console
-        command: jmeter -Jhostname=gcb-backend -Jport=8080 -JnumExecutions=1 -JnumUser=1 -JrampUp=0 -JnumProducts=1 -JthinkTimeMin=1000 -JthinkTimeAdditionalRange=0 -JpauseBeforeExecution=0 -JpauseAfterExecution=0 -JloggingEnabled=true -n -t /tmp/repo/jmeter/jmeter-test-plan.jmx
+        command: jmeter -Jhostname=gcb-backend -Jport=8080 -JnumExecutions=1 -JnumUser=1 -JrampUp=0 -JnumProducts=1 -JthinkTimeMin=1000 -JthinkTimeAdditionalRange=0 -JpauseBeforeExecution=0 -JpauseAfterExecution=0 -JloggingEnabled=true -n -t /tmp/repo/jmeter-test-plan.jmx
         log-stdout: true
         read-notes-stdout: true
         read-sci-stdout: true

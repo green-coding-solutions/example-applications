@@ -8,7 +8,7 @@ services:
   gcb-puppeteer:
     image: greencoding/puppeteer-chrome
     setup-commands:
-      - cp /tmp/repo/wordpress-official-starter/puppeteer-flow.js /var/www/puppeteer-flow.js
+      - cp /tmp/repo/puppeteer-flow.js /var/www/puppeteer-flow.js
     networks:
       - gcb-mariadb-wordpress-network
 

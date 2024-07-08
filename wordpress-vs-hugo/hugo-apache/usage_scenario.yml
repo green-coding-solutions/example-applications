@@ -9,7 +9,7 @@ services:
     networks:
       - gcb-hugo-apache-network
     setup-commands:
-      - cp -R /tmp/repo/wordpress-vs-hugo/hugo-apache/htdocs /usr/local/apache2/
+      - cp -R /tmp/repo/htdocs /usr/local/apache2/
   gcb-curl:
     # Newer version of the curl image lead to an error with Docker rootless https://github.com/curl/curl-container/issues/55
     image: curlimages/curl:8.1.0
