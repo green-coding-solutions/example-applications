@@ -14,9 +14,10 @@ Please make sure that your green metrics tool is configured to your system, and 
 To run the tests, first make sure that your green-metrics-tool testing setup is complete. Full instructions on how to do so can be found in `green-metrics-tool/test/README.MD`, but in short, you simply have to run the `green-metrics-tool/test/setup-test-env.sh` script.
 
 ## Running
-In green-metris-tool tests subfolder, make sure you first run the `green-metrics-tool/test/start-test-containers.sh` script. This will start the docker containers necessary to run the green metrics tool tests.
+In green-metris-tool tests subfolder, make sure you have the GMT properly installed and then first run the `green-metrics-tool/test/start-test-containers.sh` script. 
+This will start the docker containers necessary to run the green metrics tool tests.
 
-Then from the `example-applications/test` directory, just run `pytest`
+Then from the `example-applications/test` directory, just run `pytest smoke_test.py -k "test_all_directories"`
 
 To test a single directory, run something like this:
 
