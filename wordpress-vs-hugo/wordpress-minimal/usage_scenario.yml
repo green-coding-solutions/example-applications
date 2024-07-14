@@ -34,6 +34,8 @@ services:
     image: curlimages/curl:8.1.0
     networks:
       - wordpress-minimal-network
+    setup-commands:
+      - sleep 20
     command: sh
 
 flow:
