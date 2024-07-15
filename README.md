@@ -1,3 +1,5 @@
+[![Examples Directory Tests Run - VM](https://github.com/green-coding-solutions/example-applications/actions/workflows/examples-application-testing-vm.yml/badge.svg)](https://github.com/green-coding-solutions/example-applications/actions/workflows/examples-application-testing-vm.yml)
+
 # Introduction
 
 This is the repo in which we at Green Coding collect some example applications that you can use to get to know the
