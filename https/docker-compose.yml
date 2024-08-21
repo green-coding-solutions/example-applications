@@ -1,7 +1,6 @@
 services:
   nginx:
     image: nginx:latest
-    container_name: nginx_https
     volumes:
       - ./nginx.conf:/etc/nginx/nginx.conf:ro
       - ./certs:/etc/nginx/certs:ro
@@ -13,6 +12,6 @@ services:
       dockerfile: curl.Dockerfile
     container_name: curl_client
     depends_on:
-      - nginx_https
+      - nginx
     volumes:
       - ./certs:/certs:ro  # Mount the certs directory

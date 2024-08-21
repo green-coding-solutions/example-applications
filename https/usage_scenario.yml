@@ -17,7 +17,7 @@ flow:
     commands:
       - type: console
         shell: sh
-        command: for i in `seq 1 10000`; do curl -s http://nginx_https; done
+        command: for i in `seq 1 10000`; do curl -s http://nginx; done
         note: Accessing without encryption
 
   - name: sleep
@@ -33,7 +33,7 @@ flow:
     commands:
       - type: console
         shell: sh
-        command: for i in `seq 1 10000`; do curl -s --cacert /certs/nginx.crt https://nginx_https; done
+        command: for i in `seq 1 10000`; do curl -s --cacert /certs/nginx.crt https://nginx; done
         note: Accessing with encryption
 
   - name: sleep2
@@ -49,7 +49,7 @@ flow:
     commands:
       - type: console
         shell: sh
-        command: for i in `seq 1 50`; do curl -s http://nginx_https/large_file.bin; done
+        command: for i in `seq 1 50`; do curl -s http://nginx/large_file.bin; done
         note: Accessing without encryption
 
   - name: sleep3
@@ -65,5 +65,5 @@ flow:
     commands:
       - type: console
         shell: sh
-        command: for i in `seq 1 50`; do curl -s --cacert /certs/nginx.crt https://nginx_https/large_file.bin; done
+        command: for i in `seq 1 50`; do curl -s --cacert /certs/nginx.crt https://nginx/large_file.bin; done
         note: Accessing with encryption
