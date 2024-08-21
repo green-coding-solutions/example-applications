@@ -1,0 +1,69 @@
+---
+name: Https test
+author: Didi Hoffmann <didi@green-coding.io>
+description: A little scenario that compares http and https
+
+compose-file: !include docker-compose.yml
+
+services:
+  nginx:
+    setup-commands:
+      - sh /usr/share/nginx/html/create_file.sh
+
+
+flow:
+  - name: https
+    container: curl_client
+    commands:
+      - type: console
+        shell: sh
+        command: for i in `seq 1 10000`; do curl -s http://nginx_https; done
+        note: Accessing without encryption
+
+  - name: sleep
+    container: curl_client
+    commands:
+      - type: console
+        shell: sh
+        command: sleep 10
+        note: A little sleep
+
+  - name: http
+    container: curl_client
+    commands:
+      - type: console
+        shell: sh
+        command: for i in `seq 1 10000`; do curl -s --cacert /certs/nginx.crt https://nginx_https; done
+        note: Accessing with encryption
+
+  - name: sleep2
+    container: curl_client
+    commands:
+      - type: console
+        shell: sh
+        command: sleep 10
+        note: A little sleep
+
+  - name: http_large
+    container: curl_client
+    commands:
+      - type: console
+        shell: sh
+        command: for i in `seq 1 10`; do curl -s http://nginx_https/large_file.bin; done
+        note: Accessing without encryption
+
+  - name: sleep3
+    container: curl_client
+    commands:
+      - type: console
+        shell: sh
+        command: sleep 10
+        note: A little sleep
+
+  - name: https_large
+    container: curl_client
+    commands:
+      - type: console
+        shell: sh
+        command: for i in `seq 1 10`; do curl -s --cacert /certs/nginx.crt https://nginx_https/large_file.bin; done
+        note: Accessing with encryption
