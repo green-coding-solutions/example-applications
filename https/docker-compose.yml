@@ -13,6 +13,6 @@ services:
       dockerfile: curl.Dockerfile
     container_name: curl_client
     depends_on:
-      - nginx
+      - nginx_https
     volumes:
       - ./certs:/certs:ro  # Mount the certs directory
