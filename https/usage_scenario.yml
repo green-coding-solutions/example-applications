@@ -12,12 +12,12 @@ services:
 
 
 flow:
-  - name: https
+  - name: http
     container: curl_client
     commands:
       - type: console
         shell: sh
-        command: for i in `seq 1 10000`; do curl  http://nginx; done
+        command: for i in `seq 1 10000`; do curl -s http://nginx; done
         note: Accessing without encryption
 
   - name: sleep
@@ -28,12 +28,12 @@ flow:
         command: sleep 10
         note: A little sleep
 
-  - name: http
+  - name: https
     container: curl_client
     commands:
       - type: console
         shell: sh
-        command: for i in `seq 1 10000`; do curl --cacert /certs/nginx.crt https://nginx; done
+        command: for i in `seq 1 10000`; do curl -s --cacert /certs/nginx.crt https://nginx; done
         note: Accessing with encryption
 
   - name: sleep2
@@ -49,7 +49,7 @@ flow:
     commands:
       - type: console
         shell: sh
-        command: for i in `seq 1 50`; do curl  http://nginx/large_file.bin; done
+        command: for i in `seq 1 1000`; do curl -w "Size: %{size_download} bytes\nTime: %{time_total} seconds\nSpeed: %{speed_download} bytes/second\n" -o /dev/null -s http://nginx/large_file.bin; done
         note: Accessing without encryption
 
   - name: sleep3
@@ -65,5 +65,5 @@ flow:
     commands:
       - type: console
         shell: sh
-        command: for i in `seq 1 50`; do curl  --cacert /certs/nginx.crt https://nginx/large_file.bin; done
+        command: for i in `seq 1 1000`; do curl -w "Size: %{size_download} bytes\nTime: %{time_total} seconds\nSpeed: %{speed_download} bytes/second\n" -o /dev/null -s --cacert /certs/nginx.crt https://nginx/large_file.bin; done
         note: Accessing with encryption
