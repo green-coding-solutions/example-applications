@@ -8,8 +8,8 @@ compose-file: !include docker-compose.yml
 services:
   nginx:
     setup-commands:
-      - sh /usr/share/nginx/html/create_file.sh
-
+      - cp /tmp/repo/html/index.html /usr/share/nginx/html/index.html
+      - sh /tmp/repo/create_file.sh
 
 flow:
   - name: http
@@ -44,15 +44,47 @@ flow:
         command: sleep 10
         note: A little sleep
 
+  - name: http_options
+    container: curl_client
+    commands:
+      - type: console
+        shell: sh
+        command: for i in `seq 1 10000`; do curl -X OPTIONS -s http://nginx; done
+        note: Accessing without encryption
+
+  - name: sleep3
+    container: curl_client
+    commands:
+      - type: console
+        shell: sh
+        command: sleep 10
+        note: A little sleep
+
+  - name: https_options
+    container: curl_client
+    commands:
+      - type: console
+        shell: sh
+        command: for i in `seq 1 10000`; do curl -X OPTIONS -s --cacert /certs/nginx.crt https://nginx; done
+        note: Accessing with encryption
+
+  - name: sleep4
+    container: curl_client
+    commands:
+      - type: console
+        shell: sh
+        command: sleep 10
+        note: A little sleep
+
   - name: http_large
     container: curl_client
     commands:
       - type: console
         shell: sh
-        command: for i in `seq 1 1000`; do curl -w "Size: %{size_download} bytes\nTime: %{time_total} seconds\nSpeed: %{speed_download} bytes/second\n" -o /dev/null -s http://nginx/large_file.bin; done
+        command: for i in `seq 1 10`; do curl -s -o /dev/null  http://nginx/large_file.bin; done
         note: Accessing without encryption
 
-  - name: sleep3
+  - name: sleep5
     container: curl_client
     commands:
       - type: console
@@ -65,5 +97,5 @@ flow:
     commands:
       - type: console
         shell: sh
-        command: for i in `seq 1 1000`; do curl -w "Size: %{size_download} bytes\nTime: %{time_total} seconds\nSpeed: %{speed_download} bytes/second\n" -o /dev/null -s --cacert /certs/nginx.crt https://nginx/large_file.bin; done
+        command: for i in `seq 1 10`; do curl -s -o /dev/null --cacert /certs/nginx.crt https://nginx/large_file.bin; done
         note: Accessing with encryption

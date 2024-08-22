@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # File name
-filename="large_file.bin"
+filename="/usr/share/nginx/html/large_file.bin"
 
 # Size in GB
 size_in_gb=5
