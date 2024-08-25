@@ -17,7 +17,7 @@ flow:
     commands:
       - type: console
         shell: sh
-        command: for i in `seq 1 10000`; do curl -s http://nginx; done || echo "GMT_SCI_R=10000"
+        command: for i in `seq 1 10000`; do curl -s -o /dev/null http://nginx; done && echo "GMT_SCI_R=10000"
         note: Accessing without encryption
         read-sci-stdout: True
         log-stdout: True
@@ -36,7 +36,7 @@ flow:
     commands:
       - type: console
         shell: sh
-        command: for i in `seq 1 10000`; do curl -s --cacert /certs/nginx.crt https://nginx; done || echo "GMT_SCI_R=10000"
+        command: for i in `seq 1 10000`; do curl -s --cacert /certs/nginx.crt -o /dev/null https://nginx; done && echo "GMT_SCI_R=10000"
         note: Accessing with encryption
         read-sci-stdout: True
         log-stdout: True
@@ -54,7 +54,7 @@ flow:
     commands:
       - type: console
         shell: sh
-        command: for i in `seq 1 10000`; do curl -X OPTIONS -s http://nginx; done || echo "GMT_SCI_R=10000"
+        command: for i in `seq 1 10000`; do curl -X OPTIONS -s -o /dev/null http://nginx; done && echo "GMT_SCI_R=10000"
         note: Accessing without encryption
         read-sci-stdout: True
         log-stdout: True
@@ -72,7 +72,7 @@ flow:
     commands:
       - type: console
         shell: sh
-        command: for i in `seq 1 10000`; do curl -X OPTIONS -s --cacert /certs/nginx.crt https://nginx; done || echo "GMT_SCI_R=10000"
+        command: for i in `seq 1 10000`; do curl -X OPTIONS -s --cacert  /certs/nginx.crt -o /dev/null https://nginx; done && echo "GMT_SCI_R=10000"
         note: Accessing with encryption
         read-sci-stdout: True
         log-stdout: True
@@ -90,7 +90,7 @@ flow:
     commands:
       - type: console
         shell: sh
-        command: for i in `seq 1 10`; do curl -s -o /dev/null  http://nginx/large_file.bin; done || echo "GMT_SCI_R=10"
+        command: for i in `seq 1 10`; do curl -s -o /dev/null  http://nginx/large_file.bin; done && echo "GMT_SCI_R=10"
         note: Accessing without encryption
         read-sci-stdout: True
         log-stdout: True
@@ -108,7 +108,7 @@ flow:
     commands:
       - type: console
         shell: sh
-        command: for i in `seq 1 10`; do curl -s -o /dev/null --cacert /certs/nginx.crt https://nginx/large_file.bin; done || echo "GMT_SCI_R=10"
+        command: for i in `seq 1 10`; do curl -s -o /dev/null --cacert /certs/nginx.crt https://nginx/large_file.bin; done && echo "GMT_SCI_R=10"
         note: Accessing with encryption
         read-sci-stdout: True
         log-stdout: True
@@ -126,7 +126,7 @@ flow:
     commands:
       - type: console
         shell: sh
-        command: for i in `seq 1 10000`; do curl -s --cacert /certs/nginx_weak.crt https://nginx:442; done || echo "GMT_SCI_R=10000"
+        command: for i in `seq 1 10000`; do curl -s --cacert /certs/nginx_weak.crt -o /dev/null https://nginx:442; done && echo "GMT_SCI_R=10000"
         note: Accessing with encryption
         read-sci-stdout: True
         log-stdout: True
@@ -144,7 +144,7 @@ flow:
     commands:
       - type: console
         shell: sh
-        command: for i in `seq 1 10`; do curl -s -o /dev/null --cacert /certs/nginx_weak.crt https://nginx:442/large_file.bin; done || echo "GMT_SCI_R=10"
+        command: for i in `seq 1 10`; do curl -s -o /dev/null --cacert /certs/nginx_weak.crt https://nginx:442/large_file.bin; done && echo "GMT_SCI_R=10"
         note: Accessing with encryption
         read-sci-stdout: True
         log-stdout: True
