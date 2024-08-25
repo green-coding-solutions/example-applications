@@ -99,3 +99,27 @@ flow:
         shell: sh
         command: for i in `seq 1 10`; do curl -s -o /dev/null --cacert /certs/nginx.crt https://nginx/large_file.bin; done
         note: Accessing with encryption
+
+  - name: sleep6
+    container: curl_client
+    commands:
+      - type: console
+        shell: sh
+        command: sleep 10
+        note: A little sleep
+
+  - name: https_weak
+    container: curl_client
+    commands:
+      - type: console
+        shell: sh
+        command: for i in `seq 1 10000`; do curl -s --cacert /certs/nginx_weak.crt https://nginx:442; done
+        note: Accessing with encryption
+
+  - name: https_large_weak
+    container: curl_client
+    commands:
+      - type: console
+        shell: sh
+        command: for i in `seq 1 10`; do curl -s -o /dev/null --cacert /certs/nginx_weak.crt https://nginx/large_file.bin; done
+        note: Accessing with encryption
