@@ -20,6 +20,7 @@ flow:
         command: for i in `seq 1 10000`; do curl -s http://nginx; done || echo "GMT_SCI_R=10000"
         note: Accessing without encryption
         read-sci-stdout: True
+        log-stdout: True
 
 
   - name: sleep
@@ -38,6 +39,7 @@ flow:
         command: for i in `seq 1 10000`; do curl -s --cacert /certs/nginx.crt https://nginx; done || echo "GMT_SCI_R=10000"
         note: Accessing with encryption
         read-sci-stdout: True
+        log-stdout: True
 
   - name: sleep2
     container: curl_client
@@ -55,6 +57,7 @@ flow:
         command: for i in `seq 1 10000`; do curl -X OPTIONS -s http://nginx; done || echo "GMT_SCI_R=10000"
         note: Accessing without encryption
         read-sci-stdout: True
+        log-stdout: True
 
   - name: sleep3
     container: curl_client
@@ -72,6 +75,7 @@ flow:
         command: for i in `seq 1 10000`; do curl -X OPTIONS -s --cacert /certs/nginx.crt https://nginx; done || echo "GMT_SCI_R=10000"
         note: Accessing with encryption
         read-sci-stdout: True
+        log-stdout: True
 
   - name: sleep4
     container: curl_client
@@ -89,6 +93,7 @@ flow:
         command: for i in `seq 1 10`; do curl -s -o /dev/null  http://nginx/large_file.bin; done || echo "GMT_SCI_R=10"
         note: Accessing without encryption
         read-sci-stdout: True
+        log-stdout: True
 
   - name: sleep5
     container: curl_client
@@ -106,6 +111,7 @@ flow:
         command: for i in `seq 1 10`; do curl -s -o /dev/null --cacert /certs/nginx.crt https://nginx/large_file.bin; done || echo "GMT_SCI_R=10"
         note: Accessing with encryption
         read-sci-stdout: True
+        log-stdout: True
 
   - name: sleep6
     container: curl_client
@@ -123,6 +129,7 @@ flow:
         command: for i in `seq 1 10000`; do curl -s --cacert /certs/nginx_weak.crt https://nginx:442; done || echo "GMT_SCI_R=10000"
         note: Accessing with encryption
         read-sci-stdout: True
+        log-stdout: True
 
   - name: sleep7
     container: curl_client
@@ -140,3 +147,4 @@ flow:
         command: for i in `seq 1 10`; do curl -s -o /dev/null --cacert /certs/nginx_weak.crt https://nginx:442/large_file.bin; done || echo "GMT_SCI_R=10"
         note: Accessing with encryption
         read-sci-stdout: True
+        log-stdout: True
