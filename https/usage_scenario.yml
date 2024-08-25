@@ -121,5 +121,5 @@ flow:
     commands:
       - type: console
         shell: sh
-        command: for i in `seq 1 10`; do curl -s -o /dev/null --cacert /certs/nginx_weak.crt https://nginx/large_file.bin; done
+        command: for i in `seq 1 10`; do curl -s -o /dev/null --cacert /certs/nginx_weak.crt https://nginx:442/large_file.bin; done
         note: Accessing with encryption
