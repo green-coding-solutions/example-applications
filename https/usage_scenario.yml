@@ -8,8 +8,8 @@ compose-file: !include docker-compose.yml
 services:
   nginx:
     setup-commands:
-      - cp /tmp/repo/html/index.html /usr/share/nginx/html/index.html
-      - sh /tmp/repo/create_file.sh
+      - cp /tmp/repo/https/html/index.html /usr/share/nginx/html/index.html
+      - sh /tmp/repo/https/create_file.sh
 
 flow:
   - name: http
