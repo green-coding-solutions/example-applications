@@ -41,6 +41,24 @@ flow:
         read-sci-stdout: True
         log-stdout: True
 
+  - name: sleep8
+    container: curl_client
+    commands:
+      - type: console
+        shell: sh
+        command: sleep 10
+        note: A little sleep
+
+  - name: https
+    container: curl_client
+    commands:
+      - type: console
+        shell: sh
+        command: for i in `seq 1 10000`; do curl -s --cacert /certs/nginx.crt -o /dev/null --insecure https://nginx; done && echo "GMT_SCI_R=10000"
+        note: Accessing with encryption and insecure
+        read-sci-stdout: True
+        log-stdout: True
+
   - name: sleep2
     container: curl_client
     commands:
