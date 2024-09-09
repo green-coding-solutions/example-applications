@@ -49,7 +49,7 @@ flow:
         command: sleep 10
         note: A little sleep
 
-  - name: https
+  - name: https_insecure
     container: curl_client
     commands:
       - type: console
