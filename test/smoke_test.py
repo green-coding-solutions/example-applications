@@ -6,6 +6,8 @@ import yaml
 # These tests assumes the green-metrics-tool directory lives side by side with the examples-repository
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 ROOT_DIR = os.path.abspath(f"{CURRENT_DIR}/../")
+GMT_TEST_DIR = os.path.abspath(f"{CURRENT_DIR}/../../green-metrics-tool/tests")
+
 sys.path.append(f"{CURRENT_DIR}/../../green-metrics-tool")
 sys.path.append(f"{CURRENT_DIR}/../../green-metrics-tool/tools")
 sys.path.append(f"{CURRENT_DIR}/../../green-metrics-tool/lib")
@@ -17,7 +19,7 @@ import utils
 from db import DB
 
 #pylint: disable=expression-not-assigned
-GlobalConfig(config_name='test-config.yml').config
+GlobalConfig(config_location=f"{GMT_TEST_DIR}/test-config.yml").config
 
 def example_directories():
     example_dirs = []

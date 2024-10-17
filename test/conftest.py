@@ -2,11 +2,16 @@ import os
 import sys
 import pytest
 
+# These tests assumes the green-metrics-tool directory lives side by side with the examples-repository
+CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
+ROOT_DIR = os.path.abspath(f"{CURRENT_DIR}/../")
+GMT_TEST_DIR = os.path.abspath(f"{CURRENT_DIR}/../../green-metrics-tool/tests")
+
 ## VERY IMPORTANT to override the config file here
 ## otherwise it will automatically connect to non-test DB and delete all your real data
 from lib.global_config import GlobalConfig
 from lib.db import DB
-GlobalConfig().override_config(config_name='test-config.yml')
+GlobalConfig().override_config(config_location=f"{GMT_TEST_DIR}/test-config.yml")
 
 def pytest_addoption(parser):
     parser.addoption("--name", action="store")
