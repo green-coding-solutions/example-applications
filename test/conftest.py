@@ -27,7 +27,7 @@ def pytest_generate_tests(metafunc):
 @pytest.fixture(autouse=True)
 def cleanup_after_test():
     yield
-    tables = DB().fetch_all("SELECT table_name FROM information_schema.tables WHERE table_schema = 'public'")
+    tables = DB().fetch_all("SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' AND table_type != 'VIEW'")
     for table in tables:
         table_name = table[0]
         DB().query(f'TRUNCATE TABLE "{table_name}" RESTART IDENTITY CASCADE')
