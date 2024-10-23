@@ -41,7 +41,7 @@ def run_test_on_directory(directory, capsys):
     name = f"test_{utils.randomword(12)}"
 
     # Run the application
-    runner = Runner(name=name, uri=ROOT_DIR, filename=f"{directory}/usage_scenario.yml", uri_type="folder", dev_no_build=True, dev_no_sleeps=True, skip_unsafe=True, skip_system_checks=True)
+    runner = Runner(name=name, uri=ROOT_DIR, filename=f"{directory}/usage_scenario.yml", uri_type="folder", dev_cache_build=True, dev_no_sleeps=True, skip_unsafe=True, skip_system_checks=True)
     runner.run()
 
     # Capture Std.Out and Std.Err and make Assertions
