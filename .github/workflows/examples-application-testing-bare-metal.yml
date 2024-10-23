@@ -20,13 +20,13 @@ jobs:
       recent_examples_commit: ${{ steps.check_examples_commits.outputs.should_run }}
     steps:
       - id: check_gmt_commits
-        uses: green-coding-berlin/green-ci-activity-checker@main
+        uses: green-coding-solutions/green-ci-activity-checker@main
         with:
-         repo: 'green-coding-berlin/green-metrics-tool'
+         repo: 'green-coding-solutions/green-metrics-tool'
          branch: 'main'
 
       - id: check_examples_commits
-        uses: green-coding-berlin/green-ci-activity-checker@main
+        uses: green-coding-solutions/green-ci-activity-checker@main
 
   run-tests:
     needs: check-commits
@@ -34,30 +34,30 @@ jobs:
     runs-on: self-hosted
     steps:
       - name: Initialize Energy Estimation
-        uses: green-coding-berlin/eco-ci-energy-estimation@main
+        uses: green-coding-solutions/eco-ci-energy-estimation@main
         with:
           task: start-measurement
 
       - name: Checkout Examples Directory
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           path: examples-directory
 
       - name: Checkout Green Metrics Tool
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
-          repository: green-coding-berlin/green-metrics-tool
+          repository: green-coding-solutions/green-metrics-tool
           submodules: 'true'
           path: green-metrics-tool
 
       - name: Energy Estimation - Get Measurement
-        uses: green-coding-berlin/eco-ci-energy-estimation@main
+        uses: green-coding-solutions/eco-ci-energy-estimation@main
         with:
           task: get-measurement
           label: setup
 
       - name: 'Setup, Run, and Teardown Tests'
-        uses: green-coding-berlin/green-metrics-tool/.github/actions/gmt-pytest@main
+        uses: green-coding-solutions/green-metrics-tool/.github/actions/gmt-pytest@main
         with:
            metrics-to-turn-off: '--categories Machine Sensors Debug MacOS GPU'
            gmt-directory: './green-metrics-tool'
@@ -66,13 +66,13 @@ jobs:
            github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Energy Estimation - Get Measurement
-        uses: green-coding-berlin/eco-ci-energy-estimation@main
+        uses: green-coding-solutions/eco-ci-energy-estimation@main
         with:
           task: get-measurement
           label: tests
 
       - name: Energy Estimation - End Measurement
-        uses: green-coding-berlin/eco-ci-energy-estimation@main
+        uses: green-coding-solutions/eco-ci-energy-estimation@main
         with:
           task: display-results
 
