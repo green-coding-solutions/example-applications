@@ -33,13 +33,13 @@ jobs:
           electricitymaps-api-token: ${{ secrets.ELECTRICITYMAPS_TOKEN }}
 
       - id: check_gmt_commits
-        uses: green-coding-solutions/green-ci-activity-checker@main
+        uses: green-coding-solutions/eco-ci-activity-checker@main
         with:
          repo: 'green-coding-solutions/green-metrics-tool'
          branch: 'main'
 
       - id: check_examples_commits
-        uses: green-coding-solutions/green-ci-activity-checker@main
+        uses: green-coding-solutions/eco-ci-activity-checker@main
         with:
          repo: 'green-coding-solutions/example-applications'
          branch: 'main'

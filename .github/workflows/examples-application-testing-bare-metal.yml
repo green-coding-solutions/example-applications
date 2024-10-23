@@ -20,13 +20,13 @@ jobs:
       recent_examples_commit: ${{ steps.check_examples_commits.outputs.should_run }}
     steps:
       - id: check_gmt_commits
-        uses: green-coding-solutions/green-ci-activity-checker@main
+        uses: green-coding-solutions/eco-ci-activity-checker@main
         with:
          repo: 'green-coding-solutions/green-metrics-tool'
          branch: 'main'
 
       - id: check_examples_commits
-        uses: green-coding-solutions/green-ci-activity-checker@main
+        uses: green-coding-solutions/eco-ci-activity-checker@main
 
   run-tests:
     needs: check-commits
