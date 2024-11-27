@@ -76,13 +76,10 @@ jobs:
         with:
           path: examples-directory
 
+      # Actions checkout@v4 flakes as the repo contains non-resolving symlinks for the EE version
       - name: Checkout Green Metrics Tool
-        uses: actions/checkout@v4
-        with:
-          repository: green-coding-solutions/green-metrics-tool
-          submodules: 'true'
-          path: green-metrics-tool
-          ref: main
+        run: |
+          git checkout https://github.com/green-coding-solutions/green-metrics-tool
 
       - name: Energy Estimation - Get Measurement
         uses: green-coding-solutions/eco-ci-energy-estimation@main
