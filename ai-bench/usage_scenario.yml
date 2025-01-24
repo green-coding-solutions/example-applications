@@ -7,8 +7,8 @@ services:
   ollama:
     image: ollama/ollama:latest
     setup-commands: ['ollama pull llama3.2:1b','ollama pull tinyllama:1.1b']
-    volumes:
-      - /tmp/ollama:/root/.ollama
+    # volumes:
+    #   - /tmp/ollama:/root/.ollama
 
 flow:
   - name: Model llama3.21b warmup
