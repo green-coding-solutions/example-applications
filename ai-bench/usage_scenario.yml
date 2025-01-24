@@ -1,0 +1,107 @@
+---
+name: AI Bechmark
+author: Your Name <please@adapt.io>
+description: This is a benchmark for multiple AI models
+
+services:
+  ollama:
+    image: ollama/ollama:latest
+    setup-commands: ['ollama pull llama3.2:1b','ollama pull tinyllama:1.1b']
+    volumes:
+      - /tmp/ollama:/root/.ollama
+
+flow:
+  - name: Model llama3.21b warmup
+    container: ollama
+    commands:
+      - type: console
+        command: ollama run llama3.2:1b "Tell me a joke to warm up please."
+  - name: Model llama3.21b prompts
+    container: ollama
+    commands:
+      - type: console
+        command: ollama run llama3.2:1b "What is 1 + 1?"
+        note: "What is 1 + 1?"
+      - type: console
+        command: ollama run llama3.2:1b "Are you human?"
+        note: "Are you human?"
+      - type: console
+        command: ollama run llama3.2:1b "Write 10 simple prompts for an LLM model."
+        note: "Write 10 simple prompts for an LLM model."
+      - type: console
+        command: ollama run llama3.2:1b "Write a breakup letter from a toaster to a loaf of bread."
+        note: "Write a breakup letter from a toaster to a loaf of bread."
+      - type: console
+        command: ollama run llama3.2:1b "Explain quantum physics like you're a pirate."
+        note: "Explain quantum physics like you're a pirate."
+      - type: console
+        command: ollama run llama3.2:1b "Give life advice from the perspective of a grumpy cat."
+        note: "Give life advice from the perspective of a grumpy cat."
+      - type: console
+        command: ollama run llama3.2:1b "Write a motivational speech... for a lazy sloth."
+        note: "Write a motivational speech... for a lazy sloth."
+      - type: console
+        command: ollama run llama3.2:1b "Describe the internet to someone from the 1800s, but make it sound really suspicious."
+        note: "Describe the internet to someone from the 1800s, but make it sound really suspicious."
+      - type: console
+        command: ollama run llama3.2:1b "Create a recipe for disaster... literally."
+        note: "Create a recipe for disaster... literally."
+      - type: console
+        command: ollama run llama3.2:1b "Write a job description for a professional napper."
+        note: "Write a job description for a professional napper."
+      - type: console
+        command: ollama run llama3.2:1b "Tell me why penguins are actually secret agents."
+        note: "Tell me why penguins are actually secret agents."
+      - type: console
+        command: ollama run llama3.2:1b "Describe a day in the life of a sock that lost its pair."
+        note: "Describe a day in the life of a sock that lost its pair."
+      - type: console
+        command: ollama run llama3.2:1b "Pitch a ridiculous invention that nobody needs but everyone secretly wants."
+        note: "Pitch a ridiculous invention that nobody needs but everyone secretly wants."
+  - name: Model tinyllama1.1b warmup
+    container: ollama
+    commands:
+      - type: console
+        command: ollama run tinyllama:1.1b "Tell me a joke to warm up please."
+  - name: Model tinyllama1.1b prompts
+    container: ollama
+    commands:
+      - type: console
+        command: ollama run tinyllama:1.1b "What is 1 + 1?"
+        note: "What is 1 + 1?"
+      - type: console
+        command: ollama run tinyllama:1.1b "Are you human?"
+        note: "Are you human?"
+      - type: console
+        command: ollama run tinyllama:1.1b "Write 10 simple prompts for an LLM model."
+        note: "Write 10 simple prompts for an LLM model."
+      - type: console
+        command: ollama run tinyllama:1.1b "Write a breakup letter from a toaster to a loaf of bread."
+        note: "Write a breakup letter from a toaster to a loaf of bread."
+      - type: console
+        command: ollama run tinyllama:1.1b "Explain quantum physics like you're a pirate."
+        note: "Explain quantum physics like you're a pirate."
+      - type: console
+        command: ollama run tinyllama:1.1b "Give life advice from the perspective of a grumpy cat."
+        note: "Give life advice from the perspective of a grumpy cat."
+      - type: console
+        command: ollama run tinyllama:1.1b "Write a motivational speech... for a lazy sloth."
+        note: "Write a motivational speech... for a lazy sloth."
+      - type: console
+        command: ollama run tinyllama:1.1b "Describe the internet to someone from the 1800s, but make it sound really suspicious."
+        note: "Describe the internet to someone from the 1800s, but make it sound really suspicious."
+      - type: console
+        command: ollama run tinyllama:1.1b "Create a recipe for disaster... literally."
+        note: "Create a recipe for disaster... literally."
+      - type: console
+        command: ollama run tinyllama:1.1b "Write a job description for a professional napper."
+        note: "Write a job description for a professional napper."
+      - type: console
+        command: ollama run tinyllama:1.1b "Tell me why penguins are actually secret agents."
+        note: "Tell me why penguins are actually secret agents."
+      - type: console
+        command: ollama run tinyllama:1.1b "Describe a day in the life of a sock that lost its pair."
+        note: "Describe a day in the life of a sock that lost its pair."
+      - type: console
+        command: ollama run tinyllama:1.1b "Pitch a ridiculous invention that nobody needs but everyone secretly wants."
+        note: "Pitch a ridiculous invention that nobody needs but everyone secretly wants."

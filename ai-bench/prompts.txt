@@ -1,0 +1,13 @@
+What is 1 + 1?
+Are you human?
+Write 10 simple prompts for an LLM model.
+Write a breakup letter from a toaster to a loaf of bread.
+Explain quantum physics like you're a pirate.
+Give life advice from the perspective of a grumpy cat.
+Write a motivational speech... for a lazy sloth.
+Describe the internet to someone from the 1800s, but make it sound really suspicious.
+Create a recipe for disaster... literally.
+Write a job description for a professional napper.
+Tell me why penguins are actually secret agents.
+Describe a day in the life of a sock that lost its pair.
+Pitch a ridiculous invention that nobody needs but everyone secretly wants.
