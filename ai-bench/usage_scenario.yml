@@ -7,6 +7,9 @@ services:
   ollama:
     image: ollama/ollama:latest
     setup-commands: ['ollama pull llama3.2:1b','ollama pull tinyllama:1.1b']
+    log-stdout: true
+    log-stderr: true
+
     # volumes:
     #   - /tmp/ollama:/root/.ollama
 
