@@ -5,14 +5,14 @@ description: Simple Wordpress where just the Homepage with the install instructi
 compose-file: !include compose.yml
 
 services:
-  gcb-puppeteer:
+  gcb-playwright:
     image: greencoding/gcb_playwright:v16
     networks:
       - gcb-mariadb-wordpress-network
 
 flow:
   - name: Check Website
-    container: gcb-puppeteer
+    container: gcb-playwright
     commands:
       - type: console
         command: python3 /tmp/repo/wordpress-official-starter/playwright-flow.py
