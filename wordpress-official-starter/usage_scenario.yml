@@ -1,14 +1,12 @@
 ---
-name: Wordpress Basic Puppeteer Scenario
-author: Arne Tarara <arne@green-coding.berlin>
+name: Wordpress Basic Playwright Scenario
+author: Arne Tarara <arne@green-coding.io>
 description: Simple Wordpress where just the Homepage with the install instructions is accessed. Mostly used for testing wordpress build and startup times.
 compose-file: !include compose.yml
 
 services:
   gcb-puppeteer:
-    image: greencoding/puppeteer-chrome
-    setup-commands:
-      - cp /tmp/repo/wordpress-official-starter/puppeteer-flow.js /var/www/puppeteer-flow.js
+    image: greencoding/gcb_playwright:v16
     networks:
       - gcb-mariadb-wordpress-network
 
@@ -17,10 +15,8 @@ flow:
     container: gcb-puppeteer
     commands:
       - type: console
-        command: node /var/www/puppeteer-flow.js
-        note: Starting Puppeteer Flow
+        command: python3 /tmp/repo/wordpress-official-starter/playwright-flow.py
+        note: Starting User Journey
         read-notes-stdout: true
         log-stdout: true
         log-stderr: true
-
-
