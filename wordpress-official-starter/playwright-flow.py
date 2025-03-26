@@ -27,7 +27,7 @@ with sync_playwright() as playwright:
     page.goto("http://gcb-wordpress:9875", wait_until="networkidle")
 
     # Wait until logo is visible
-    page.locator('p#logo').wait_for(timeout=30)
+    page.locator('p#logo').wait_for(state="visible", timeout=30)
 
 
     # Example of navigating to another page:
