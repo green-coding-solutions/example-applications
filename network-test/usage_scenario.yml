@@ -5,6 +5,7 @@ description: Demonstrating the resource consumption of two containers communicat
 
 compose-file: !include compose.yml
 
+
 flow:
   - name: External-Network-Test
     container: gcb-alpine-curl
@@ -16,7 +17,7 @@ flow:
         command: sleep 1
         note: Sleep 1 s
       - type: console
-        command: curl --fail https://file-examples.com/wp-content/storage/2017/10/file_example_JPG_1MB.jpg --output /tmp/test_image.jpg --silent
+        command: curl --fail https://raw.githubusercontent.com/green-coding-solutions/example-applications/refs/heads/main/network-test/test_1MB.jpg --output /tmp/test_image.jpg --silent
         note: Downloading 1 MB demo file
   - name: Pause
     container: gcb-alpine-curl
@@ -33,4 +34,3 @@ flow:
         note: transfer of 1 MB file in internal docker network
 # we introduce another sleep, cause sometims the end of the file transfer has
 # a race condition with the end of the measurement and is not attributed anymore
-
