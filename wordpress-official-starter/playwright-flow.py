@@ -26,9 +26,9 @@ with sync_playwright() as playwright:
     log_note('Home Page')
     page.goto("http://gcb-wordpress:9875", wait_until="networkidle")
 
-    # Wait until logo is visible
-    page.locator('p#logo').wait_for(state="visible", timeout=30)
 
+    if not page.locator('p#logo').is_visible():
+        page.locator('p#logo').wait_for(state="visible", timeout=30) # if we call this directly it can error if element is already visible. very annoying
 
     # Example of navigating to another page:
     # page.goto("http://gcb-wordpress:9875/my-sample-page", wait_until="networkidle")
