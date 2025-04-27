@@ -8,10 +8,10 @@ compose-file: !include compose.yml
 services:
   gcb-postgres:
     setup-commands:
-       - sleep 5 # wait some time to ensure that the database is ready
+       - command: sleep 5 # wait some time to ensure that the database is ready
   gcb-backend:
     setup-commands:
-       - sleep 10 # wait some time to ensure that the backend is ready
+       - command: sleep 10 # wait some time to ensure that the backend is ready
 
 sci:
   R_d: order

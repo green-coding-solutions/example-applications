@@ -8,7 +8,7 @@ compose-file: !include compose.yml
 services:
   gcb-alpine-sysbench:
     setup-commands:
-      - apk add gawk
+      - command: apk add gawk
 
 
 sci:

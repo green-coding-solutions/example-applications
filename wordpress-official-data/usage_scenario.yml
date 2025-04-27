@@ -14,7 +14,7 @@ services:
       - 3306:3306
 # This command is needed, cause the container needs a bootup time to work
     setup-commands:
-      - sleep 20
+      - command: sleep 20
     networks:
       - gcb-wordpress-mariadb-network
     deploy:
@@ -37,7 +37,7 @@ services:
   gcb-puppeteer:
     image: greencoding/puppeteer-chrome
     setup-commands:
-      - cp /tmp/repo/wordpress-official-data/puppeteer-flow.js /var/www/puppeteer-flow.js
+      - command: cp /tmp/repo/wordpress-official-data/puppeteer-flow.js /var/www/puppeteer-flow.js
     networks:
       - gcb-wordpress-mariadb-network
     deploy:

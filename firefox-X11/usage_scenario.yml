@@ -12,7 +12,7 @@ services:
   gcb-puppeteer:
     image: greencoding/puppeteer-firefox
     setup-commands:
-      - cp /tmp/repo/puppeteer-flow.js /var/www/puppeteer-flow.js
+      - command: cp /tmp/repo/puppeteer-flow.js /var/www/puppeteer-flow.js
     volumes:
       - /tmp/.X11-unix:/tmp/.X11-unix
     environment:

@@ -7,8 +7,8 @@ services:
   gcb-alpine:
     image: alpine
     setup-commands:
-      - echo "asd" && echo "123"
-    shell: sh
+      - command: echo "asd" && echo "123"
+        shell: sh
 
 flow:
   - name: Dump filesystem async
