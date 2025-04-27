@@ -5,7 +5,24 @@ description: A simple 5 seconds stress on the system with one core. Expected dis
 
 compose-file: !include compose.yml
 
+services:
+  gcb-alpine-stress:
+    cpus: 1
+    mem_limit: "6MB"
+
+
+
 flow:
+  - name: Hide me
+    container: gcb-alpine-stress
+    commands:
+# Alpine does not have stress, so we use stress-ng
+# We need the -q flag because otherwise it will write debug to STDERR
+      - type: console
+        command: sleep 0
+        note: Starting Stress
+
+
   - name: Stress
     container: gcb-alpine-stress
     commands:
@@ -14,3 +31,13 @@ flow:
       - type: console
         command: stress-ng -c 1 -t 5 -q
         note: Starting Stress
+
+  - name: Hide me 2
+    container: gcb-alpine-stress
+    commands:
+# Alpine does not have stress, so we use stress-ng
+# We need the -q flag because otherwise it will write debug to STDERR
+      - type: console
+        command: sleep 0
+        note: Starting Stress
+

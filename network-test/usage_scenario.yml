@@ -5,6 +5,8 @@ description: Demonstrating the resource consumption of two containers communicat
 
 compose-file: !include compose.yml
 
+ignore-unsupported-compose: True
+
 
 flow:
   - name: External-Network-Test

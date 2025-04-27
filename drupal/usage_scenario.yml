@@ -5,6 +5,8 @@ description: Drupal sample with pre-populated DB (pages and plugins) where a sim
 
 compose-file: !include compose.yml
 
+ignore-unsupported-compose: True
+
 services:
   drupal-mariadb:
     ports:
