@@ -16,73 +16,73 @@ flow:
 # We need the -q flag because otherwise it will write debug to STDERR
       - type: console
         command: timeout 0.1 stress-ng -c 1 -q
-        ignore-erros: true
+        ignore-errors: true
         note: Starting Stress
       - type: console
         command: sleep 0.1
-        ignore-erros: true
+        ignore-errors: true
         note: Sleeping
       - type: console
         command: timeout 0.1 stress-ng -c 1 -q
-        ignore-erros: true
+        ignore-errors: true
         note: Starting Stress
       - type: console
         command: sleep 0.1
-        ignore-erros: true
+        ignore-errors: true
         note: Sleeping
       - type: console
         command: timeout 0.1 stress-ng -c 1 -q
-        ignore-erros: true
+        ignore-errors: true
         note: Starting Stress
       - type: console
         command: sleep 0.1
-        ignore-erros: true
+        ignore-errors: true
         note: Sleeping
       - type: console
         command: timeout 0.2 stress-ng -c 1 -q
-        ignore-erros: true
+        ignore-errors: true
         note: Starting Stress
       - type: console
         command: sleep 0.2
-        ignore-erros: true
+        ignore-errors: true
         note: Sleeping
       - type: console
         command: timeout 0.2 stress-ng -c 1 -q
-        ignore-erros: true
+        ignore-errors: true
         note: Starting Stress
       - type: console
         command: sleep 0.2
-        ignore-erros: true
+        ignore-errors: true
         note: Sleeping
       - type: console
         command: timeout 0.2 stress-ng -c 1 -q
-        ignore-erros: true
+        ignore-errors: true
         note: Starting Stress
       - type: console
         command: sleep 0.2
-        ignore-erros: true
+        ignore-errors: true
         note: Sleeping
       - type: console
         command: timeout 0.5 stress-ng -c 1 -q
-        ignore-erros: true
+        ignore-errors: true
         note: Starting Stress
       - type: console
         command: sleep 0.5
-        ignore-erros: true
+        ignore-errors: true
         note: Sleeping
       - type: console
         command: timeout 0.5 stress-ng -c 1 -q
-        ignore-erros: true
+        ignore-errors: true
         note: Starting Stress
       - type: console
         command: sleep 0.5
-        ignore-erros: true
+        ignore-errors: true
         note: Sleeping
       - type: console
         command: timeout 0.5 stress-ng -c 1 -q
-        ignore-erros: true
+        ignore-errors: true
         note: Starting Stress
       - type: console
         command: sleep 0.5
-        ignore-erros: true
+        ignore-errors: true
         note: Sleeping
