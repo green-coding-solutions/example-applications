@@ -9,7 +9,7 @@ services:
   gcb-ai-model:
     docker-run-args:
       - --gpus=all
-      - -v ollama:/root/.ollama
+      - -v ollama:/root/.ollama:ro
 
 flow:
   # Models will already be present!
