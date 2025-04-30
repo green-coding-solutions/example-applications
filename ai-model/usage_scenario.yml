@@ -6,7 +6,7 @@ description: Run an inference with a small AI model
 compose-file: !include compose.yml
 
 flow:
-  - name: Download gemma3:1b
+  - name: Download gemma3-1b
     container: gcb-ai-model
     commands:
       - type: console
@@ -14,7 +14,7 @@ flow:
         read-notes-stdout: true
         log-stdout: true
 
-  - name: Load gemma3:1b into memory
+  - name: Load gemma3-1b into memory
     container: gcb-ai-model
     commands:
       - type: console
@@ -22,7 +22,7 @@ flow:
         read-notes-stdout: true
         log-stdout: true
 
-  - name: Run Inference on gemma3:1b
+  - name: Run Inference on gemma3-1b
     container: gcb-ai-model
     commands:
       - type: console
