@@ -18,7 +18,7 @@ flow:
     container: gcb-ai-model
     commands:
       - type: console
-        command: ollama run gemma3:1b "?"
+        command: ollama run gemma3:1b ""
         read-notes-stdout: true
         log-stdout: true
 
