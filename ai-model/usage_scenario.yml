@@ -3,6 +3,8 @@ name: AI model
 author: Arne Tarara <arne@green-coding.io>
 description: Run an inference with a small AI model
 
+compose-file: !include compose.yml
+
 flow:
   - name: Download gemma3:1b
     container: gcb-ai-model
