@@ -9,15 +9,17 @@ services:
   gcb-ai-model:
     docker-run-args:
       - --gpus=all
+      - -v ollama:/root/.ollama
 
 flow:
-  - name: Download gemma3-1b
-    container: gcb-ai-model
-    commands:
-      - type: console
-        command: ollama pull gemma3:1b
-        read-notes-stdout: true
-        log-stdout: true
+  # Models will already be present!
+  # - name: Download gemma3-1b
+  #   container: gcb-ai-model
+  #   commands:
+  #     - type: console
+  #       command: ollama pull gemma3:1b
+  #       read-notes-stdout: true
+  #       log-stdout: true
 
   - name: Load gemma3-1b into memory
     container: gcb-ai-model
@@ -33,4 +35,18 @@ flow:
       - type: console
         command: ollama run gemma3:1b "Tell me a long joke?"
         read-notes-stdout: true
+        log-stdout: true
+
+  - name: Load llama2 into memory
+    container: gcb-ai-model
+    commands:
+      - type: console
+        command: ollama run llama2 ""
+        log-stdout: true
+
+  - name: Run Inference on llama2
+    container: gcb-ai-model
+    commands:
+      - type: console
+        command: ollama run llama2 "Tell me a long joke?"
         log-stdout: true
