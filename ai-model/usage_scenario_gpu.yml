@@ -1,9 +1,14 @@
 ---
 name: AI model
 author: Arne Tarara <arne@green-coding.io>
-description: Run an inference with a small AI model
+description: Run an inference with a small AI model on the GPU
 
 compose-file: !include compose.yml
+
+services:
+  gcb-ai-model:
+    docker-run-args:
+      - --gpus=all
 
 flow:
   - name: Download gemma3-1b
