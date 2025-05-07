@@ -12,8 +12,8 @@ sys.path.append(f"{CURRENT_DIR}/../../green-metrics-tool")
 sys.path.append(f"{CURRENT_DIR}/../../green-metrics-tool/tools")
 sys.path.append(f"{CURRENT_DIR}/../../green-metrics-tool/lib")
 
-from runner import Runner
-from global_config import GlobalConfig
+from lib.scenario_runner import ScenarioRunner
+from lib.global_config import GlobalConfig
 
 import utils
 from db import DB
@@ -41,7 +41,7 @@ def run_test_on_directory(directory, capsys):
     name = f"test_{utils.randomword(12)}"
 
     # Run the application
-    runner = Runner(name=name, uri=ROOT_DIR, filename=f"{directory}/usage_scenario.yml", uri_type="folder", dev_cache_build=True, dev_no_sleeps=True, dev_no_metrics=True, dev_no_phase_stats=True, dev_no_optimizations=True, skip_unsafe=True, skip_system_checks=True)
+    runner = ScenarioRunner(name=name, uri=ROOT_DIR, filename=f"{directory}/usage_scenario.yml", uri_type="folder", dev_cache_build=True, dev_no_sleeps=True, dev_no_metrics=True, dev_no_phase_stats=True, dev_no_optimizations=True, skip_unsafe=True, skip_system_checks=True)
     runner.run()
 
     # Capture Std.Out and Std.Err and make Assertions
