@@ -8,7 +8,7 @@ compose-file: !include compose.yml
 services:
   gcb-alpine-stress:
     cpus: 1
-    mem_limit: "6MB"
+    mem_limit: "300MB"
 
 
 
