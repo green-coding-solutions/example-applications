@@ -9,6 +9,9 @@ services:
     image: greencoding/gcb_playwright:v16
     networks:
       - gcb-mariadb-wordpress-network
+    depends_on:
+      gcb-wordpress:
+        condition: service_healthy
 
 flow:
   - name: Check Website

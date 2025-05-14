@@ -27,6 +27,11 @@ services:
       - ./wordpress.conf:/etc/apache2/sites-enabled/wordpress.conf:ro
     networks:
       - gcb-mariadb-wordpress-network
+    healthcheck:
+      test: curl --fail --silent -k http://gcb-wordpress
+      interval: "1h" # effectively turns repeated healthchecks during runtime off
+      start_period: "60s"
+      start_interval: "1s"
 
 networks:
   gcb-mariadb-wordpress-network:
