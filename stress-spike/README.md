@@ -17,5 +17,5 @@ It will just end when you just do `docker compose run`
 ## OpenEnergyBadge
 These badges show the energy cost for running this code on a single machine.
 
-- <a href="https://metrics.green-coding.berlin/stats.html?id=433595cc-e397-4a0e-bc74-7ca832dd318a"><img src="https://api.green-coding.berlin/v1/badge/single/433595cc-e397-4a0e-bc74-7ca832dd318a?metric=ml-estimated"></a>
-- <a href="https://metrics.green-coding.berlin/stats.html?id=433595cc-e397-4a0e-bc74-7ca832dd318a"><img src="https://api.green-coding.berlin/v1/badge/single/433595cc-e397-4a0e-bc74-7ca832dd318a?metric=RAPL"></a>
+- <a href="https://metrics.green-coding.io/stats.html?id=30b5435d-6188-4691-8521-327b4c44153f"><img src="https://api.green-coding.io/v1/badge/single/30b5435d-6188-4691-8521-327b4c44153f?metric=psu_energy_ac_mcp_machine"></a>
+- <a href="https://metrics.green-coding.io/stats.html?id=30b5435d-6188-4691-8521-327b4c44153f"><img src="https://api.green-coding.io/v1/badge/single/30b5435d-6188-4691-8521-327b4c44153f?metric=cpu_energy_rapl_msr_component"></a>
