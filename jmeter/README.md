@@ -26,6 +26,8 @@ To check how to run the measurements check out our [Documentation](https://docs.
 
 These badges show the energy cost for running this code on a single machine and the emissions per order (SCI score).
 
-<a href="https://metrics.green-coding.io/stats.html?id=207c1ae2-d2b5-4fc9-a6ea-b68c2f69073a"><img src="https://api.green-coding.io/v1/badge/single/207c1ae2-d2b5-4fc9-a6ea-b68c2f69073a?metric=cpu_energy_rapl_msr_component"></a>
-<a href="https://metrics.green-coding.io/stats.html?id=207c1ae2-d2b5-4fc9-a6ea-b68c2f69073a"><img src="https://api.green-coding.io/v1/badge/single/207c1ae2-d2b5-4fc9-a6ea-b68c2f69073a?metric=software_carbon_intensity_global"></a>
+- <a href="https://metrics.green-coding.io/stats.html?id=207c1ae2-d2b5-4fc9-a6ea-b68c2f69073a"><img src="https://api.green-coding.io/v1/badge/single/207c1ae2-d2b5-4fc9-a6ea-b68c2f69073a?metric=psu_energy_ac_mcp_machine"></a>
+- <a href="https://metrics.green-coding.io/stats.html?id=207c1ae2-d2b5-4fc9-a6ea-b68c2f69073a"><img src="https://api.green-coding.io/v1/badge/single/207c1ae2-d2b5-4fc9-a6ea-b68c2f69073a?metric=cpu_energy_rapl_msr_component"></a>
+- <a href="https://metrics.green-coding.io/stats.html?id=207c1ae2-d2b5-4fc9-a6ea-b68c2f69073a"><img src="https://api.green-coding.io/v1/badge/single/207c1ae2-d2b5-4fc9-a6ea-b68c2f69073a?metric=software_carbon_intensity_global"></a>
+
 
