@@ -19,4 +19,4 @@ These badges show the energy cost for running this code on a single machine.
 
 - <a href="https://metrics.green-coding.io/stats.html?id=d2600846-b9b5-47a3-aa41-08ae02d36c8c"><img src="https://api.green-coding.berlin/v1/badge/single/d2600846-b9b5-47a3-aa41-08ae02d36c8c?metric=psu_energy_ac_mcp_machine"></a>
 - <a href="https://metrics.green-coding.io/stats.html?id=d2600846-b9b5-47a3-aa41-08ae02d36c8c"><img src="https://api.green-coding.berlin/v1/badge/single/d2600846-b9b5-47a3-aa41-08ae02d36c8c?metric=cpu_energy_rapl_msr_component"></a>
-- <a href="https://metrics.green-coding.io/stats.html?id=d2600846-b9b5-47a3-aa41-08ae02d36c8c"><img src="https://api.green-coding.berlin/v1/badge/single/d2600846-b9b5-47a3-aa41-08ae02d36c8c?metric=software_carbon_intensity_global"></a>
+
