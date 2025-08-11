@@ -76,8 +76,8 @@ To check how to run the measurements check out our [Documentation](https://docs.
 ## OpenEnergyBadge
 These badges show the energy cost for running this code on a single machine.
 
-- <a href="https://metrics.green-coding.berlin/stats.html?id=42a532c6-494c-4873-a288-dc9ef3d43a59"><img src="https://api.green-coding.berlin/v1/badge/single/42a532c6-494c-4873-a288-dc9ef3d43a59?metric=ml-estimated"></a>
-- <a href="https://metrics.green-coding.berlin/stats.html?id=42a532c6-494c-4873-a288-dc9ef3d43a59"><img src="https://api.green-coding.berlin/v1/badge/single/42a532c6-494c-4873-a288-dc9ef3d43a59?metric=RAPL"></a>
+- <a href="https://metrics.green-coding.io/stats.html?id=898f8b5d-fb33-473f-8b9b-a0dba091e39f"><img src="https://api.green-coding.io/v1/badge/single/898f8b5d-fb33-473f-8b9b-a0dba091e39f?metric=psu_energy_ac_mcp_machine"></a>
+- <a href="https://metrics.green-coding.io/stats.html?id=898f8b5d-fb33-473f-8b9b-a0dba091e39f"><img src="https://api.green-coding.io/v1/badge/single/898f8b5d-fb33-473f-8b9b-a0dba091e39f?metric=cpu_energy_rapl_msr_component"></a>
 
 
 
