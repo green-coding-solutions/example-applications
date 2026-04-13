@@ -13,9 +13,12 @@ services:
     setup-commands:
        - command: sleep 10 # wait some time to ensure that the backend is ready
 
-sci:
-  R_d: order
-  # One order consists of three sequential requests: get inventory, add product to cart, confirm order
+custom_metrics:
+  orders:
+    unit: orders
+    regex: ^(\d+) GMT_SCI_R=(\d+)$
+    sci: True
+    # One order consists of three sequential requests: get inventory, add product to cart, confirm order
 
 flow:
   - name: Execute JMeter test plan # single user orders one product with a short think time of 1 second
@@ -23,6 +26,4 @@ flow:
     commands:
       - type: console
         command: jmeter -Jhostname=gcb-backend -Jport=8080 -JnumExecutions=1 -JnumUser=1 -JrampUp=0 -JnumProducts=1 -JthinkTimeMin=1000 -JthinkTimeAdditionalRange=0 -JpauseBeforeExecution=0 -JpauseAfterExecution=0 -JloggingEnabled=true -n -t /tmp/repo/jmeter/jmeter-test-plan.jmx
-        log-stdout: true
         read-notes-stdout: true
-        read-sci-stdout: true

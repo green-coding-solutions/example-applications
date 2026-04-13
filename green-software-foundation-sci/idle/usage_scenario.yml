@@ -3,13 +3,17 @@ name: SCI for idle
 author: Arne Tarara <arne@green-coding.berlin>
 description: Idle the container for 60 seconds and outputting SCI
 
-sci:
-  R_d: minute of idling
+custom_metrics:
+  minute_idling:
+    unit: minute of idling
+    sci: True
 
 services:
   gcb-idle:
     image: alpine
     command: sh
+    setup-commands:
+      - command: apk add coreutils
 
 flow:
   - name: Idle
@@ -20,6 +24,5 @@ flow:
         note: Starting Sleep
       - type: console
         note: Writing SCI to stdout
-        command: echo GMT_SCI_R=1
-        log-stdout: True
-        read-sci-stdout: True
+        command: echo $(date +%s%N) minute_idling=1
+        shell: sh

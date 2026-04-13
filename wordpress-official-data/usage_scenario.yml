@@ -5,8 +5,10 @@ description: Wordpress sample with pre-populated DB (pages and plugins) where a 
 
 compose-file: !include compose.yml
 
-sci:
-  R_d: page request
+custom_metrics:
+  page_request:
+    unit: Page Requests
+    regex: ^(\d+) GMT_SCI_R=(\d+)$
 
 services:
   gcb-wordpress-mariadb:
@@ -46,7 +48,6 @@ services:
           memory: 500M
           cpus: 1
 
-
 flow:
   - name: Check Website
     container: gcb-puppeteer
@@ -54,18 +55,14 @@ flow:
       - type: console
         command: node /var/www/puppeteer-flow.js
         note: Starting Puppeteer Flow
-        log-stdout: true
         read-notes-stdout: true
-        read-sci-stdout: true
       - type: console
         command: sleep 30
         note: Idling
       - type: console
         command: node /var/www/puppeteer-flow.js
         note: Starting Puppeteer Flow again
-        log-stdout: true
         read-notes-stdout: true
-        read-sci-stdout: true
 
 networks:
   gcb-wordpress-mariadb-network:

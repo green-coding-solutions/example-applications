@@ -3,17 +3,16 @@ name: SCI with number crunching
 author: Arne Tarara <arne@green-coding.berlin>
 description: A simple sysbench run that outputs its performance as SCI metric
 
-compose-file: !include compose.yml
-
 services:
   gcb-alpine-sysbench:
+    image: alpine
     setup-commands:
-      - command: apk add gawk
+      - command: apk add sysbench coreutils gawk
 
-
-sci:
-  R_d: calculated prime number
-  # defined as the Carbon intensity per event that sysbench produces
+custom_metrics:
+  calculated_prime_numbers:
+    unit: CPN
+    sci: True
 
 flow:
   - name: Stress
@@ -21,8 +20,5 @@ flow:
     commands:
       - type: console
         note: Starting sysbench
-        command: sysbench cpu run --cpu-max-prime=25000 --threads=1 --time=3 --events=0 --rate=0 --debug=off | gawk '/total number of events:/{print "GMT_SCI_R="$NF}'
+        command: sysbench --cpu-max-prime=25000 --threads=1 --time=3 cpu run --debug=off | gawk '/total number of events:/ {cmd="date +%s%N"; cmd | getline ts; close(cmd); print ts " calculated_prime_numbers=" $NF}'
         shell: sh
-        log-stdout: True
-        log-stderr: True
-        read-sci-stdout: True
