@@ -13,7 +13,7 @@ services:
     container_name: gcb-apache2
     restart: always
     volumes:
-      - ./test_1MB.jpg:/usr/local/apache2/htdocs/test_1MB.jpg
+      - ./test_1MB.jpg:/usr/local/apache2/htdocs/test_1MB.jpg:ro
     networks:
       - network-test
 
