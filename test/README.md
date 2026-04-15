@@ -17,14 +17,14 @@ To run the tests, first make sure that your green-metrics-tool testing setup is 
 In green-metris-tool tests subfolder, make sure you have the GMT properly installed and then first run the `green-metrics-tool/test/start-test-containers.sh` script. 
 This will start the docker containers necessary to run the green metrics tool tests.
 
-Then from the `example-applications/test` directory first activate the GMT *venv* via `source ../../green-metrics-tool/venv/bin/activate`, and then run `pytest smoke_test.py -k "test_all_directories"`
+Then from the `example-applications/test` directory first activate the GMT *venv* via `source ../../green-metrics-tool/venv/bin/activate`, and then run `pytest run_tests.py -k "test_all_directories"`
 
 To test a single directory, run something like this:
 
-`pytest smoke_test.py::test_a_directory --name <name_of_directory_to_test>`
+`pytest run_tests.py::test_a_directory --name <name_of_directory_to_test>`
 
 ## Dotfiles
-The smoketests will iterate over all the directories and assumes that they are working applications with usage-scenario.yml and compose.yml files that are meant to used with the green metrics tool. 
+The `run_tests.py` will iterate over all the directories and assumes that they are working applications with usage-scenario.yml and compose.yml files that are meant to used with the green metrics tool.
 
 There are two dotfiles you can use to modify this behaviour.
 
