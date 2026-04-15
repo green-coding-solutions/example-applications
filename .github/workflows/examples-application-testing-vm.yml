@@ -94,7 +94,7 @@ jobs:
         uses: ./green-metrics-tool/.github/actions/gmt-pytest
         with:
           gmt-directory: './green-metrics-tool'
-          tests-command: 'pytest ../../examples-directory/test/run_tests.py -vv -k "test_all_directories" --ignore=green-metrics-tool/tests'
+          tests-command: 'pytest ../../examples-directory/test/run_tests.py -vv -k "test_all_directories" --ignore=green-metrics-tool --ignore=tests'
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Energy Estimation - Get Measurement
