@@ -2,7 +2,7 @@
 name: make-agentic-ready
 description: >
   Scan the repository and place strategic AGENTS.md files in root and subdirectories to instruct agents how to best parse the repository.
-  Use this skill when you want to update the repository. For example after a new folder has been added or relevant changes have been done. the user wants to process data that isn't standard documents or Claude history —
+  Use this skill when you want to update the repository. For example after a new folder has been added or relevant changes have been done.
   Triggers on "make agentic ready", "update AGENTS.md", "update agents file"
 ---
 
