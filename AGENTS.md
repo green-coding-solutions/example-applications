@@ -32,7 +32,6 @@ Most agent work should start from a scenario directory that contains one or more
 
 - Ignore vendored payload content under paths such as `html/`, `wp-content/`, and similar application data trees unless the task is explicitly about the bundled sample app itself.
 - Nested third-party `README.md` files inside application payloads are not repository navigation docs.
-- Ignore editor swap or temp artifacts such as `*.swp`; they are not scenario inputs.
 
 ## Recommended Agent Workflow
 
@@ -42,3 +41,12 @@ Most agent work should start from a scenario directory that contains one or more
 4. Open `compose.yml`, `Dockerfile*`, and helper scripts named in the scenario.
 5. Only descend into bundled app content if the scenario or task requires it.
 
+## Running an example scenario
+
+If you want to check an example application if it is working run this:
+```bash
+cd /home/node/green-metrics-tool
+python3 runner.py --uri /home/node/example-applications --filename stress/usage_scenario.yml` --dev-no-sleeps --dev-no-system-checks
+```
+
+You must replace `stress/usage_scenario.yml` with the path to the scenario you want to run.
