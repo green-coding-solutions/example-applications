@@ -1,0 +1,232 @@
+scenario_directories:
+  - path: ai-model
+    family: root
+    title: AI model inference with Ollama
+    scenarios:
+      - usage_scenario_cpu.yml
+      - usage_scenario_gpu.yml
+    tags: [ai, ollama, cpu, gpu]
+    notes:
+      - CPU and GPU variants use different scenario files.
+      - GPU execution requires NVIDIA container support and unsafe mounts.
+
+  - path: blauer-engel-okular-xdotool
+    family: root
+    title: KDE Okular desktop automation
+    scenarios:
+      - usage_scenario.yml
+    tags: [gui, x11, desktop, xdotool]
+    notes:
+      - Host display resolution and layout are fixed assumptions.
+      - Not suitable for headless or variable-resolution environments.
+
+  - path: detach-test
+    family: root
+    title: Detached background process handling
+    scenarios:
+      - usage_scenario.yml
+    tags: [processes, detach, logging]
+    notes:
+      - Demonstrates long-lived commands detached from the main step flow.
+
+  - path: drupal
+    family: root
+    title: Drupal with seeded data and Puppeteer
+    scenarios:
+      - usage_scenario.yml
+    tags: [drupal, cms, puppeteer, mariadb]
+    notes:
+      - Includes a seeded database and browser automation.
+
+  - path: firefox-X11
+    family: root
+    title: Firefox GUI automation over X11
+    scenarios:
+      - usage_scenario.yml
+    tags: [firefox, gui, x11, puppeteer]
+    notes:
+      - Requires access to a host X11 socket and unsafe mounts.
+
+  - path: green-software-foundation-sci/idle
+    family: green-software-foundation-sci
+    title: SCI idle baseline
+    scenarios:
+      - usage_scenario.yml
+    tags: [sci, idle]
+    notes:
+      - Emits SCI output for a simple idle workload.
+
+  - path: green-software-foundation-sci/simple-api
+    family: green-software-foundation-sci
+    title: SCI per API request
+    scenarios:
+      - usage_scenario.yml
+    tags: [sci, api, fastapi]
+    notes:
+      - Emits a custom SCI-oriented request metric.
+
+  - path: green-software-foundation-sci/static-algorithm
+    family: green-software-foundation-sci
+    title: SCI for number crunching
+    scenarios:
+      - usage_scenario.yml
+    tags: [sci, sysbench, cpu]
+    notes:
+      - Good fit for compute-bound SCI examples.
+
+  - path: idle
+    family: root
+    title: Short idle container baseline
+    scenarios:
+      - usage_scenario.yml
+    tags: [idle, baseline]
+    notes:
+      - Useful for low-activity baseline measurements.
+
+  - path: jmeter
+    family: root
+    title: JMeter test plan execution
+    scenarios:
+      - usage_scenario.yml
+    tags: [jmeter, load-test, backend, postgres]
+    notes:
+      - Uses a bundled `.jmx` plan.
+
+  - path: linting
+    family: root
+    title: Python linting comparison
+    scenarios:
+      - usage_scenario.yml
+      - usage_scenario-pylint.yml
+      - usage_scenario-ruff.yml
+    tags: [python, linting, pylint, ruff]
+    notes:
+      - Combined and single-tool variants exist.
+
+  - path: long-test
+    family: root
+    title: Long-running stability test
+    scenarios:
+      - usage_scenario.yml
+    tags: [long-run, sleep, stress]
+    notes:
+      - Runs for approximately three hours.
+
+  - path: ml-model
+    family: root
+    title: Machine learning training workload
+    scenarios:
+      - usage_scenario.yml
+    tags: [ml, training, python]
+    notes:
+      - Runtime depends on machine speed; longer flow runtime may be required.
+
+  - path: network-test
+    family: root
+    title: Internal and external network transfer
+    scenarios:
+      - usage_scenario.yml
+    tags: [network, curl, apache]
+    notes:
+      - Includes downloads from the public internet.
+
+  - path: shell-commands
+    family: root
+    title: Inline shell command example
+    scenarios:
+      - usage_scenario.yml
+    tags: [shell, setup-commands, inline-services]
+    notes:
+      - Services are defined directly in the scenario file.
+
+  - path: stdout-logging
+    family: root
+    title: Logging and detached command behavior
+    scenarios:
+      - usage_scenario.yml
+    tags: [logging, stdout, stderr, detach]
+    notes:
+      - Demonstrates captured, uncaptured, and detached logging modes.
+
+  - path: stress
+    family: root
+    title: Single-core stress baseline
+    scenarios:
+      - usage_scenario.yml
+    tags: [stress, cpu]
+    notes:
+      - Simplest CPU stress example in the repo.
+
+  - path: stress-10
+    family: root
+    title: Higher-core stress baseline
+    scenarios:
+      - usage_scenario.yml
+    tags: [stress, cpu]
+    notes:
+      - Similar to `stress` but with a larger workload.
+
+  - path: stress-interval
+    family: root
+    title: Interval stress bursts
+    scenarios:
+      - usage_scenario.yml
+    tags: [stress, burst, cpu]
+    notes:
+      - Intended for reporter timing and burst analysis.
+
+  - path: stress-spike
+    family: root
+    title: Short pulse stress workload
+    scenarios:
+      - usage_scenario.yml
+    tags: [stress, spike, cpu]
+    notes:
+      - Very short pulses make attribution timing important.
+
+  - path: stress-step
+    family: root
+    title: Stepwise CPU scaling
+    scenarios:
+      - usage_scenario.yml
+    tags: [stress, cpu, scaling]
+    notes:
+      - Increases core usage step by step.
+
+  - path: wordpress-official-data
+    family: root
+    title: WordPress with seeded content and Puppeteer
+    scenarios:
+      - usage_scenario.yml
+    tags: [wordpress, cms, puppeteer, mariadb]
+    notes:
+      - Contains seeded content and slower database startup.
+
+  - path: wordpress-official-starter
+    family: root
+    title: WordPress starter with Playwright
+    scenarios:
+      - usage_scenario.yml
+    tags: [wordpress, cms, playwright]
+    notes:
+      - Good baseline for WordPress startup and installation-page access.
+
+  - path: wordpress-vs-hugo/hugo-apache
+    family: wordpress-vs-hugo
+    title: Hugo-generated static site
+    scenarios:
+      - usage_scenario.yml
+    tags: [hugo, static-site, curl]
+    notes:
+      - Compare with the WordPress minimal example in the same family.
+
+  - path: wordpress-vs-hugo/wordpress-minimal
+    family: wordpress-vs-hugo
+    title: Minimal WordPress site with versioned scenarios
+    scenarios:
+      - usage_scenario.yml
+      - usage_scenario_5.9.3.yml
+      - usage_scenario_6.0.0.yml
+    tags: [wordpress, cms, curl, versioned]
+    notes:
+      - Includes version-pinned variants for comparison work.

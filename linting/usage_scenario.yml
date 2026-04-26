@@ -1,0 +1,36 @@
+name: Linting tools comparison - Pylint and Ruff
+author: Arne Tarara <arne@green-coding.berlin>
+description: Lint the dev branch of green-metrics-tool using pylint and ruff
+
+
+services:
+  linting:
+    image: gcb_lint
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+
+flow:
+  - name: Pylint linting
+    container: linting
+    commands:
+      - type: console
+        command: /tmp/linting/venv/bin/python3 -m pylint --rcfile /tmp/src/pylint.toml /tmp/linting/*.py
+        note: Linting with Pylint
+        ignore-errors: true  # We expect some linting errors to occur
+
+  - name: getting the date
+    container: linting
+    commands:
+      - type: console
+        command: date
+
+
+  - name: Ruff linting
+    container: linting
+    commands:
+      - type: console
+        command: /tmp/linting/venv/bin/python3 -m ruff --config /tmp/src/pyproject.toml /tmp/linting/
+        note: Linting with Ruff
+        ignore-errors: true  # We expect some linting errors to occur
