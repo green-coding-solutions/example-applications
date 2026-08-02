@@ -31,7 +31,7 @@ jobs:
           tags: "CI/CD,Example-Tests-Check-Commits"
           gmt-api-token: ${{ secrets.GMT_API_TOKEN }}
           co2-calculation-method: "location-based"
-          co2-grid-intensity-api-token: ${{ secrets.ELECTRICITYMAPS_TOKEN }}
+          co2-grid-intensity-api-token: ${{ secrets.ELECTRICITY_MAPS_ALT_TOKEN_INFO_AT_GCS }}
 
       - id: check_gmt_commits
         uses: green-coding-solutions/eco-ci-activity-checker@main
@@ -70,7 +70,7 @@ jobs:
           machine: "ubuntu-latest"
           tags: "CI/CD,Example-Tests-Main"
           co2-calculation-method: "location-based"
-          co2-grid-intensity-api-token: ${{ secrets.ELECTRICITYMAPS_TOKEN }}
+          co2-grid-intensity-api-token: ${{ secrets.ELECTRICITY_MAPS_ALT_TOKEN_INFO_AT_GCS }}
 
       - name: Checkout Examples Directory
         uses: actions/checkout@v6
