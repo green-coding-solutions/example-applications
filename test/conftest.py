@@ -25,6 +25,17 @@ def pytest_generate_tests(metafunc):
     if 'name' in metafunc.fixturenames and option_value is not None:
         metafunc.parametrize("name", [option_value])
 
+# Under pytest-xdist each worker gets its own private schema (gmt_test_gw001, gmt_test_gw002, ...)
+# that doesn't exist at all until something creates it - only the boot-time default ('gmt_test',
+# with no worker suffix) is populated with tables at container start. Without this, a worker's
+# first test hits a schema that doesn't exist yet and fails with 'relation "users" does not exist',
+# since setup_and_cleanup_test's reset_db() below only truncates/reseeds, it never creates the
+# schema/tables itself. Mirrors green-metrics-tool/tests/conftest.py's _initial_db_reset fixture.
+@pytest.fixture(scope='session', autouse=True)
+def _initial_db_reset():
+    Tests.create_test_schema()
+
+
 # Note: This fixture runs always
 # Pytest collects all fixtures before running any tests
 # no matter which order they are loaded in
