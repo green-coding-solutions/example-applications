@@ -16,6 +16,7 @@ let sleep = ms => new Promise(r => setTimeout(r, ms));
     });
 
     const page = await browser.newPage();
+    page.setDefaultTimeout(60000);
     const dimensions = await page.evaluate(() => {
         return {
             width: document.documentElement.clientWidth,
