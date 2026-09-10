@@ -1,4 +1,7 @@
-FROM drupal:latest
+# newer versions than drupal 10 fail with a PHP error.
+# we accept this example to be outdated, as it is just to show how drupal
+# works and not track the version changes
+FROM drupal:10
 EXPOSE 9876
 COPY ./settings.php /var/www/html/sites/default/settings.php
 COPY ./drupal.conf /etc/apache2/sites-enabled/drupal.conf

@@ -1,7 +1,7 @@
 ---
-name: Drupal Data Puppeteer Scenario
+name: Drupal Data Playwright Scenario
 author: Marco Villegas <marco.villegas@adaptagency.com>
-description: Drupal sample with pre-populated DB (pages and plugins) where a simple Puppeteer flow is executed
+description: Drupal sample with pre-populated DB (pages and plugins) where a simple Playwright flow is executed
 
 compose-file: !include compose.yml
 
@@ -26,28 +26,33 @@ services:
     networks:
       - drupal-mariadb-network
     folder-destination: "/tmp/repo"
-  gcb-puppeteer:
-    image: greencoding/puppeteer-chrome
+    depends_on:
+      drupal-mariadb:
+        condition: service_healthy
+  gcb-playwright:
+    image: mcr.microsoft.com/playwright:v1.63.0-noble
     setup-commands:
-      - command: cp /tmp/repo/drupal/puppeteer-flow.js /var/www/puppeteer-flow.js
+      - command: mkdir -p /app && cd /app && npm init -y && npm install playwright@1.63.0 microtime
+        shell: bash
+      - command: cp /tmp/repo/drupal/playwright-flow.js /app/playwright-flow.js
     networks:
       - drupal-mariadb-network
 
 flow:
   - name: Check Website
-    container: gcb-puppeteer
+    container: gcb-playwright
     commands:
       - type: console
-        command: node /var/www/puppeteer-flow.js
-        note: Starting Puppeteer Flow
+        command: node /app/playwright-flow.js
+        note: Starting Playwright Flow
         read-notes-stdout: true
         log-stdout: true
       - type: console
         command: sleep 30
         note: Idling
       - type: console
-        command: node /var/www/puppeteer-flow.js
-        note: Starting Puppeteer Flow again
+        command: node /app/playwright-flow.js
+        note: Starting Playwright Flow again
         read-notes-stdout: true
         log-stdout: true
 

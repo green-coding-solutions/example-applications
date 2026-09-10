@@ -31,10 +31,10 @@ scenario_directories:
 
   - path: drupal
     family: root
-    title: Drupal with seeded data and Puppeteer
+    title: Drupal with seeded data and Playwright
     scenarios:
       - usage_scenario.yml
-    tags: [drupal, cms, puppeteer, mariadb]
+    tags: [drupal, cms, playwright, mariadb]
     notes:
       - Includes a seeded database and browser automation.
 
