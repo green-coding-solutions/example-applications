@@ -62,6 +62,7 @@ jobs:
            gmt-directory: './green-metrics-tool'
            tests-directory: './examples-directory/test'
            tests-command: 'pytest smoke_test.py -vv -k "test_all_directories"'
+           run-serial-tests: false
            github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Energy Estimation - Get Measurement
