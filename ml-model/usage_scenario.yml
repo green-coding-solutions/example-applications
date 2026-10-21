@@ -6,6 +6,7 @@ description: Train a machine learning model
 services:
   gcb-ml-model:
     image: gcb_ml_model
+    entrypoint: tail -f /dev/null
     build: .
 
 flow:

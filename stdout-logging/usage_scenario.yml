@@ -6,6 +6,7 @@ description: The container will write a couple of 10.000 lines to the logs.
 services:
   gcb-alpine:
     image: alpine
+    entrypoint: tail -f /dev/null
 
 flow:
   - name: Dump filesystem without capturing

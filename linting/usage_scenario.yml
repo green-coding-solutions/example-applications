@@ -6,6 +6,7 @@ description: Lint the dev branch of green-metrics-tool using pylint and ruff
 services:
   linting:
     image: gcb_lint
+    entrypoint: tail -f /dev/null
     build:
       context: .
       dockerfile: Dockerfile

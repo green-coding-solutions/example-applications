@@ -5,6 +5,10 @@ description: A simple stress command that has a short duration and is pulsed to 
 
 compose-file: !include compose.yml
 
+services:
+  gcb-alpine-stress:
+    entrypoint: tail -f /dev/null
+
 flow:
   - name: Increasing Timeouts
     container: gcb-ubuntu-stress

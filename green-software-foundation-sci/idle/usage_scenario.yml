@@ -11,7 +11,7 @@ custom_metrics:
 services:
   gcb-idle:
     image: alpine
-    command: sh
+    entrypoint: tail -f /dev/null
     setup-commands:
       - command: apk add coreutils
 

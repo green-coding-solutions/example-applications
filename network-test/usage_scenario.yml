@@ -8,6 +8,10 @@ compose-file: !include compose.yml
 ignore-unsupported-compose: True
 
 
+services:
+  gcb-alpine-curl:
+    entrypoint: tail -f /dev/null
+
 flow:
   - name: External-Network-Test
     container: gcb-alpine-curl

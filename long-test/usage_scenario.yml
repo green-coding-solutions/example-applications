@@ -6,6 +6,7 @@ description: A very long running test to check how the GMT behaves with a lot of
 services:
   gcb-alpine-stress:
     image: gcb_alpine_stress
+    entrypoint: tail -f /dev/null
     build: .
 
 flow:

@@ -31,6 +31,7 @@ services:
         condition: service_healthy
   gcb-playwright:
     image: mcr.microsoft.com/playwright:v1.63.0-noble
+    entrypoint: tail -f /dev/null
     setup-commands:
       - command: mkdir -p /app && cd /app && npm init -y && npm install playwright@1.63.0 microtime
         shell: bash

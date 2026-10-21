@@ -36,7 +36,7 @@ services:
       - wordpress-minimal-network
     setup-commands:
       - command: sleep 20
-    command: sh
+    entrypoint: tail -f /dev/null
 
 flow:
   - name: Wordpress Minimal Homepage

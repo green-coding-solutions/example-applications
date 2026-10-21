@@ -6,6 +6,7 @@ description: A simple 10 seconds stress on the system with one core. Expected di
 services:
   gcb-alpine-stress:
     image: gcb_alpine_stress
+    entrypoint: tail -f /dev/null
     build: .
 
 flow:

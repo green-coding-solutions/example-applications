@@ -34,7 +34,7 @@ services:
     image: curlimages/curl:8.1.0
     networks:
       - wordpress-minimal-network
-    command: sh
+    entrypoint: tail -f /dev/null
 
 flow:
   - name: Wordpress Minimal Homepage

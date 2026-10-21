@@ -6,6 +6,7 @@ description: A simple sysbench run that outputs its performance as SCI metric
 services:
   gcb-alpine-sysbench:
     image: alpine
+    entrypoint: tail -f /dev/null
     setup-commands:
       - command: apk add sysbench coreutils gawk
 

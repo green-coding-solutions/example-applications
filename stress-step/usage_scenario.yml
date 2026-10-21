@@ -6,6 +6,7 @@ description: Stress of the system with increasing core count up to 10 cores
 services:
   gcb-alpine-stress:
     image: gcb_alpine_stress
+    entrypoint: tail -f /dev/null
     build: .
 
 

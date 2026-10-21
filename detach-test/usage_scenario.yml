@@ -6,6 +6,7 @@ description: This is an example on how to detach processes with the Green Metric
 services:
   gcb-alpine-stress:
     image: gcb_alpine_stress
+    entrypoint: tail -f /dev/null
     build: .
 
 flow:

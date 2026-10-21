@@ -38,6 +38,7 @@ services:
           cpus: 1
   gcb-puppeteer:
     image: greencoding/puppeteer-chrome
+    entrypoint: tail -f /dev/null
     setup-commands:
       - command: cp /tmp/repo/wordpress-official-data/puppeteer-flow.js /var/www/puppeteer-flow.js
     networks:

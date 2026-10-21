@@ -16,6 +16,7 @@ description: Run Okular
 services:
   gcb-xdotool:
     image: gcb_xdotool
+    entrypoint: tail -f /dev/null
     restart: always
     volumes:
       - "/tmp/.X11-unix:/tmp/.X11-unix"

@@ -6,6 +6,7 @@ description: A simple stress in sort interval to evaluate CPU burst energy.
 services:
   gcb-alpine-stress:
     image: gcb_alpine_stress
+    entrypoint: tail -f /dev/null
     build: .
 
 flow:
