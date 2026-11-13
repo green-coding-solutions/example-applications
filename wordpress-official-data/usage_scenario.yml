@@ -1,22 +1,34 @@
 ---
-name: Wordpress Data Puppeteer Scenario
+name: Wordpress Data Playwright Scenario
 author: Arne Tarara <arne@green-coding.berlin>
-description: Wordpress sample with pre-populated DB (pages and plugins) where a simple Puppeteer flow is executed
+description: Wordpress sample with pre-populated DB (pages and plugins) where a simple Playwright flow is executed
 
-compose-file: !include compose.yml
+# Provides the gmt-playwright-nodejs container with a running browser controlled via `type: playwright` commands
+compose-file: !include-gmt-helper gmt-playwright.yml
 
 custom_metrics:
   page_request:
     unit: Page Requests
-    regex: ^(\d+) GMT_SCI_R=(\d+)$
+    sci: True
 
 services:
   gcb-wordpress-mariadb:
-    ports:
-      - 3306:3306
-# This command is needed, cause the container needs a bootup time to work
-    setup-commands:
-      - command: sleep 20
+    build:
+      context: .
+      dockerfile: Dockerfile-mariadb
+    image: gcb_wordpress_mariadb
+    environment:
+      - MYSQL_ROOT_PASSWORD=somewordpress
+      - MYSQL_DATABASE=wordpress
+      - MYSQL_USER=wordpress
+      - MYSQL_PASSWORD=wordpress
+# mariadb only starts listening on TCP once docker-entrypoint-initdb.d (which imports wordpress-dump.sql)
+# has fully completed, so a successful ping also guarantees the seed data is loaded.
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot", "-psomewordpress"]
+      interval: "1h" # effectively turns repeated healthchecks during runtime off
+      start_period: "60s"
+      start_interval: "1s"
     networks:
       - gcb-wordpress-mariadb-network
     deploy:
@@ -26,8 +38,20 @@ services:
           cpus: 1
 
   gcb-wordpress-apache:
+    build:
+      context: .
+      dockerfile: Dockerfile-wordpress
+    image: gcb_wordpress_apache
     ports:
       - 9875:9875
+    environment:
+      - WORDPRESS_DB_HOST=gcb-wordpress-mariadb
+      - WORDPRESS_DB_USER=wordpress
+      - WORDPRESS_DB_PASSWORD=wordpress
+      - WORDPRESS_DB_NAME=wordpress
+    depends_on:
+      gcb-wordpress-mariadb:
+        condition: service_healthy
     networks:
       - gcb-wordpress-mariadb-network
     folder-destination: "/tmp/repo"
@@ -36,34 +60,91 @@ services:
         limits:
           memory: 500M
           cpus: 1
-  gcb-puppeteer:
-    image: greencoding/puppeteer-chrome
-    entrypoint: tail -f /dev/null
-    setup-commands:
-      - command: cp /tmp/repo/wordpress-official-data/puppeteer-flow.js /var/www/puppeteer-flow.js
+
+  # Comes from the GMT helper included above. We only attach it to our network.
+  gmt-playwright-nodejs:
     networks:
       - gcb-wordpress-mariadb-network
-    deploy:
-      resources:
-        limits:
-          memory: 500M
-          cpus: 1
 
+# Note: Playwright commands are passed through a single-quoted shell string. Do not use single quotes in them.
 flow:
-  - name: Check Website
-    container: gcb-puppeteer
+  - name: Home Page
+    container: gmt-playwright-nodejs
     commands:
+      - type: playwright
+        command: >-
+          await page.goto("http://gcb-wordpress-apache:9875", { waitUntil: "networkidle" });
+        note: Opening Home Page
       - type: console
-        command: node /var/www/puppeteer-flow.js
-        note: Starting Puppeteer Flow
-        read-notes-stdout: true
+        command: echo $(date +%s%N) page_request=1
+        shell: bash
+
+  - name: Contact Page
+    container: gmt-playwright-nodejs
+    commands:
+      - type: playwright
+        # CF7 renders hidden inputs first, so only wait for visible ones
+        command: await page.click(`a[href="http://gcb-wordpress-apache:9875/?page_id=34"]`); await page.waitForSelector(".wpcf7 form input:visible");
+        note: Opening Contact Page
+      - type: console
+        command: echo $(date +%s%N) page_request=1
+        shell: bash
+
+  - name: Long Text Page
+    container: gmt-playwright-nodejs
+    commands:
+      - type: playwright
+        command: await page.click(`a[href="http://gcb-wordpress-apache:9875/?page_id=36"]`); await page.getByText("Lorem ipsum dolor sit amet").first().waitFor();
+        note: Opening Long Text Page
+      - type: console
+        command: echo $(date +%s%N) page_request=1
+        shell: bash
+
+  - name: Idling
+    container: gmt-playwright-nodejs
+    commands:
       - type: console
         command: sleep 30
         note: Idling
+
+  - name: Reset Browser Context
+    container: gmt-playwright-nodejs
+    hidden: true
+    commands:
+      - type: playwright
+        command: await gmtPlaywrightResetContext();
+        note: Fresh browser context so the second pass is not served from the browser cache
+
+  - name: Home Page again
+    container: gmt-playwright-nodejs
+    commands:
+      - type: playwright
+        command: >-
+          await page.goto("http://gcb-wordpress-apache:9875", { waitUntil: "networkidle" });
+        note: Opening Home Page again
       - type: console
-        command: node /var/www/puppeteer-flow.js
-        note: Starting Puppeteer Flow again
-        read-notes-stdout: true
+        command: echo $(date +%s%N) page_request=1
+        shell: bash
+
+  - name: Contact Page again
+    container: gmt-playwright-nodejs
+    commands:
+      - type: playwright
+        command: await page.click(`a[href="http://gcb-wordpress-apache:9875/?page_id=34"]`); await page.waitForSelector(".wpcf7 form input:visible");
+        note: Opening Contact Page again
+      - type: console
+        command: echo $(date +%s%N) page_request=1
+        shell: bash
+
+  - name: Long Text Page again
+    container: gmt-playwright-nodejs
+    commands:
+      - type: playwright
+        command: await page.click(`a[href="http://gcb-wordpress-apache:9875/?page_id=36"]`); await page.getByText("Lorem ipsum dolor sit amet").first().waitFor();
+        note: Opening Long Text Page again
+      - type: console
+        command: echo $(date +%s%N) page_request=1
+        shell: bash
 
 networks:
   gcb-wordpress-mariadb-network:

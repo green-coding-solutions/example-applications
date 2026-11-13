@@ -17,11 +17,11 @@ If you do want to start with an importable SQL dump / filesystem or example here
 
 ## Prerequisites
 
-This example uses our [Puppeteer Chrome Container](https://hub.docker.com/r/greencoding/puppeteer-chrome) and will download
-it on the first measurement if you did not already pull it.
+The browser is provided by the GMT Playwright helper (`compose-file: !include-gmt-helper gmt-playwright.yml`).
+The user journey is defined directly in the `usage_scenario.yml` via `type: playwright` commands.
+See [Measuring Websites](https://docs.green-coding.io/docs/measuring/measuring-websites/) for details.
 
-If you do want to alter this container you can also build it yourself from [Puppeteer Chrome Container](https://github.com/green-coding-berlin/example-applications/tree/main/puppeteer-firefox-chrome).
-Only be sure to update the `usage_scenario.yml` with the local image identifier.
+The `compose.yml` is only meant for local development with `docker compose`. The `usage_scenario.yml` is self-contained.
 
 ## Deploy with docker compose
 

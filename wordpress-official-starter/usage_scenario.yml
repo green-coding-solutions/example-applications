@@ -2,25 +2,56 @@
 name: Wordpress Basic Playwright Scenario
 author: Arne Tarara <arne@green-coding.io>
 description: Simple Wordpress where just the Homepage with the install instructions is accessed. Mostly used for testing wordpress build and startup times.
-compose-file: !include compose.yml
+
+# Provides the gmt-playwright-nodejs container with a running browser controlled via `type: playwright` commands
+compose-file: !include-gmt-helper gmt-playwright.yml
 
 services:
-  gcb-playwright:
-    image: greencoding/gcb_playwright:v16
-    entrypoint: tail -f /dev/null
+  gcb-mariadb:
+    image: mariadb:10.6.4-focal
+    command: '--default-authentication-plugin=mysql_native_password'
+    environment:
+      MYSQL_ROOT_PASSWORD: somewordpress
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+    networks:
+      - gcb-mariadb-wordpress-network
+
+  gcb-wordpress:
+    image: wordpress:latest
+    ports:
+      - 9875:9875
+    depends_on:
+      - gcb-mariadb
+    volumes:
+      - ./wordpress.conf:/etc/apache2/sites-enabled/wordpress.conf:ro
+    networks:
+      - gcb-mariadb-wordpress-network
+    healthcheck:
+      test: curl --fail --silent -k http://gcb-wordpress
+      interval: "1h" # effectively turns repeated healthchecks during runtime off
+      start_period: "60s"
+      start_interval: "1s"
+
+  # Comes from the GMT helper included above. We only attach it to our network
+  # and wait for WordPress to be up.
+  gmt-playwright-nodejs:
     networks:
       - gcb-mariadb-wordpress-network
     depends_on:
       gcb-wordpress:
         condition: service_healthy
 
+# Note: Playwright commands are passed through a single-quoted shell string. Do not use single quotes in them.
 flow:
   - name: Check Website
-    container: gcb-playwright
+    container: gmt-playwright-nodejs
     commands:
-      - type: console
-        command: python3 /tmp/repo/wordpress-official-starter/playwright-flow.py
-        note: Starting User Journey
-        read-notes-stdout: true
-        log-stdout: true
-        log-stderr: true
+      - type: playwright
+        command: >-
+          await page.goto("http://gcb-wordpress:9875", { waitUntil: "networkidle" }); await page.locator("p#logo").waitFor({ state: "visible" });
+        note: Opening Home Page
+
+networks:
+  gcb-mariadb-wordpress-network:

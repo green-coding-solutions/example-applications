@@ -8,15 +8,5 @@ services:
       - 9875:80
     networks:
       - firefox-headless
-  gcb-puppeteer:
-    image: greencoding/puppeteer-firefox
-    container_name: gcb-puppeteer
-    volumes:
-      - "/tmp/.X11-unix:/tmp/.X11-unix"
-    environment:
-# If you have multiple displays please change this to the entry you want under /tmp/X11-unix
-      DISPLAY: ":0"
-    networks:
-      - firefox-headless
 networks:
   firefox-headless:

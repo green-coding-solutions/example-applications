@@ -1,36 +1,44 @@
 ---
 name: Firefox non headless test
 author: Arne Tarara <arne@green-coding.berlin>
-description: Run a Firefox browser with a GUI and execute a Puppeteer script 
+description: Run a Firefox browser with a GUI and execute a Playwright flow
 architecture: linux
+
+# Provides the gmt-playwright-nodejs container with a non-headless Firefox controlled via `type: playwright` commands.
+# The helper mounts /tmp/.X11-unix and sets DISPLAY=":0", so the runner needs --allow-unsafe.
+compose-file: !include-gmt-helper gmt-playwright-headful.yml
 
 services:
   gcb-wordpress:
     image: wordpress
     networks:
       - firefox-headless
-  gcb-puppeteer:
-    image: greencoding/puppeteer-firefox
-    entrypoint: tail -f /dev/null
-    setup-commands:
-      - command: cp /tmp/repo/puppeteer-flow.js /var/www/puppeteer-flow.js
-    volumes:
-      - /tmp/.X11-unix:/tmp/.X11-unix
-    environment:
-# If you have multiple displays please change this to the entry you want under /tmp/X11-unix
-      DISPLAY: ":0"
+    healthcheck:
+      test: curl --fail --silent http://localhost
+      interval: "1h" # effectively turns repeated healthchecks during runtime off
+      start_period: "60s"
+      start_interval: "1s"
+
+  # Comes from the GMT helper included above. We only attach it to our network and wait for WordPress.
+  gmt-playwright-nodejs:
     networks:
       - firefox-headless
+    depends_on:
+      gcb-wordpress:
+        condition: service_healthy
+# If you have multiple displays please override the entry you want under /tmp/.X11-unix
+#    environment:
+#      DISPLAY: ":1"
 
+# Note: Playwright commands are passed through a single-quoted shell string. Do not use single quotes in them.
 flow:
   - name: Check Website
-    container: gcb-puppeteer
+    container: gmt-playwright-nodejs
     commands:
-      - type: console
-        command: node /var/www/puppeteer-flow.js
-        note: Starting Puppeteer Flow
-        read-notes-stdout: true
-        log-stdout: true
+      - type: playwright
+        command: >-
+          await page.goto("http://gcb-wordpress", { waitUntil: "load" }); await page.waitForSelector("#language-continue");
+        note: Opening Home Page
 
 networks:
   firefox-headless:

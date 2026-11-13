@@ -12,11 +12,11 @@ port 9875 of the host as specified in the compose file.
 
 ## Prerequisites
 
-This example uses our [Puppeteer Chrome Container](https://hub.docker.com/r/greencoding/puppeteer-chrome) and will download
-it on the first measurement if you did not already pull it.
+The browser is provided by the GMT Playwright helper (`compose-file: !include-gmt-helper gmt-playwright.yml`).
+The user journey is defined directly in the `usage_scenario.yml` via `type: playwright` commands.
+See [Measuring Websites](https://docs.green-coding.io/docs/measuring/measuring-websites/) for details.
 
-If you do want to alter this container you can also build it yourself from [Puppeteer Chrome Container](https://github.com/green-coding-berlin/example-applications/tree/main/puppeteer-chrome).
-Only be sure to update the `usage_scenario.yml` with the local image identifier.
+The `compose.yml` is only meant for local debugging with `docker compose`. The `usage_scenario.yml` is self-contained.
 
 ## Deploy with docker compose
 
@@ -60,8 +60,8 @@ docker system prune --volumes
 
 The MariaDB database takes a long time to boot.
 
-Therefore a `sleep 20` is in the `setup-commands` of the `usage_scenario.yml` so that Puppeteer will not  
-get a database connection error from Wordpress.
+Therefore the `usage_scenario.yml` defines a healthcheck on the MariaDB container and WordPress only starts once it
+is healthy, so that Playwright will not get a database connection error from Wordpress.
 
 ## Changing the data in the admin
 

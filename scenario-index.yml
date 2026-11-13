@@ -43,7 +43,7 @@ scenario_directories:
     title: Firefox GUI automation over X11
     scenarios:
       - usage_scenario.yml
-    tags: [firefox, gui, x11, puppeteer]
+    tags: [firefox, gui, x11, playwright]
     notes:
       - Requires access to a host X11 socket and unsafe mounts.
 
@@ -195,10 +195,10 @@ scenario_directories:
 
   - path: wordpress-official-data
     family: root
-    title: WordPress with seeded content and Puppeteer
+    title: WordPress with seeded content and Playwright
     scenarios:
       - usage_scenario.yml
-    tags: [wordpress, cms, puppeteer, mariadb]
+    tags: [wordpress, cms, playwright, mariadb]
     notes:
       - Contains seeded content and slower database startup.
 
